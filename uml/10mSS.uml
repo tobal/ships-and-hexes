@@ -1,4 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_bBoUgAwSEeOze8rAK2ujiA" name="NewModel">
-  <packagedElement xmi:type="uml:Package" xmi:id="_iI1AsAwSEeOze8rAK2ujiA" name="Start Package"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_b5_7kAxBEeOze8rAK2ujiA" name="Configuration"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_fgQQkAxBEeOze8rAK2ujiA" name="Game State"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_iYj6cAxBEeOze8rAK2ujiA" name="Gameplay"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_pyFswAxBEeOze8rAK2ujiA" clientDependency="_MRoqIAxCEeOze8rAK2ujiA" name="Global Conf">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_MRoqIAxCEeOze8rAK2ujiA" client="_pyFswAxBEeOze8rAK2ujiA" supplier="_b5_7kAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_sOVFsAxBEeOze8rAK2ujiA" clientDependency="_LwS3oAxCEeOze8rAK2ujiA" name="Game Conf">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_LwS3oAxCEeOze8rAK2ujiA" client="_sOVFsAxBEeOze8rAK2ujiA" supplier="_b5_7kAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_uvnWsAxBEeOze8rAK2ujiA" clientDependency="_K2Y0IAxCEeOze8rAK2ujiA _LWWtoAxCEeOze8rAK2ujiA" name="Player Conf">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_K2Y0IAxCEeOze8rAK2ujiA" client="_uvnWsAxBEeOze8rAK2ujiA" supplier="_w3fCIAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_LWWtoAxCEeOze8rAK2ujiA" client="_uvnWsAxBEeOze8rAK2ujiA" supplier="_b5_7kAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_w3fCIAxBEeOze8rAK2ujiA" clientDependency="_E854QAxCEeOze8rAK2ujiA _FfdywAxCEeOze8rAK2ujiA" name="Empire">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_E854QAxCEeOze8rAK2ujiA" client="_w3fCIAxBEeOze8rAK2ujiA" supplier="_fgQQkAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_FfdywAxCEeOze8rAK2ujiA" client="_w3fCIAxBEeOze8rAK2ujiA" supplier="_iYj6cAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_2l-2AAxBEeOze8rAK2ujiA" clientDependency="_GNJ_MAxCEeOze8rAK2ujiA _G0hhMAxCEeOze8rAK2ujiA" name="Game Map">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_GNJ_MAxCEeOze8rAK2ujiA" client="_2l-2AAxBEeOze8rAK2ujiA" supplier="_iYj6cAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_G0hhMAxCEeOze8rAK2ujiA" client="_2l-2AAxBEeOze8rAK2ujiA" supplier="_fgQQkAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_4AJt8AxBEeOze8rAK2ujiA" clientDependency="_JgCsQAxCEeOze8rAK2ujiA" name="Battle">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_JgCsQAxCEeOze8rAK2ujiA" client="_4AJt8AxBEeOze8rAK2ujiA" supplier="_iYj6cAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_705K4AxBEeOze8rAK2ujiA" clientDependency="_KBOtwAxCEeOze8rAK2ujiA" name="AI">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_KBOtwAxCEeOze8rAK2ujiA" client="_705K4AxBEeOze8rAK2ujiA" supplier="_iYj6cAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_-cp3UAxBEeOze8rAK2ujiA" clientDependency="_DAaWYAxCEeOze8rAK2ujiA" name="Map Elements">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_DAaWYAxCEeOze8rAK2ujiA" client="_-cp3UAxBEeOze8rAK2ujiA" supplier="_2l-2AAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Ab6ZUAxCEeOze8rAK2ujiA" clientDependency="_D4d_wAxCEeOze8rAK2ujiA" name="Research">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_D4d_wAxCEeOze8rAK2ujiA" client="_Ab6ZUAxCEeOze8rAK2ujiA" supplier="_w3fCIAxBEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_NaK_gAxCEeOze8rAK2ujiA" clientDependency="_23TaEAxCEeOze8rAK2ujiA _9i6WcAxCEeOze8rAK2ujiA _99xtgAxCEeOze8rAK2ujiA" name="Config GFX">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_23TaEAxCEeOze8rAK2ujiA" client="_NaK_gAxCEeOze8rAK2ujiA" supplier="_b5_7kAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_9i6WcAxCEeOze8rAK2ujiA" client="_NaK_gAxCEeOze8rAK2ujiA" supplier="_YYo4MAxCEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_99xtgAxCEeOze8rAK2ujiA" client="_NaK_gAxCEeOze8rAK2ujiA" supplier="_X_ZRwAxCEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_PwxDcAxCEeOze8rAK2ujiA" clientDependency="_2B_isAxCEeOze8rAK2ujiA _-hjwAAxCEeOze8rAK2ujiA __XRQAAxCEeOze8rAK2ujiA" name="Game GFX">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_2B_isAxCEeOze8rAK2ujiA" client="_PwxDcAxCEeOze8rAK2ujiA" supplier="_fgQQkAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_-hjwAAxCEeOze8rAK2ujiA" client="_PwxDcAxCEeOze8rAK2ujiA" supplier="_XZUwQAxCEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="__XRQAAxCEeOze8rAK2ujiA" client="_PwxDcAxCEeOze8rAK2ujiA" supplier="_WlTSUAxCEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_SjSOYAxCEeOze8rAK2ujiA" clientDependency="_1gDTQAxCEeOze8rAK2ujiA _AKTPcAxDEeOze8rAK2ujiA _AleIgAxDEeOze8rAK2ujiA" name="Gameplay GFX">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_1gDTQAxCEeOze8rAK2ujiA" client="_SjSOYAxCEeOze8rAK2ujiA" supplier="_iYj6cAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_AKTPcAxDEeOze8rAK2ujiA" client="_SjSOYAxCEeOze8rAK2ujiA" supplier="_WlTSUAxCEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_AleIgAxDEeOze8rAK2ujiA" client="_SjSOYAxCEeOze8rAK2ujiA" supplier="_XZUwQAxCEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_VI_FUAxCEeOze8rAK2ujiA" clientDependency="_i7mrMAxDEeOze8rAK2ujiA" name="Input">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_i7mrMAxDEeOze8rAK2ujiA" client="_VI_FUAxCEeOze8rAK2ujiA" supplier="_SjSOYAxCEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WlTSUAxCEeOze8rAK2ujiA" clientDependency="_ECBH4AxDEeOze8rAK2ujiA" name="Game Map GFX">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_ECBH4AxDEeOze8rAK2ujiA" client="_WlTSUAxCEeOze8rAK2ujiA" supplier="_a_e-oAxCEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_XZUwQAxCEeOze8rAK2ujiA" clientDependency="_7kvZkAxCEeOze8rAK2ujiA _8CVUgAxCEeOze8rAK2ujiA _FTfW0AxDEeOze8rAK2ujiA" name="HUD">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_7kvZkAxCEeOze8rAK2ujiA" client="_XZUwQAxCEeOze8rAK2ujiA" supplier="_aF5EMAxCEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_8CVUgAxCEeOze8rAK2ujiA" client="_XZUwQAxCEeOze8rAK2ujiA" supplier="_ajLdIAxCEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_FTfW0AxDEeOze8rAK2ujiA" client="_XZUwQAxCEeOze8rAK2ujiA" supplier="_ZcWX8AxCEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_X_ZRwAxCEeOze8rAK2ujiA" clientDependency="_54GRkAxCEeOze8rAK2ujiA" name="Game Setup">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_54GRkAxCEeOze8rAK2ujiA" client="_X_ZRwAxCEeOze8rAK2ujiA" supplier="_ZcWX8AxCEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_YYo4MAxCEeOze8rAK2ujiA" clientDependency="_5VsIEAxCEeOze8rAK2ujiA" name="Main Menu">
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_5VsIEAxCEeOze8rAK2ujiA" client="_YYo4MAxCEeOze8rAK2ujiA" supplier="_ZcWX8AxCEeOze8rAK2ujiA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ZcWX8AxCEeOze8rAK2ujiA" name="GUI Elements"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_aF5EMAxCEeOze8rAK2ujiA" name="Battle GFX"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_ajLdIAxCEeOze8rAK2ujiA" name="Dialog GFX"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_a_e-oAxCEeOze8rAK2ujiA" name="Map GFX Elements"/>
 </uml:Model>
