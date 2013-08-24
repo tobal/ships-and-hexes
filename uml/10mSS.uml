@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_bBoUgAwSEeOze8rAK2ujiA" name="NewModel">
-  <packagedElement xmi:type="uml:Package" xmi:id="_b5_7kAxBEeOze8rAK2ujiA" name="Configuration"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_b5_7kAxBEeOze8rAK2ujiA" name="Configuration">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_a7pcsAzgEeO0Gq2YHF5ZVg" name="Configuration Facade"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_g6KpkAzgEeO0Gq2YHF5ZVg" name="Global Config Interface"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_hYdvIAzgEeO0Gq2YHF5ZVg" name="Game Config Interface"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_hvB1AAzgEeO0Gq2YHF5ZVg" name="Player Config Interface"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_p5UV4AzgEeO0Gq2YHF5ZVg" name="global Config InterfacesToConfiguration Facades" memberEnd="_p5U88AzgEeO0Gq2YHF5ZVg _p5kNgQzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_p5U88AzgEeO0Gq2YHF5ZVg _p5kNgQzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_p5U88AzgEeO0Gq2YHF5ZVg" name="global Config Interfaces" type="_g6KpkAzgEeO0Gq2YHF5ZVg" association="_p5UV4AzgEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p5jmcAzgEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p5kNgAzgEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_p5kNgQzgEeO0Gq2YHF5ZVg" name="configuration Facades" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_p5UV4AzgEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p5kNggzgEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p5k0kAzgEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_qkpx4AzgEeO0Gq2YHF5ZVg" name="game Config InterfacesToConfiguration Facades" memberEnd="_qkpx4QzgEeO0Gq2YHF5ZVg _qkqY8AzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_qkpx4QzgEeO0Gq2YHF5ZVg _qkqY8AzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_qkpx4QzgEeO0Gq2YHF5ZVg" name="game Config Interfaces" type="_hYdvIAzgEeO0Gq2YHF5ZVg" association="_qkpx4AzgEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qkpx4gzgEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qkpx4wzgEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_qkqY8AzgEeO0Gq2YHF5ZVg" name="configuration Facades" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_qkpx4AzgEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qkqY8QzgEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qkqY8gzgEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_tSqQQAzgEeO0Gq2YHF5ZVg" name="player Config InterfacesToConfiguration Facades" memberEnd="_tSq3UAzgEeO0Gq2YHF5ZVg _tSq3UwzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_tSq3UAzgEeO0Gq2YHF5ZVg _tSq3UwzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_tSq3UAzgEeO0Gq2YHF5ZVg" name="player Config Interfaces" type="_hvB1AAzgEeO0Gq2YHF5ZVg" association="_tSqQQAzgEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tSq3UQzgEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tSq3UgzgEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_tSq3UwzgEeO0Gq2YHF5ZVg" name="configuration Facades" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_tSqQQAzgEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tSreYAzgEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tSreYQzgEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_fgQQkAxBEeOze8rAK2ujiA" name="Game State"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_iYj6cAxBEeOze8rAK2ujiA" name="Gameplay"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_pyFswAxBEeOze8rAK2ujiA" clientDependency="_MRoqIAxCEeOze8rAK2ujiA _3vR1kAzfEeO0Gq2YHF5ZVg" name="Global Conf">
