@@ -5,32 +5,32 @@
     <packagedElement xmi:type="uml:Interface" xmi:id="_g6KpkAzgEeO0Gq2YHF5ZVg" name="Global Config Interface"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_hYdvIAzgEeO0Gq2YHF5ZVg" name="Game Config Interface"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_hvB1AAzgEeO0Gq2YHF5ZVg" name="Player Config Interface"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_p5UV4AzgEeO0Gq2YHF5ZVg" name="global Config InterfacesToConfiguration Facades" memberEnd="_p5U88AzgEeO0Gq2YHF5ZVg _p5kNgQzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_p5U88AzgEeO0Gq2YHF5ZVg _p5kNgQzgEeO0Gq2YHF5ZVg">
-      <ownedEnd xmi:id="_p5U88AzgEeO0Gq2YHF5ZVg" name="global Config Interfaces" type="_g6KpkAzgEeO0Gq2YHF5ZVg" association="_p5UV4AzgEeO0Gq2YHF5ZVg">
+    <packagedElement xmi:type="uml:Association" xmi:id="_p5UV4AzgEeO0Gq2YHF5ZVg" name="" memberEnd="_p5U88AzgEeO0Gq2YHF5ZVg _p5kNgQzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_p5U88AzgEeO0Gq2YHF5ZVg _p5kNgQzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_p5U88AzgEeO0Gq2YHF5ZVg" name="" type="_g6KpkAzgEeO0Gq2YHF5ZVg" association="_p5UV4AzgEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p5jmcAzgEeO0Gq2YHF5ZVg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p5kNgAzgEeO0Gq2YHF5ZVg" value="*"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_p5kNgQzgEeO0Gq2YHF5ZVg" name="configuration Facades" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_p5UV4AzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_p5kNgQzgEeO0Gq2YHF5ZVg" name="" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_p5UV4AzgEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p5kNggzgEeO0Gq2YHF5ZVg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p5k0kAzgEeO0Gq2YHF5ZVg" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_qkpx4AzgEeO0Gq2YHF5ZVg" name="game Config InterfacesToConfiguration Facades" memberEnd="_qkpx4QzgEeO0Gq2YHF5ZVg _qkqY8AzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_qkpx4QzgEeO0Gq2YHF5ZVg _qkqY8AzgEeO0Gq2YHF5ZVg">
-      <ownedEnd xmi:id="_qkpx4QzgEeO0Gq2YHF5ZVg" name="game Config Interfaces" type="_hYdvIAzgEeO0Gq2YHF5ZVg" association="_qkpx4AzgEeO0Gq2YHF5ZVg">
+    <packagedElement xmi:type="uml:Association" xmi:id="_qkpx4AzgEeO0Gq2YHF5ZVg" name="" memberEnd="_qkpx4QzgEeO0Gq2YHF5ZVg _qkqY8AzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_qkpx4QzgEeO0Gq2YHF5ZVg _qkqY8AzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_qkpx4QzgEeO0Gq2YHF5ZVg" name="" type="_hYdvIAzgEeO0Gq2YHF5ZVg" association="_qkpx4AzgEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qkpx4gzgEeO0Gq2YHF5ZVg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qkpx4wzgEeO0Gq2YHF5ZVg" value="*"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_qkqY8AzgEeO0Gq2YHF5ZVg" name="configuration Facades" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_qkpx4AzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_qkqY8AzgEeO0Gq2YHF5ZVg" name="" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_qkpx4AzgEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qkqY8QzgEeO0Gq2YHF5ZVg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qkqY8gzgEeO0Gq2YHF5ZVg" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_tSqQQAzgEeO0Gq2YHF5ZVg" name="player Config InterfacesToConfiguration Facades" memberEnd="_tSq3UAzgEeO0Gq2YHF5ZVg _tSq3UwzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_tSq3UAzgEeO0Gq2YHF5ZVg _tSq3UwzgEeO0Gq2YHF5ZVg">
-      <ownedEnd xmi:id="_tSq3UAzgEeO0Gq2YHF5ZVg" name="player Config Interfaces" type="_hvB1AAzgEeO0Gq2YHF5ZVg" association="_tSqQQAzgEeO0Gq2YHF5ZVg">
+    <packagedElement xmi:type="uml:Association" xmi:id="_tSqQQAzgEeO0Gq2YHF5ZVg" name="" memberEnd="_tSq3UAzgEeO0Gq2YHF5ZVg _tSq3UwzgEeO0Gq2YHF5ZVg" navigableOwnedEnd="_tSq3UAzgEeO0Gq2YHF5ZVg _tSq3UwzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_tSq3UAzgEeO0Gq2YHF5ZVg" name="" type="_hvB1AAzgEeO0Gq2YHF5ZVg" association="_tSqQQAzgEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tSq3UQzgEeO0Gq2YHF5ZVg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tSq3UgzgEeO0Gq2YHF5ZVg" value="*"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_tSq3UwzgEeO0Gq2YHF5ZVg" name="configuration Facades" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_tSqQQAzgEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_tSq3UwzgEeO0Gq2YHF5ZVg" name="" type="_a7pcsAzgEeO0Gq2YHF5ZVg" association="_tSqQQAzgEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tSreYAzgEeO0Gq2YHF5ZVg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tSreYQzgEeO0Gq2YHF5ZVg" value="*"/>
       </ownedEnd>
@@ -38,14 +38,73 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_fgQQkAxBEeOze8rAK2ujiA" name="Game State"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_iYj6cAxBEeOze8rAK2ujiA" name="Gameplay"/>
-  <packagedElement xmi:type="uml:Package" xmi:id="_pyFswAxBEeOze8rAK2ujiA" clientDependency="_MRoqIAxCEeOze8rAK2ujiA _3vR1kAzfEeO0Gq2YHF5ZVg" name="Global Conf">
+  <packagedElement xmi:type="uml:Package" xmi:id="_pyFswAxBEeOze8rAK2ujiA" clientDependency="_MRoqIAxCEeOze8rAK2ujiA _3vR1kAzfEeO0Gq2YHF5ZVg" name="Global Config">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_MRoqIAxCEeOze8rAK2ujiA" client="_pyFswAxBEeOze8rAK2ujiA" supplier="_b5_7kAxBEeOze8rAK2ujiA"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_3vR1kAzfEeO0Gq2YHF5ZVg" client="_pyFswAxBEeOze8rAK2ujiA" supplier="_u6V1MAzfEeO0Gq2YHF5ZVg"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_OfBHcAzhEeO0Gq2YHF5ZVg" name="Global Config Interface"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Q-2m8AzhEeO0Gq2YHF5ZVg" clientDependency="_TcnNYAziEeO0Gq2YHF5ZVg" name="Global Config">
+      <interfaceRealization xmi:id="_TcnNYAziEeO0Gq2YHF5ZVg" client="_Q-2m8AzhEeO0Gq2YHF5ZVg" supplier="_OfBHcAzhEeO0Gq2YHF5ZVg" contract="_OfBHcAzhEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UZ9b4AzhEeO0Gq2YHF5ZVg" name="Config File Handler"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_WeF20AzhEeO0Gq2YHF5ZVg" name="Sound Config"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X8w0QAzhEeO0Gq2YHF5ZVg" name="Graphics Config"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZjYMwAzhEeO0Gq2YHF5ZVg" name="Language Config"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_eMJHoAzhEeO0Gq2YHF5ZVg" name="Language File Interface"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_0memsAzhEeO0Gq2YHF5ZVg" name="" memberEnd="_0mfNwAzhEeO0Gq2YHF5ZVg _0mfNwwzhEeO0Gq2YHF5ZVg" navigableOwnedEnd="_0mfNwAzhEeO0Gq2YHF5ZVg _0mfNwwzhEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_0mfNwAzhEeO0Gq2YHF5ZVg" name="" type="_UZ9b4AzhEeO0Gq2YHF5ZVg" association="_0memsAzhEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0mfNwQzhEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0mfNwgzhEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_0mfNwwzhEeO0Gq2YHF5ZVg" name="" type="_Q-2m8AzhEeO0Gq2YHF5ZVg" association="_0memsAzhEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0mf00AzhEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0mf00QzhEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1QcwwAzhEeO0Gq2YHF5ZVg" name="" memberEnd="_1QcwwQzhEeO0Gq2YHF5ZVg _1QdX0AzhEeO0Gq2YHF5ZVg" navigableOwnedEnd="_1QcwwQzhEeO0Gq2YHF5ZVg _1QdX0AzhEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_1QcwwQzhEeO0Gq2YHF5ZVg" name="" type="_ZjYMwAzhEeO0Gq2YHF5ZVg" association="_1QcwwAzhEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1QcwwgzhEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1QcwwwzhEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_1QdX0AzhEeO0Gq2YHF5ZVg" name="" type="_Q-2m8AzhEeO0Gq2YHF5ZVg" association="_1QcwwAzhEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1QdX0QzhEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1QdX0gzhEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1s5cMAzhEeO0Gq2YHF5ZVg" name="" memberEnd="_1s5cMQzhEeO0Gq2YHF5ZVg _1s6DQAzhEeO0Gq2YHF5ZVg" navigableOwnedEnd="_1s5cMQzhEeO0Gq2YHF5ZVg _1s6DQAzhEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_1s5cMQzhEeO0Gq2YHF5ZVg" name="" type="_X8w0QAzhEeO0Gq2YHF5ZVg" association="_1s5cMAzhEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1s5cMgzhEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1s5cMwzhEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_1s6DQAzhEeO0Gq2YHF5ZVg" name="" type="_Q-2m8AzhEeO0Gq2YHF5ZVg" association="_1s5cMAzhEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1s6DQQzhEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1s6DQgzhEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_2OiJoAzhEeO0Gq2YHF5ZVg" name="" memberEnd="_2OiJoQzhEeO0Gq2YHF5ZVg _2OiwsgzhEeO0Gq2YHF5ZVg" navigableOwnedEnd="_2OiJoQzhEeO0Gq2YHF5ZVg _2OiwsgzhEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_2OiJoQzhEeO0Gq2YHF5ZVg" name="" type="_WeF20AzhEeO0Gq2YHF5ZVg" association="_2OiJoAzhEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2OiwsAzhEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2OiwsQzhEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_2OiwsgzhEeO0Gq2YHF5ZVg" name="" type="_Q-2m8AzhEeO0Gq2YHF5ZVg" association="_2OiJoAzhEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2OjXwAzhEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2OjXwQzhEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_OOBooAziEeO0Gq2YHF5ZVg" name="" memberEnd="_OOBooQziEeO0Gq2YHF5ZVg _OOCPsgziEeO0Gq2YHF5ZVg" navigableOwnedEnd="_OOBooQziEeO0Gq2YHF5ZVg _OOCPsgziEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_OOBooQziEeO0Gq2YHF5ZVg" name="" type="_eMJHoAzhEeO0Gq2YHF5ZVg" association="_OOBooAziEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OOCPsAziEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OOCPsQziEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_OOCPsgziEeO0Gq2YHF5ZVg" name="" type="_ZjYMwAzhEeO0Gq2YHF5ZVg" association="_OOBooAziEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OOCPswziEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OOCPtAziEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_sOVFsAxBEeOze8rAK2ujiA" clientDependency="_LwS3oAxCEeOze8rAK2ujiA" name="Game Conf">
+  <packagedElement xmi:type="uml:Package" xmi:id="_sOVFsAxBEeOze8rAK2ujiA" clientDependency="_LwS3oAxCEeOze8rAK2ujiA" name="Game Config">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_LwS3oAxCEeOze8rAK2ujiA" client="_sOVFsAxBEeOze8rAK2ujiA" supplier="_b5_7kAxBEeOze8rAK2ujiA"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_uvnWsAxBEeOze8rAK2ujiA" clientDependency="_K2Y0IAxCEeOze8rAK2ujiA _LWWtoAxCEeOze8rAK2ujiA" name="Player Conf">
+  <packagedElement xmi:type="uml:Package" xmi:id="_uvnWsAxBEeOze8rAK2ujiA" clientDependency="_K2Y0IAxCEeOze8rAK2ujiA _LWWtoAxCEeOze8rAK2ujiA" name="Player Config">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_K2Y0IAxCEeOze8rAK2ujiA" client="_uvnWsAxBEeOze8rAK2ujiA" supplier="_w3fCIAxBEeOze8rAK2ujiA"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_LWWtoAxCEeOze8rAK2ujiA" client="_uvnWsAxBEeOze8rAK2ujiA" supplier="_b5_7kAxBEeOze8rAK2ujiA"/>
   </packagedElement>
