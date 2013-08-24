@@ -423,6 +423,10 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_4AJt8AxBEeOze8rAK2ujiA" clientDependency="_JgCsQAxCEeOze8rAK2ujiA" name="Battle">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_JgCsQAxCEeOze8rAK2ujiA" client="_4AJt8AxBEeOze8rAK2ujiA" supplier="_iYj6cAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_CLXSwA0IEeO0Gq2YHF5ZVg" name="Battle"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_CoCnsA0IEeO0Gq2YHF5ZVg" clientDependency="_F7f8gA0IEeO0Gq2YHF5ZVg" name="BattleImpl">
+      <interfaceRealization xmi:id="_F7f8gA0IEeO0Gq2YHF5ZVg" client="_CoCnsA0IEeO0Gq2YHF5ZVg" supplier="_CLXSwA0IEeO0Gq2YHF5ZVg" contract="_CLXSwA0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_705K4AxBEeOze8rAK2ujiA" clientDependency="_KBOtwAxCEeOze8rAK2ujiA" name="AI">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_KBOtwAxCEeOze8rAK2ujiA" client="_705K4AxBEeOze8rAK2ujiA" supplier="_iYj6cAxBEeOze8rAK2ujiA"/>
