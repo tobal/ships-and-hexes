@@ -317,6 +317,32 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_Ab6ZUAxCEeOze8rAK2ujiA" clientDependency="_D4d_wAxCEeOze8rAK2ujiA" name="Research">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_D4d_wAxCEeOze8rAK2ujiA" client="_Ab6ZUAxCEeOze8rAK2ujiA" supplier="_w3fCIAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_kZAY4AzpEeO0Gq2YHF5ZVg" name="Research"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kwWh4AzpEeO0Gq2YHF5ZVg" clientDependency="_x3Z3sAzpEeO0Gq2YHF5ZVg" name="ResearchImpl">
+      <interfaceRealization xmi:id="_x3Z3sAzpEeO0Gq2YHF5ZVg" client="_kwWh4AzpEeO0Gq2YHF5ZVg" supplier="_kZAY4AzpEeO0Gq2YHF5ZVg" contract="_kZAY4AzpEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_leNGYAzpEeO0Gq2YHF5ZVg" name="Research Trait"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_mAhwUAzpEeO0Gq2YHF5ZVg" name="Research Field"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_r4H10AzpEeO0Gq2YHF5ZVg" name="" memberEnd="_r4H10QzpEeO0Gq2YHF5ZVg _r4Ic4AzpEeO0Gq2YHF5ZVg" navigableOwnedEnd="_r4H10QzpEeO0Gq2YHF5ZVg _r4Ic4AzpEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_r4H10QzpEeO0Gq2YHF5ZVg" name="" type="_leNGYAzpEeO0Gq2YHF5ZVg" association="_r4H10AzpEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_r4H10gzpEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_r4H10wzpEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_r4Ic4AzpEeO0Gq2YHF5ZVg" name="" type="_kwWh4AzpEeO0Gq2YHF5ZVg" association="_r4H10AzpEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_r4Ic4QzpEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_r4Ic4gzpEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_vRT_MAzpEeO0Gq2YHF5ZVg" name="" memberEnd="_vRT_MQzpEeO0Gq2YHF5ZVg _vRUmQQzpEeO0Gq2YHF5ZVg" navigableOwnedEnd="_vRT_MQzpEeO0Gq2YHF5ZVg _vRUmQQzpEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_vRT_MQzpEeO0Gq2YHF5ZVg" name="" type="_mAhwUAzpEeO0Gq2YHF5ZVg" association="_vRT_MAzpEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vRT_MgzpEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vRUmQAzpEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_vRUmQQzpEeO0Gq2YHF5ZVg" name="" type="_kwWh4AzpEeO0Gq2YHF5ZVg" association="_vRT_MAzpEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vRUmQgzpEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vRUmQwzpEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_NaK_gAxCEeOze8rAK2ujiA" clientDependency="_23TaEAxCEeOze8rAK2ujiA _9i6WcAxCEeOze8rAK2ujiA _99xtgAxCEeOze8rAK2ujiA" name="Config GFX">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_23TaEAxCEeOze8rAK2ujiA" client="_NaK_gAxCEeOze8rAK2ujiA" supplier="_b5_7kAxBEeOze8rAK2ujiA"/>
