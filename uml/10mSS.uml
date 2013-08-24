@@ -463,6 +463,60 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_-cp3UAxBEeOze8rAK2ujiA" clientDependency="_DAaWYAxCEeOze8rAK2ujiA" name="Map Elements">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_DAaWYAxCEeOze8rAK2ujiA" client="_-cp3UAxBEeOze8rAK2ujiA" supplier="_2l-2AAxBEeOze8rAK2ujiA"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_nYTDcA0IEeO0Gq2YHF5ZVg" name="MapElement"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_n6298A0IEeO0Gq2YHF5ZVg" clientDependency="_FacBYA0JEeO0Gq2YHF5ZVg" name="MapElementImpl">
+      <interfaceRealization xmi:id="_FacBYA0JEeO0Gq2YHF5ZVg" client="_n6298A0IEeO0Gq2YHF5ZVg" supplier="_nYTDcA0IEeO0Gq2YHF5ZVg" contract="_nYTDcA0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_oLuEcA0IEeO0Gq2YHF5ZVg" name="MapElementFactory"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ooZZYA0IEeO0Gq2YHF5ZVg" name="Planet">
+      <generalization xmi:id="_JDRJQA0JEeO0Gq2YHF5ZVg" general="_n6298A0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_o9Eo4A0IEeO0Gq2YHF5ZVg" name="Ship">
+      <generalization xmi:id="_Jr7EsA0JEeO0Gq2YHF5ZVg" general="_n6298A0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pMou4A0IEeO0Gq2YHF5ZVg" name="Anomaly">
+      <generalization xmi:id="_KL0FsA0JEeO0Gq2YHF5ZVg" general="_n6298A0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rB-f4A0IEeO0Gq2YHF5ZVg" name="AsteroidField">
+      <generalization xmi:id="_KqkeQA0JEeO0Gq2YHF5ZVg" general="_pMou4A0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rRrv0A0IEeO0Gq2YHF5ZVg" name="GasCloud">
+      <generalization xmi:id="_LCEYQA0JEeO0Gq2YHF5ZVg" general="_pMou4A0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rjxlYA0IEeO0Gq2YHF5ZVg" name="AlienWreck">
+      <generalization xmi:id="_LhHrwA0JEeO0Gq2YHF5ZVg" general="_pMou4A0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_r1tC4A0IEeO0Gq2YHF5ZVg" name="Desert">
+      <generalization xmi:id="_QkW8IA0JEeO0Gq2YHF5ZVg" general="_ooZZYA0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sLDn0A0IEeO0Gq2YHF5ZVg" name="Lava">
+      <generalization xmi:id="_RLkGEA0JEeO0Gq2YHF5ZVg" general="_ooZZYA0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sdv6UA0IEeO0Gq2YHF5ZVg" name="Water">
+      <generalization xmi:id="_RmzQkA0JEeO0Gq2YHF5ZVg" general="_ooZZYA0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_u4xyUA0IEeO0Gq2YHF5ZVg" name="FightingShip">
+      <generalization xmi:id="_PdokoA0JEeO0Gq2YHF5ZVg" general="_o9Eo4A0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vMOSwA0IEeO0Gq2YHF5ZVg" name="Colonizer">
+      <generalization xmi:id="_PCA_oA0JEeO0Gq2YHF5ZVg" general="_o9Eo4A0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vh5AwA0IEeO0Gq2YHF5ZVg" name="Fighter">
+      <generalization xmi:id="_P01jsA0JEeO0Gq2YHF5ZVg" general="_u4xyUA0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_v1kxwA0IEeO0Gq2YHF5ZVg" name="Bomber">
+      <generalization xmi:id="_QLLnIA0JEeO0Gq2YHF5ZVg" general="_u4xyUA0IEeO0Gq2YHF5ZVg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_F1-G0A0JEeO0Gq2YHF5ZVg" name="" memberEnd="_F1-G0Q0JEeO0Gq2YHF5ZVg _F1-t4g0JEeO0Gq2YHF5ZVg" navigableOwnedEnd="_F1-G0Q0JEeO0Gq2YHF5ZVg _F1-t4g0JEeO0Gq2YHF5ZVg">
+      <ownedEnd xmi:id="_F1-G0Q0JEeO0Gq2YHF5ZVg" name="" type="_oLuEcA0IEeO0Gq2YHF5ZVg" association="_F1-G0A0JEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_F1-t4A0JEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_F1-t4Q0JEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_F1-t4g0JEeO0Gq2YHF5ZVg" name="" type="_n6298A0IEeO0Gq2YHF5ZVg" association="_F1-G0A0JEeO0Gq2YHF5ZVg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_F1-t4w0JEeO0Gq2YHF5ZVg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_F1-t5A0JEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_Ab6ZUAxCEeOze8rAK2ujiA" clientDependency="_D4d_wAxCEeOze8rAK2ujiA" name="Research">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_D4d_wAxCEeOze8rAK2ujiA" client="_Ab6ZUAxCEeOze8rAK2ujiA" supplier="_w3fCIAxBEeOze8rAK2ujiA"/>
