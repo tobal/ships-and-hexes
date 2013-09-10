@@ -185,8 +185,30 @@
       <interfaceRealization xmi:id="_TcnNYAziEeO0Gq2YHF5ZVg" client="_Q-2m8AzhEeO0Gq2YHF5ZVg" supplier="_OfBHcAzhEeO0Gq2YHF5ZVg" contract="_OfBHcAzhEeO0Gq2YHF5ZVg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_UZ9b4AzhEeO0Gq2YHF5ZVg" name="ConfigFileHandler"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_WeF20AzhEeO0Gq2YHF5ZVg" name="SoundConfig"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_X8w0QAzhEeO0Gq2YHF5ZVg" name="GraphicsConfig"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_WeF20AzhEeO0Gq2YHF5ZVg" name="SoundConfig">
+      <ownedAttribute xmi:id="_guKmsBpOEeO0BLskGMHr3A" name="musicVolume">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_guTwoBpOEeO0BLskGMHr3A"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_guTwoRpOEeO0BLskGMHr3A" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ix_foBpOEeO0BLskGMHr3A" name="soundVolume">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iyIpkBpOEeO0BLskGMHr3A"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iyIpkRpOEeO0BLskGMHr3A" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_X8w0QAzhEeO0Gq2YHF5ZVg" name="GraphicsConfig">
+      <ownedAttribute xmi:id="_RPt7sBpOEeO0BLskGMHr3A" name="fullscreen">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RQAPkBpOEeO0BLskGMHr3A"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RQAPkRpOEeO0BLskGMHr3A" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_ehyOsBpOEeO0BLskGMHr3A" name="widescreen">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eh7_sBpOEeO0BLskGMHr3A"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eh7_sRpOEeO0BLskGMHr3A" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_ZjYMwAzhEeO0Gq2YHF5ZVg" name="LanguageConfig"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_eMJHoAzhEeO0Gq2YHF5ZVg" name="LanguageFileInterface"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_0memsAzhEeO0Gq2YHF5ZVg" name="" memberEnd="_0mfNwAzhEeO0Gq2YHF5ZVg _0mfNwwzhEeO0Gq2YHF5ZVg" navigableOwnedEnd="_0mfNwAzhEeO0Gq2YHF5ZVg _0mfNwwzhEeO0Gq2YHF5ZVg">
@@ -461,7 +483,7 @@
       <interfaceRealization xmi:id="_Nn-gAA0IEeO0Gq2YHF5ZVg" client="_K4MgAA0IEeO0Gq2YHF5ZVg" supplier="_KgZrEA0IEeO0Gq2YHF5ZVg" contract="_KgZrEA0IEeO0Gq2YHF5ZVg"/>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_-cp3UAxBEeOze8rAK2ujiA" clientDependency="_DAaWYAxCEeOze8rAK2ujiA" name="Map Elements">
+  <packagedElement xmi:type="uml:Package" xmi:id="_-cp3UAxBEeOze8rAK2ujiA" clientDependency="_DAaWYAxCEeOze8rAK2ujiA" name="Map Element">
     <packagedElement xmi:type="uml:Dependency" xmi:id="_DAaWYAxCEeOze8rAK2ujiA" client="_-cp3UAxBEeOze8rAK2ujiA" supplier="_2l-2AAxBEeOze8rAK2ujiA"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_nYTDcA0IEeO0Gq2YHF5ZVg" name="MapElement"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_n6298A0IEeO0Gq2YHF5ZVg" clientDependency="_FacBYA0JEeO0Gq2YHF5ZVg" name="MapElementImpl">
