@@ -1,7 +1,17 @@
 
 #include "GlobalConfig/GraphicsConfig.hpp"
 
-bool GraphicsConfig::getWideScreen()
+GraphicsConfig::GraphicsConfig()
 {
-	return false;
+	wideScreen = false;
+}
+
+bool GraphicsConfig::getWideScreen() const
+{
+	return wideScreen;
 };
+
+void GraphicsConfig::setWideScreen(const bool wideScreen)
+{
+	this->wideScreen = wideScreen;
+}

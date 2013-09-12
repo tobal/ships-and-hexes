@@ -8,7 +8,9 @@ private:
 	bool wideScreen;
 
 public:
-	bool getWideScreen();
+	GraphicsConfig();
+	bool getWideScreen() const;
+	void setWideScreen(const bool wideScreen);
 };
 
 #endif /* GRAPHICSCONFIG_HPP_ */
