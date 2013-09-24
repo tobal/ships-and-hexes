@@ -4,6 +4,7 @@
 #include "GlobalConfig/GraphicsConfig.hpp"
 
 using namespace CppUnit;
+using namespace GlobalConfig;
 
 class GraphicsConfigTest : public TestFixture
 {
@@ -11,6 +12,7 @@ class GraphicsConfigTest : public TestFixture
     CPPUNIT_TEST(wideScreenIsFalseAtFirst);
     CPPUNIT_TEST(wideScreenCanBeSet);
     CPPUNIT_TEST(fullScreenIsTrueAtFirst);
+    CPPUNIT_TEST(fullScreenCanBeSet);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -41,5 +43,13 @@ public:
     {
         bool fullScr = graphConf->getFullScreen();
         CPPUNIT_ASSERT(fullScr);
+    }
+
+    void fullScreenCanBeSet()
+    {
+    	graphConf->setFullScreen(true);
+    	CPPUNIT_ASSERT(graphConf->getFullScreen());
+    	graphConf->setFullScreen(false);
+    	CPPUNIT_ASSERT(!graphConf->getFullScreen());
     }
 };

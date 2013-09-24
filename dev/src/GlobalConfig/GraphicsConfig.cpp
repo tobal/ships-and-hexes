@@ -1,6 +1,8 @@
 
 #include "GlobalConfig/GraphicsConfig.hpp"
 
+using namespace GlobalConfig;
+
 GraphicsConfig::GraphicsConfig()
 {
 	wideScreen = false;
@@ -21,3 +23,8 @@ bool GraphicsConfig::getFullScreen() const
 {
 	return fullScreen;
 };
+
+void GraphicsConfig::setFullScreen(const bool fullScreen)
+{
+	this->fullScreen = fullScreen;
+}
