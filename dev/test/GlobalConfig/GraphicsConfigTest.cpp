@@ -10,6 +10,7 @@ class GraphicsConfigTest : public TestFixture
     CPPUNIT_TEST_SUITE( GraphicsConfigTest );
     CPPUNIT_TEST(wideScreenIsFalseAtFirst);
     CPPUNIT_TEST(wideScreenCanBeSet);
+    CPPUNIT_TEST(fullScreenIsTrueAtFirst);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -34,5 +35,11 @@ public:
     	CPPUNIT_ASSERT(graphConf->getWideScreen());
     	graphConf->setWideScreen(false);
     	CPPUNIT_ASSERT(!graphConf->getWideScreen());
+    }
+
+    void fullScreenIsTrueAtFirst()
+    {
+        bool fullScr = graphConf->getFullScreen();
+        CPPUNIT_ASSERT(fullScr);
     }
 };
