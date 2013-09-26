@@ -12,7 +12,7 @@ GraphicsConfig::GraphicsConfig()
 bool GraphicsConfig::getWideScreen() const
 {
 	return wideScreen;
-};
+}
 
 void GraphicsConfig::setWideScreen(const bool wideScreen)
 {
@@ -22,7 +22,7 @@ void GraphicsConfig::setWideScreen(const bool wideScreen)
 bool GraphicsConfig::getFullScreen() const
 {
 	return fullScreen;
-};
+}
 
 void GraphicsConfig::setFullScreen(const bool fullScreen)
 {
