@@ -183,34 +183,49 @@
     <packagedElement xmi:type="uml:Interface" xmi:id="_OfBHcAzhEeO0Gq2YHF5ZVg" name="GlobalConfig"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_Q-2m8AzhEeO0Gq2YHF5ZVg" clientDependency="_TcnNYAziEeO0Gq2YHF5ZVg" name="GlobalConfigImpl">
       <interfaceRealization xmi:id="_TcnNYAziEeO0Gq2YHF5ZVg" client="_Q-2m8AzhEeO0Gq2YHF5ZVg" supplier="_OfBHcAzhEeO0Gq2YHF5ZVg" contract="_OfBHcAzhEeO0Gq2YHF5ZVg"/>
+      <ownedOperation xmi:id="__rkHYDEVEeOinM8-US5s7w" name="initConfig"/>
+      <ownedOperation xmi:id="_Pg_8YDNCEeOGiO-3aaxwOA" name="getLanguageConfig"/>
+      <ownedOperation xmi:id="_SoR2YDNCEeOGiO-3aaxwOA" name="getSoundConfig"/>
+      <ownedOperation xmi:id="_VJE_MDNCEeOGiO-3aaxwOA" name="getGraphicsConfig"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_UZ9b4AzhEeO0Gq2YHF5ZVg" name="ConfigFileHandler"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UZ9b4AzhEeO0Gq2YHF5ZVg" name="ConfigFileHandler">
+      <ownedOperation xmi:id="_tharIDEVEeOinM8-US5s7w" name="saveConfigToFile">
+        <ownedParameter xmi:id="_2-rPwDEVEeOinM8-US5s7w" name="GlobalConfig"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_43ekcDEVEeOinM8-US5s7w" name="loadConfigFromFile"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_WeF20AzhEeO0Gq2YHF5ZVg" name="SoundConfig">
       <ownedAttribute xmi:id="_guKmsBpOEeO0BLskGMHr3A" name="musicVolume">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_guTwoBpOEeO0BLskGMHr3A"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_guTwoRpOEeO0BLskGMHr3A" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_ix_foBpOEeO0BLskGMHr3A" name="soundVolume">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iyIpkBpOEeO0BLskGMHr3A"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iyIpkRpOEeO0BLskGMHr3A" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_X8w0QAzhEeO0Gq2YHF5ZVg" name="GraphicsConfig">
       <ownedAttribute xmi:id="_RPt7sBpOEeO0BLskGMHr3A" name="fullscreen">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RQAPkBpOEeO0BLskGMHr3A"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RQAPkRpOEeO0BLskGMHr3A" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:id="_ehyOsBpOEeO0BLskGMHr3A" name="widescreen">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eh7_sBpOEeO0BLskGMHr3A"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eh7_sRpOEeO0BLskGMHr3A" value="1"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ZjYMwAzhEeO0Gq2YHF5ZVg" name="LanguageConfig"/>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_eMJHoAzhEeO0Gq2YHF5ZVg" name="LanguageFileInterface"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZjYMwAzhEeO0Gq2YHF5ZVg" name="LanguageConfig">
+      <ownedOperation xmi:id="_QcOBIDEWEeOinM8-US5s7w" name="setLanguage"/>
+      <ownedOperation xmi:id="_V0IhADEWEeOinM8-US5s7w" name="getLanguage"/>
+      <ownedOperation xmi:id="_6NNy4DEWEeOinM8-US5s7w" name="getListOfLanguages"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_eMJHoAzhEeO0Gq2YHF5ZVg" name="LanguageFileHandlerInterface">
+      <ownedOperation xmi:id="_tTr7sDEWEeOinM8-US5s7w" name="getListOfLanguageFiles"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_0memsAzhEeO0Gq2YHF5ZVg" name="" memberEnd="_0mfNwAzhEeO0Gq2YHF5ZVg _0mfNwwzhEeO0Gq2YHF5ZVg" navigableOwnedEnd="_0mfNwAzhEeO0Gq2YHF5ZVg _0mfNwwzhEeO0Gq2YHF5ZVg">
       <ownedEnd xmi:id="_0mfNwAzhEeO0Gq2YHF5ZVg" name="" type="_UZ9b4AzhEeO0Gq2YHF5ZVg" association="_0memsAzhEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0mfNwQzhEeO0Gq2YHF5ZVg"/>
@@ -259,6 +274,27 @@
       <ownedEnd xmi:id="_OOCPsgziEeO0Gq2YHF5ZVg" name="" type="_ZjYMwAzhEeO0Gq2YHF5ZVg" association="_OOBooAziEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OOCPswziEeO0Gq2YHF5ZVg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OOCPtAziEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9PeqADEWEeOinM8-US5s7w" name="Language">
+      <ownedAttribute xmi:id="_AJrxUDEXEeOinM8-US5s7w" name="languageName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AJu0oDEXEeOinM8-US5s7w"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AJvbsDEXEeOinM8-US5s7w" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_IiZIsDEXEeOinM8-US5s7w" name="languageFile" type="_tiEBoDNVEeOGiO-3aaxwOA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IicMADEXEeOinM8-US5s7w"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IicMATEXEeOinM8-US5s7w" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_cfABEDEXEeOinM8-US5s7w" name="" memberEnd="_cfABETEXEeOinM8-US5s7w _cfAoIjEXEeOinM8-US5s7w" navigableOwnedEnd="_cfABETEXEeOinM8-US5s7w _cfAoIjEXEeOinM8-US5s7w">
+      <ownedEnd xmi:id="_cfABETEXEeOinM8-US5s7w" name="" type="_9PeqADEWEeOinM8-US5s7w" association="_cfABEDEXEeOinM8-US5s7w">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cfAoIDEXEeOinM8-US5s7w"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cfAoITEXEeOinM8-US5s7w" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_cfAoIjEXEeOinM8-US5s7w" name="" type="_ZjYMwAzhEeO0Gq2YHF5ZVg" association="_cfABEDEXEeOinM8-US5s7w">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cfBPMDEXEeOinM8-US5s7w"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cfBPMTEXEeOinM8-US5s7w" value="*"/>
       </ownedEnd>
     </packagedElement>
   </packagedElement>
@@ -611,10 +647,13 @@
       <interfaceRealization xmi:id="_g8564AzoEeO0Gq2YHF5ZVg" client="_WKs8kAzoEeO0Gq2YHF5ZVg" supplier="_UVqtkAzoEeO0Gq2YHF5ZVg" contract="_UVqtkAzoEeO0Gq2YHF5ZVg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_XdZTgAzoEeO0Gq2YHF5ZVg" name="GameString"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_YE_fAAzoEeO0Gq2YHF5ZVg" clientDependency="_hULLYAzoEeO0Gq2YHF5ZVg" name="LanguageFileImpl">
+    <packagedElement xmi:type="uml:Class" xmi:id="_YE_fAAzoEeO0Gq2YHF5ZVg" clientDependency="_hULLYAzoEeO0Gq2YHF5ZVg" name="LanguageFileHandlerImpl">
       <interfaceRealization xmi:id="_hULLYAzoEeO0Gq2YHF5ZVg" client="_YE_fAAzoEeO0Gq2YHF5ZVg" supplier="_YfUDgAzoEeO0Gq2YHF5ZVg" contract="_YfUDgAzoEeO0Gq2YHF5ZVg"/>
+      <ownedOperation xmi:id="_kxSc0DEWEeOinM8-US5s7w" name="getListOfLanguageFiles"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_YfUDgAzoEeO0Gq2YHF5ZVg" name="LanguageFile"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_YfUDgAzoEeO0Gq2YHF5ZVg" name="LanguageFileHandler">
+      <ownedOperation xmi:id="_nncKkDEWEeOinM8-US5s7w" name="getListOfLanguageFiles"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_ZIbR8AzoEeO0Gq2YHF5ZVg" name="GlobalConfigInterface"/>
     <packagedElement xmi:type="uml:Association" xmi:id="_iKRF4AzoEeO0Gq2YHF5ZVg" name="" memberEnd="_iKRF4QzoEeO0Gq2YHF5ZVg _iKRF5AzoEeO0Gq2YHF5ZVg" navigableOwnedEnd="_iKRF4QzoEeO0Gq2YHF5ZVg _iKRF5AzoEeO0Gq2YHF5ZVg">
       <ownedEnd xmi:id="_iKRF4QzoEeO0Gq2YHF5ZVg" name="" type="_XdZTgAzoEeO0Gq2YHF5ZVg" association="_iKRF4AzoEeO0Gq2YHF5ZVg">
@@ -644,6 +683,17 @@
       <ownedEnd xmi:id="_mv6bUgzoEeO0Gq2YHF5ZVg" name="" type="_ZIbR8AzoEeO0Gq2YHF5ZVg" association="_mv50QAzoEeO0Gq2YHF5ZVg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mv6bUwzoEeO0Gq2YHF5ZVg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mv6bVAzoEeO0Gq2YHF5ZVg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tiEBoDNVEeOGiO-3aaxwOA" name="LanguageFile"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_vZBjQDNVEeOGiO-3aaxwOA" name="" memberEnd="_vZBjQTNVEeOGiO-3aaxwOA _vZCxYjNVEeOGiO-3aaxwOA" navigableOwnedEnd="_vZBjQTNVEeOGiO-3aaxwOA _vZCxYjNVEeOGiO-3aaxwOA">
+      <ownedEnd xmi:id="_vZBjQTNVEeOGiO-3aaxwOA" name="" type="_tiEBoDNVEeOGiO-3aaxwOA" association="_vZBjQDNVEeOGiO-3aaxwOA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vZCxYDNVEeOGiO-3aaxwOA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vZCxYTNVEeOGiO-3aaxwOA" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_vZCxYjNVEeOGiO-3aaxwOA" name="" type="_YE_fAAzoEeO0Gq2YHF5ZVg" association="_vZBjQDNVEeOGiO-3aaxwOA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vZDYcDNVEeOGiO-3aaxwOA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vZDYcTNVEeOGiO-3aaxwOA" value="*"/>
       </ownedEnd>
     </packagedElement>
   </packagedElement>

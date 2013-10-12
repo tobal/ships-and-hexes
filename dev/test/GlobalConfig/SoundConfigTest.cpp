@@ -1,5 +1,4 @@
 
-
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "GlobalConfig/SoundConfig.hpp"
