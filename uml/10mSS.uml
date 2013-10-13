@@ -685,15 +685,18 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mv6bVAzoEeO0Gq2YHF5ZVg" value="*"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_tiEBoDNVEeOGiO-3aaxwOA" name="LanguageFile"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_vZBjQDNVEeOGiO-3aaxwOA" name="" memberEnd="_vZBjQTNVEeOGiO-3aaxwOA _vZCxYjNVEeOGiO-3aaxwOA" navigableOwnedEnd="_vZBjQTNVEeOGiO-3aaxwOA _vZCxYjNVEeOGiO-3aaxwOA">
-      <ownedEnd xmi:id="_vZBjQTNVEeOGiO-3aaxwOA" name="" type="_tiEBoDNVEeOGiO-3aaxwOA" association="_vZBjQDNVEeOGiO-3aaxwOA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vZCxYDNVEeOGiO-3aaxwOA"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vZCxYTNVEeOGiO-3aaxwOA" value="*"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tiEBoDNVEeOGiO-3aaxwOA" clientDependency="_CUFr0DNmEeOGiO-3aaxwOA" name="LanguageFileImpl">
+      <interfaceRealization xmi:id="_CUFr0DNmEeOGiO-3aaxwOA" client="_tiEBoDNVEeOGiO-3aaxwOA" supplier="_-guH4DNlEeOGiO-3aaxwOA" contract="_-guH4DNlEeOGiO-3aaxwOA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_-guH4DNlEeOGiO-3aaxwOA" name="LanguageFile"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_DOmzUDNmEeOGiO-3aaxwOA" name="" memberEnd="_DOmzUTNmEeOGiO-3aaxwOA _DOnaYDNmEeOGiO-3aaxwOA" navigableOwnedEnd="_DOmzUTNmEeOGiO-3aaxwOA _DOnaYDNmEeOGiO-3aaxwOA">
+      <ownedEnd xmi:id="_DOmzUTNmEeOGiO-3aaxwOA" name="" type="_-guH4DNlEeOGiO-3aaxwOA" association="_DOmzUDNmEeOGiO-3aaxwOA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DOmzUjNmEeOGiO-3aaxwOA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DOmzUzNmEeOGiO-3aaxwOA" value="*"/>
       </ownedEnd>
-      <ownedEnd xmi:id="_vZCxYjNVEeOGiO-3aaxwOA" name="" type="_YE_fAAzoEeO0Gq2YHF5ZVg" association="_vZBjQDNVEeOGiO-3aaxwOA">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vZDYcDNVEeOGiO-3aaxwOA"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vZDYcTNVEeOGiO-3aaxwOA" value="*"/>
+      <ownedEnd xmi:id="_DOnaYDNmEeOGiO-3aaxwOA" name="" type="_YE_fAAzoEeO0Gq2YHF5ZVg" association="_DOmzUDNmEeOGiO-3aaxwOA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DOnaYTNmEeOGiO-3aaxwOA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DOnaYjNmEeOGiO-3aaxwOA" value="*"/>
       </ownedEnd>
     </packagedElement>
   </packagedElement>
