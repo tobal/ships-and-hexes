@@ -184,9 +184,7 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_Q-2m8AzhEeO0Gq2YHF5ZVg" clientDependency="_TcnNYAziEeO0Gq2YHF5ZVg" name="GlobalConfigImpl">
       <interfaceRealization xmi:id="_TcnNYAziEeO0Gq2YHF5ZVg" client="_Q-2m8AzhEeO0Gq2YHF5ZVg" supplier="_OfBHcAzhEeO0Gq2YHF5ZVg" contract="_OfBHcAzhEeO0Gq2YHF5ZVg"/>
       <ownedOperation xmi:id="__rkHYDEVEeOinM8-US5s7w" name="initConfig"/>
-      <ownedOperation xmi:id="_Pg_8YDNCEeOGiO-3aaxwOA" name="getLanguageConfig"/>
-      <ownedOperation xmi:id="_SoR2YDNCEeOGiO-3aaxwOA" name="getSoundConfig"/>
-      <ownedOperation xmi:id="_VJE_MDNCEeOGiO-3aaxwOA" name="getGraphicsConfig"/>
+      <ownedOperation xmi:id="_Pg_8YDNCEeOGiO-3aaxwOA" name="getSetting"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_UZ9b4AzhEeO0Gq2YHF5ZVg" name="ConfigFileHandler">
       <ownedOperation xmi:id="_tharIDEVEeOinM8-US5s7w" name="saveConfigToFile">

@@ -15,17 +15,18 @@ class LanguageTest : public TestFixture
 
 private:
     GameData::LanguageFile* langFile;
+	Language* lang;
 
 public:
     void setUp()
     {
     	langFile = new LanguageFileMock();
+    	lang = new Language("", *langFile );
     }
     void tearDown() {}
 
     void languageNameAndFileAreSetOnInit()
     {
-    	Language* lang = new Language("", *langFile );
     	CPPUNIT_ASSERT_EQUAL(std::string(""), lang->getLangName());
     }
 };
