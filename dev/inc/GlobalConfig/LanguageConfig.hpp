@@ -11,11 +11,11 @@ namespace GlobalConfig
 class LanguageConfig
 {
 private:
-	Language language;
+	Language* language;
 
 public:
-	std::vector<Language>* getListOfLanguages() const;
-	void setLanguage(const Language& language);
+	std::vector<Language*> getListOfLanguages() const;
+	void setLanguage(Language* language);
 	std::string getCurrentLangName() const;
 };
 

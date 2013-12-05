@@ -26,17 +26,21 @@ public:
     	langFile = new LanguageFileMock();
     	language = new Language("english", *langFile );
     }
-    void tearDown() {}
+    void tearDown()
+    {
+    	delete langConf;
+    	delete langFile;
+    	delete language;
+    }
 
     void getListOfLanguagesGivesBackVectorOfLanguages()
     {
-    	std::vector<Language> *langList = langConf->getListOfLanguages();
-    	delete langList;
+    	std::vector<Language*> langList = langConf->getListOfLanguages();
     }
 
     void setLanguageSetsCurrentLanguage()
     {
-    	langConf->setLanguage(*language);
+    	langConf->setLanguage(language);
     	CPPUNIT_ASSERT_EQUAL(langConf->getCurrentLangName(), language->getLangName());
     }
 

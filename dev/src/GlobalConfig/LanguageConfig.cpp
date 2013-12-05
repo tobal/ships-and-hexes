@@ -4,18 +4,19 @@
 using namespace GlobalConfig;
 using namespace std;
 
-std::vector<Language>* LanguageConfig::getListOfLanguages() const
+std::vector<Language*> LanguageConfig::getListOfLanguages() const
 {
-	vector<Language>* langList = new vector<Language>();
+	// TODO: implement method
+	vector<Language*> langList = vector<Language*>();
 	return langList;
 }
 
-void LanguageConfig::setLanguage(const Language& language)
+void LanguageConfig::setLanguage(Language* language)
 {
 	this->language = language;
 }
 
 std::string LanguageConfig::getCurrentLangName() const
 {
-	return language.getLangName();
+	return language->getLangName();
 }
