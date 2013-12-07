@@ -4,6 +4,11 @@
 
 #include <vector>
 #include "GlobalConfig/Language.hpp"
+#include "GameData/LanguageFileHandler.hpp"
+#include "GameData/LanguageFile.hpp"
+#include "Exceptions/UnknownLanguageException.hpp"
+
+typedef std::vector<GameData::LanguageFile*> LangFiles;
 
 namespace GlobalConfig
 {
@@ -12,11 +17,19 @@ class LanguageConfig
 {
 private:
 	Language* language;
+	std::vector<Language*>* languages;
+	GameData::LanguageFileHandler* handler;
+
+	void populateLanguages() const;
+	void storeLanguages(LangFiles* files) const;
 
 public:
+	LanguageConfig();
+	~LanguageConfig();
 	std::vector<Language*> getListOfLanguages() const;
-	void setLanguage(Language* language);
+	void setLanguage(const std::string& language);
 	std::string getCurrentLangName() const;
+	void setLanguageFileHandler(GameData::LanguageFileHandler* handler);
 };
 
 }

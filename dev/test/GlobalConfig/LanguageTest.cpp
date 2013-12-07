@@ -20,10 +20,14 @@ private:
 public:
     void setUp()
     {
-    	langFile = new LanguageFileMock();
-    	language = new Language("", *langFile );
+    	langFile = new LanguageFileMock("", "");
+    	language = new Language("", langFile );
     }
-    void tearDown() {}
+    void tearDown()
+    {
+    	delete langFile;
+    	delete language;
+    }
 
     void languageNameAndFileAreSetOnInit()
     {

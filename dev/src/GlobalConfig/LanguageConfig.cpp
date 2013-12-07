@@ -4,19 +4,65 @@
 using namespace GlobalConfig;
 using namespace std;
 
-std::vector<Language*> LanguageConfig::getListOfLanguages() const
+LanguageConfig::LanguageConfig() : language(NULL), handler(NULL)
 {
-	// TODO: implement method
-	vector<Language*> langList = vector<Language*>();
-	return langList;
+	languages = new vector<Language*>();
 }
 
-void LanguageConfig::setLanguage(Language* language)
+LanguageConfig::~LanguageConfig()
 {
-	this->language = language;
+	// TODO: delete all languages
+//	for( vector<Language*>::const_iterator it = languages->begin(); it != languages->end(); ++it )
+//	{
+//		delete *it;
+//	}
 }
 
-std::string LanguageConfig::getCurrentLangName() const
+void LanguageConfig::storeLanguages(LangFiles* files) const
 {
-	return language->getLangName();
+	for( LangFiles::const_iterator it = files->begin(); it != files->end(); ++it )
+	{
+		Language* lang = new Language((*it)->getLanguageName(), *it);
+		languages->push_back(lang);
+	}
+}
+
+void LanguageConfig::populateLanguages() const
+{
+	if( languages->empty() && handler != NULL )
+	{
+		LangFiles* files = handler->getListOfLanguageFiles();
+		storeLanguages(files);
+		delete files;
+	}
+}
+
+vector<Language*> LanguageConfig::getListOfLanguages() const
+{
+	populateLanguages();
+	return *languages;
+}
+
+void LanguageConfig::setLanguage(const string& language)
+{
+	populateLanguages();
+	for( vector<Language*>::const_iterator it = languages->begin(); it != languages->end(); ++it )
+	{
+		if( language.compare((*it)->getLangName()) == 0 )
+		{
+			this->language = *it;
+			return;
+		}
+	}
+	throw UnknownLanguageException();
+}
+
+string LanguageConfig::getCurrentLangName() const
+{
+	return (language != NULL) ? language->getLangName() : NULL;
+}
+
+void LanguageConfig::setLanguageFileHandler(GameData::LanguageFileHandler* handler)
+{
+	this->handler = handler;
 }

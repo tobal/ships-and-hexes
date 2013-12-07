@@ -11,14 +11,15 @@ class Language
 {
 private:
 	std::string languageName;
-	GameData::LanguageFile languageFile;
+	GameData::LanguageFile* languageFile;
 
 public:
-	Language(const std::string languageName, const GameData::LanguageFile& languageFile);
-	Language(const char* languageName, const GameData::LanguageFile& languageFile);
+	Language(const std::string languageName, GameData::LanguageFile* languageFile);
+	Language(const char* languageName, GameData::LanguageFile* languageFile);
+	~Language();
 
 	std::string getLangName() const;
-	GameData::LanguageFile getLangFile() const;
+	GameData::LanguageFile* getLangFile() const;
 };
 
 }

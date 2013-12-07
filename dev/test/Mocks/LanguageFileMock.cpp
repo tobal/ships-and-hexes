@@ -6,7 +6,8 @@
 
 class LanguageFileMock : public GameData::LanguageFile
 {
-
+public:
+	LanguageFileMock(std::string name, std::string path) : GameData::LanguageFile(name, path)	{}
 };
 
 #endif /* LANGUAGEFILEMOCK_CPP_ */

@@ -2,7 +2,9 @@
 
 #include "GlobalConfig/LanguageConfig.hpp"
 #include "GlobalConfig/Language.hpp"
+#include "LanguageFileHandlerMock.cpp"
 #include "LanguageFileMock.cpp"
+#include "Exceptions/UnknownLanguageException.hpp"
 
 using namespace CppUnit;
 using namespace GlobalConfig;
@@ -10,40 +12,49 @@ using namespace GlobalConfig;
 class LanguageConfigTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( LanguageConfigTest );
-    CPPUNIT_TEST(getListOfLanguagesGivesBackVectorOfLanguages);
     CPPUNIT_TEST(setLanguageSetsCurrentLanguage);
+    CPPUNIT_TEST(gettingListPopulatesLanguageList);
+    CPPUNIT_TEST(throwExceptionIfLangIsNotInList);
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    LanguageConfig* langConf;
     GameData::LanguageFile* langFile;
-	Language* language;
+    LanguageConfig* langConf;
 
 public:
     void setUp()
     {
+    	langFile = new LanguageFileMock("", "");
     	langConf = new LanguageConfig();
-    	langFile = new LanguageFileMock();
-    	language = new Language("english", *langFile );
+
+    	GameData::LanguageFileHandler* handler = new LanguageFileHandlerMock();
+    	langConf->setLanguageFileHandler(handler);
     }
     void tearDown()
     {
     	delete langConf;
-    	delete langFile;
-    	delete language;
-    }
-
-    void getListOfLanguagesGivesBackVectorOfLanguages()
-    {
-    	std::vector<Language*> langList = langConf->getListOfLanguages();
     }
 
     void setLanguageSetsCurrentLanguage()
     {
-    	langConf->setLanguage(language);
-    	CPPUNIT_ASSERT_EQUAL(langConf->getCurrentLangName(), language->getLangName());
+    	std::string english = std::string("english");
+    	langConf->setLanguage(english);
+    	CPPUNIT_ASSERT_EQUAL(english, langConf->getCurrentLangName());
     }
 
-    // TODO: new test: throwExceptionIfLangIsNotInList()
-    // needs a new custom exception
+    void gettingListPopulatesLanguageList()
+    {
+    	std::vector<Language*> langList = langConf->getListOfLanguages();
+    	CPPUNIT_ASSERT_EQUAL(1, int(langList.size()));
+    	CPPUNIT_ASSERT_EQUAL(std::string("english"), langList.at(0)->getLangName());
+    }
+
+    void throwExceptionIfLangIsNotInList()
+    {
+    	std::string knownLang = std::string("english");
+    	CPPUNIT_ASSERT_NO_THROW(langConf->setLanguage(knownLang));
+    	CPPUNIT_ASSERT_EQUAL(knownLang, langConf->getCurrentLangName());
+    	std::string unknownLang = std::string("hungarian");
+    	CPPUNIT_ASSERT_THROW(langConf->setLanguage(unknownLang), UnknownLanguageException);
+    }
 };
