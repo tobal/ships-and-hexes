@@ -27,7 +27,7 @@ public:
 	LanguageConfig();
 	~LanguageConfig();
 	std::vector<Language*> getListOfLanguages() const;
-	void setLanguage(const std::string& language);
+	void setLanguage(const std::string& language) throw(UnknownLanguageException);
 	std::string getCurrentLangName() const;
 	void setLanguageFileHandler(GameData::LanguageFileHandler* handler);
 };

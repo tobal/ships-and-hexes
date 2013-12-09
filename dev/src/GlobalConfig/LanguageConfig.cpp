@@ -43,7 +43,7 @@ vector<Language*> LanguageConfig::getListOfLanguages() const
 	return *languages;
 }
 
-void LanguageConfig::setLanguage(const string& language)
+void LanguageConfig::setLanguage(const string& language) throw(UnknownLanguageException)
 {
 	populateLanguages();
 	for( vector<Language*>::const_iterator it = languages->begin(); it != languages->end(); ++it )
@@ -59,7 +59,7 @@ void LanguageConfig::setLanguage(const string& language)
 
 string LanguageConfig::getCurrentLangName() const
 {
-	return (language != NULL) ? language->getLangName() : NULL;
+	return (language != NULL) ? language->getLangName() : "";
 }
 
 void LanguageConfig::setLanguageFileHandler(GameData::LanguageFileHandler* handler)

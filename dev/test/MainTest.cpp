@@ -6,6 +6,7 @@
 #include "GlobalConfig/SoundConfigTest.cpp"
 #include "GlobalConfig/LanguageTest.cpp"
 #include "GlobalConfig/LanguageConfigTest.cpp"
+#include "GlobalConfig/GlobalConfigTest.cpp"
 
 using namespace CppUnit;
 
@@ -16,6 +17,7 @@ int main()
     runner.addTest(SoundConfigTest::suite());
     runner.addTest(LanguageTest::suite());
     runner.addTest(LanguageConfigTest::suite());
+    runner.addTest(GlobalConfigTest::suite());
     runner.run();
     return 0;
 }
