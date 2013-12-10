@@ -4,9 +4,16 @@
 using namespace GlobalConfig;
 using namespace std;
 
-LanguageConfig::LanguageConfig() : language(NULL), handler(NULL)
+LanguageConfig::LanguageConfig() : language(NULL)
 {
 	languages = new vector<Language*>();
+	langHandler = new GameData::LanguageFileHandler();
+}
+
+LanguageConfig::LanguageConfig(GameData::LanguageFileHandler* handler) : language(NULL)
+{
+	languages = new vector<Language*>();
+	langHandler = handler;
 }
 
 LanguageConfig::~LanguageConfig()
@@ -16,6 +23,7 @@ LanguageConfig::~LanguageConfig()
 //	{
 //		delete *it;
 //	}
+	delete langHandler;
 }
 
 void LanguageConfig::storeLanguages(LangFiles* files) const
@@ -29,9 +37,9 @@ void LanguageConfig::storeLanguages(LangFiles* files) const
 
 void LanguageConfig::populateLanguages() const
 {
-	if( languages->empty() && handler != NULL )
+	if( languages->empty() && langHandler != NULL )
 	{
-		LangFiles* files = handler->getListOfLanguageFiles();
+		LangFiles* files = langHandler->getListOfLanguageFiles();
 		storeLanguages(files);
 		delete files;
 	}
@@ -60,9 +68,4 @@ void LanguageConfig::setLanguage(const string& language) throw(UnknownLanguageEx
 string LanguageConfig::getCurrentLangName() const
 {
 	return (language != NULL) ? language->getLangName() : "";
-}
-
-void LanguageConfig::setLanguageFileHandler(GameData::LanguageFileHandler* handler)
-{
-	this->handler = handler;
 }

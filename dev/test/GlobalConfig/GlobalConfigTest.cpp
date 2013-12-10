@@ -4,7 +4,9 @@
 #include "GlobalConfig/GlobalConfig.hpp"
 #include "GlobalConfig/GlobalConfigImpl.hpp"
 #include "GlobalConfig/GlobalSettings.hpp"
+#include "GlobalConfig/ConfigFileHandler.hpp"
 #include "LanguageFileHandlerMock.cpp"
+#include "ConfigFileHandlerMock.cpp"
 
 using namespace CppUnit;
 using namespace GlobalConfig;
@@ -15,7 +17,6 @@ class GlobalConfigTest : public TestFixture
     CPPUNIT_TEST(globalSettingsComparisonWorks);
     CPPUNIT_TEST(firstGetGivesBackDefaultSettings);
     CPPUNIT_TEST(setSettingSetsWholeConfig);
-    CPPUNIT_TEST(initConfigResetsToDefaults);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -26,9 +27,9 @@ private:
 public:
     void setUp()
     {
-    	globalConf = new GlobalConfigImpl();
-    	GameData::LanguageFileHandler* handler = new LanguageFileHandlerMock();
-    	globalConf->setLanguageFileHandler(handler);
+    	GameData::LanguageFileHandler* langHandler = new LanguageFileHandlerMock();
+    	ConfigFileHandler* confHandler = new ConfigFileHandlerMock();
+    	globalConf = new GlobalConfigImpl(langHandler, confHandler);
 
     	defaultSettings = GlobalSettings();
     	defaultSettings.fullscreen = true;
@@ -71,13 +72,5 @@ public:
 		globalConf->setSettings(differentSettings);
 		GlobalSettings settings = globalConf->getSettings();
 		CPPUNIT_ASSERT(differentSettings == settings);
-    }
-
-    void initConfigResetsToDefaults()
-    {
-    	globalConf->setSettings(differentSettings);
-    	globalConf->initConfig();
-    	GlobalSettings settings = globalConf->getSettings();
-    	CPPUNIT_ASSERT(defaultSettings == settings);
     }
 };

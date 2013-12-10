@@ -13,7 +13,7 @@ class LanguageFileHandler
 public:
 	LanguageFileHandler() {}
 	virtual ~LanguageFileHandler() {}
-	virtual std::vector<LanguageFile*>* getListOfLanguageFiles() = 0;
+	virtual std::vector<LanguageFile*>* getListOfLanguageFiles() {}
 };
 
 }

@@ -18,18 +18,18 @@ class LanguageConfig
 private:
 	Language* language;
 	std::vector<Language*>* languages;
-	GameData::LanguageFileHandler* handler;
+	GameData::LanguageFileHandler* langHandler;
 
 	void populateLanguages() const;
 	void storeLanguages(LangFiles* files) const;
 
 public:
 	LanguageConfig();
+	LanguageConfig(GameData::LanguageFileHandler* handler);
 	~LanguageConfig();
 	std::vector<Language*> getListOfLanguages() const;
 	void setLanguage(const std::string& language) throw(UnknownLanguageException);
 	std::string getCurrentLangName() const;
-	void setLanguageFileHandler(GameData::LanguageFileHandler* handler);
 };
 
 }

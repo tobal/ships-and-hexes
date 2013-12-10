@@ -7,6 +7,8 @@
 #include "GlobalConfig/GraphicsConfig.hpp"
 #include "GlobalConfig/SoundConfig.hpp"
 #include "GlobalConfig/LanguageConfig.hpp"
+#include "GlobalConfig/ConfigFileHandler.hpp"
+#include "GameData/LanguageFileHandler.hpp"
 
 namespace GlobalConfig
 {
@@ -17,16 +19,18 @@ private:
 	GraphicsConfig* graphConf;
 	SoundConfig* soundConf;
 	LanguageConfig* langConf;
+	ConfigFileHandler* confFile;
 
-	void clearConfig();
+	void initializeBasicConfig();
 
 public:
 	GlobalConfigImpl();
+	GlobalConfigImpl(ConfigFileHandler* confHandler);
+	GlobalConfigImpl(GameData::LanguageFileHandler* langHandler);
+	GlobalConfigImpl(GameData::LanguageFileHandler* langHandler, ConfigFileHandler* confHandler);
 	~GlobalConfigImpl();
-	void initConfig();
 	GlobalSettings getSettings() const;
 	void setSettings(const GlobalSettings& settings);
-	void setLanguageFileHandler(GameData::LanguageFileHandler* handler);
 };
 
 }

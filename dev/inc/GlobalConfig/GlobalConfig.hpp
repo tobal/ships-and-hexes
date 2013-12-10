@@ -13,10 +13,8 @@ class GlobalConfig
 public:
 	GlobalConfig() {}
 	virtual ~GlobalConfig() {}
-	virtual void initConfig() = 0;
 	virtual GlobalSettings getSettings() const = 0;
 	virtual void setSettings(const GlobalSettings& settings) = 0;
-	virtual void setLanguageFileHandler(GameData::LanguageFileHandler* handler) = 0;
 };
 
 }

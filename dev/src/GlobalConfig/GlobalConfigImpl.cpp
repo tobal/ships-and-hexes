@@ -3,29 +3,45 @@
 
 using namespace GlobalConfig;
 
+void GlobalConfigImpl::initializeBasicConfig() {
+	graphConf = new GraphicsConfig();
+	soundConf = new SoundConfig();
+}
+
 GlobalConfigImpl::GlobalConfigImpl()
 {
-	initConfig();
+	initializeBasicConfig();
+	langConf = new LanguageConfig();
+	confFile = new ConfigFileHandler();
+}
+
+GlobalConfigImpl::GlobalConfigImpl(ConfigFileHandler* confHandler)
+{
+	initializeBasicConfig();
+	langConf = new LanguageConfig();
+	confFile = confHandler;
+}
+
+GlobalConfigImpl::GlobalConfigImpl(GameData::LanguageFileHandler* langHandler)
+{
+	initializeBasicConfig();
+	langConf = new LanguageConfig(langHandler);
+	confFile = new ConfigFileHandler();
+}
+
+GlobalConfigImpl::GlobalConfigImpl(GameData::LanguageFileHandler* langHandler, ConfigFileHandler* confHandler)
+{
+	initializeBasicConfig();
+	langConf = new LanguageConfig(langHandler);
+	confFile = confHandler;
 }
 
 GlobalConfigImpl::~GlobalConfigImpl()
 {
-	clearConfig();
-}
-
-void GlobalConfigImpl::initConfig()
-{
-	// TODO: delete old references
-	graphConf = new GraphicsConfig();
-	soundConf = new SoundConfig();
-	langConf = new LanguageConfig();
-}
-
-void GlobalConfigImpl::clearConfig()
-{
 	delete graphConf;
 	delete soundConf;
 	delete langConf;
+	delete confFile;
 }
 
 GlobalSettings GlobalConfigImpl::getSettings() const
@@ -35,7 +51,7 @@ GlobalSettings GlobalConfigImpl::getSettings() const
 	settings.widescreen = graphConf->getWideScreen();
 	settings.soundVolume = soundConf->getSoundVolume();
 	settings.musicVolume = soundConf->getMusicVolume();
-	// FIXME: this is a very ugly hack, make a fix immediately
+	// FIXME: this is a very ugly hack, make a fix ASAP
 	if (langConf->getCurrentLangName() == "")
 		settings.language = "english";
 	else
@@ -50,9 +66,4 @@ void GlobalConfigImpl::setSettings(const GlobalSettings& settings)
 	soundConf->setSoundVolume(settings.soundVolume);
 	soundConf->setMusicVolume(settings.musicVolume);
 	langConf->setLanguage(settings.language);
-}
-
-void GlobalConfigImpl::setLanguageFileHandler(GameData::LanguageFileHandler* handler)
-{
-	langConf->setLanguageFileHandler(handler);
 }

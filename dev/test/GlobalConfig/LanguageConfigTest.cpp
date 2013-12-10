@@ -25,10 +25,8 @@ public:
     void setUp()
     {
     	langFile = new LanguageFileMock("", "");
-    	langConf = new LanguageConfig();
-
-    	GameData::LanguageFileHandler* handler = new LanguageFileHandlerMock();
-    	langConf->setLanguageFileHandler(handler);
+    	GameData::LanguageFileHandler* langHandler = new LanguageFileHandlerMock();
+    	langConf = new LanguageConfig(langHandler);
     }
     void tearDown()
     {
