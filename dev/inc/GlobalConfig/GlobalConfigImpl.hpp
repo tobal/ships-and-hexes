@@ -26,6 +26,7 @@ public:
 	void initConfig();
 	GlobalSettings getSettings() const;
 	void setSettings(const GlobalSettings& settings);
+	void setLanguageFileHandler(GameData::LanguageFileHandler* handler);
 };
 
 }

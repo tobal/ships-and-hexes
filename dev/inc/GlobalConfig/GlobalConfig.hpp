@@ -3,6 +3,7 @@
 #define GLOBALCONFIG_HPP_
 
 #include "GlobalConfig/GlobalSettings.hpp"
+#include "GameData/LanguageFileHandler.hpp"
 
 namespace GlobalConfig
 {
@@ -15,6 +16,7 @@ public:
 	virtual void initConfig() = 0;
 	virtual GlobalSettings getSettings() const = 0;
 	virtual void setSettings(const GlobalSettings& settings) = 0;
+	virtual void setLanguageFileHandler(GameData::LanguageFileHandler* handler) = 0;
 };
 
 }

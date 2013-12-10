@@ -45,5 +45,14 @@ GlobalSettings GlobalConfigImpl::getSettings() const
 
 void GlobalConfigImpl::setSettings(const GlobalSettings& settings)
 {
+	graphConf->setFullScreen(settings.fullscreen);
+	graphConf->setWideScreen(settings.widescreen);
+	soundConf->setSoundVolume(settings.soundVolume);
+	soundConf->setMusicVolume(settings.musicVolume);
+	langConf->setLanguage(settings.language);
+}
 
+void GlobalConfigImpl::setLanguageFileHandler(GameData::LanguageFileHandler* handler)
+{
+	langConf->setLanguageFileHandler(handler);
 }

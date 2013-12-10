@@ -16,8 +16,10 @@ public:
 	vector<LanguageFile*>* getListOfLanguageFiles()
 	{
 		LanguageFile* eng = new LanguageFile("english", "/path/to/file");
+		LanguageFile* ger = new LanguageFile("german", "/path/to/file");
 		vector<LanguageFile*>* files = new vector<LanguageFile*>();
 		files->push_back(eng);
+		files->push_back(ger);
 		return files;
 	}
 };

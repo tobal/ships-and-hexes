@@ -45,7 +45,7 @@ public:
     void gettingListPopulatesLanguageList()
     {
     	std::vector<Language*> langList = langConf->getListOfLanguages();
-    	CPPUNIT_ASSERT_EQUAL(1, int(langList.size()));
+    	CPPUNIT_ASSERT_EQUAL(2, int(langList.size()));
     	CPPUNIT_ASSERT_EQUAL(std::string("english"), langList.at(0)->getLangName());
     }
 
