@@ -28,7 +28,7 @@ public:
     void setUp()
     {
     	GameData::LanguageFileHandler* langHandler = new LanguageFileHandlerMock();
-    	ConfigFileHandler* confHandler = new ConfigFileHandlerMock();
+    	ConfigFileHandler* confHandler = new ConfigFileHandlerMock("");
     	globalConf = new GlobalConfigImpl(langHandler, confHandler);
 
     	defaultSettings = GlobalSettings();

@@ -13,6 +13,8 @@
 namespace GlobalConfig
 {
 
+static const std::string confFilename = std::string("defaultfilename");
+
 class GlobalConfigImpl : public GlobalConfig
 {
 private:

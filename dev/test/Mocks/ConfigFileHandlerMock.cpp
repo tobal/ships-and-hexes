@@ -8,7 +8,9 @@ using namespace GlobalConfig;
 
 class ConfigFileHandlerMock : public ConfigFileHandler
 {
-
+public:
+	ConfigFileHandlerMock(const char* filename) : ConfigFileHandler(filename) {}
+	~ConfigFileHandlerMock() {}
 };
 
 #endif /* CONFIGFILEHANDLERMOCK_CPP_ */

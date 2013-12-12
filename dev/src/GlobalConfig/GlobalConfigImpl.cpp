@@ -12,7 +12,7 @@ GlobalConfigImpl::GlobalConfigImpl()
 {
 	initializeBasicConfig();
 	langConf = new LanguageConfig();
-	confFile = new ConfigFileHandler();
+	confFile = new ConfigFileHandler(confFilename);
 }
 
 GlobalConfigImpl::GlobalConfigImpl(ConfigFileHandler* confHandler)
@@ -26,7 +26,7 @@ GlobalConfigImpl::GlobalConfigImpl(GameData::LanguageFileHandler* langHandler)
 {
 	initializeBasicConfig();
 	langConf = new LanguageConfig(langHandler);
-	confFile = new ConfigFileHandler();
+	confFile = new ConfigFileHandler(confFilename);
 }
 
 GlobalConfigImpl::GlobalConfigImpl(GameData::LanguageFileHandler* langHandler, ConfigFileHandler* confHandler)
