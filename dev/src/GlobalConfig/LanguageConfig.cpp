@@ -18,11 +18,10 @@ LanguageConfig::LanguageConfig(GameData::LanguageFileHandler* handler) : languag
 
 LanguageConfig::~LanguageConfig()
 {
-	// TODO: delete all languages
-//	for( vector<Language*>::const_iterator it = languages->begin(); it != languages->end(); ++it )
-//	{
-//		delete *it;
-//	}
+	for( vector<Language*>::const_iterator it = languages->begin(); it != languages->end(); ++it )
+	{
+		delete *it;
+	}
 	delete langHandler;
 }
 

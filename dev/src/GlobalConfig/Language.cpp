@@ -17,8 +17,7 @@ Language::Language(const char* languageName, GameData::LanguageFile* languageFil
 Language::~Language()
 {
 	// TODO: delete languagefile
-//	if(languageFile != NULL)
-//		delete languageFile;
+//	delete languageFile;
 }
 
 std::string Language::getLangName() const

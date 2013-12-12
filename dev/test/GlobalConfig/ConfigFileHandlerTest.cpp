@@ -12,6 +12,7 @@ class ConfigFileHandlerTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( ConfigFileHandlerTest );
     CPPUNIT_TEST(configCanBeSavedToFile);
+    CPPUNIT_TEST(configCanBeLoadedFromFile);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -55,6 +56,14 @@ public:
     	CPPUNIT_ASSERT(output.compare(testoutput) == 0);
 
     	file.close();
+    	remove(testFilename);
+    }
+
+    void configCanBeLoadedFromFile()
+    {
+    	confFile->saveSettings(settings);
+    	GlobalSettings loadedSettings = confFile->loadSettings();
+    	CPPUNIT_ASSERT(settings == loadedSettings);
     	remove(testFilename);
     }
 };
