@@ -8,6 +8,7 @@
 #include "GlobalConfig/LanguageConfigTest.cpp"
 #include "GlobalConfig/GlobalConfigTest.cpp"
 #include "GlobalConfig/ConfigFileHandlerTest.cpp"
+#include "GameConfig/SessionConfigTest.cpp"
 
 using namespace CppUnit;
 
@@ -20,6 +21,7 @@ int main()
     runner.addTest(LanguageConfigTest::suite());
     runner.addTest(GlobalConfigTest::suite());
     runner.addTest(ConfigFileHandlerTest::suite());
+    runner.addTest(SessionConfigTest::suite());
     runner.run();
     return 0;
 }

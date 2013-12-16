@@ -3,10 +3,9 @@
 
 using namespace GlobalConfig;
 
-GraphicsConfig::GraphicsConfig()
+GraphicsConfig::GraphicsConfig() : wideScreen(false), fullScreen(true)
 {
-	wideScreen = false;
-	fullScreen = true;
+
 }
 
 bool GraphicsConfig::getWideScreen() const
