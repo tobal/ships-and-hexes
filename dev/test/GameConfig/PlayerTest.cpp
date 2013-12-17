@@ -11,7 +11,7 @@ class PlayerTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( PlayerTest );
     CPPUNIT_TEST(playerSettingsCanBeSet);
-    CPPUNIT_TEST(getPlayerConfigGivesPointerToPlayer);
+    CPPUNIT_TEST(getPlayerConfigGivesPointerToIt);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -38,8 +38,8 @@ public:
     	CPPUNIT_ASSERT(player->isControlledByAI());
     }
 
-    void getPlayerConfigGivesPointerToPlayer()
+    void getPlayerConfigGivesPointerToIt()
     {
-
+    	PlayerConfig::PlayerConfig* playerConf = player->getPlayerConfig();
     }
 };

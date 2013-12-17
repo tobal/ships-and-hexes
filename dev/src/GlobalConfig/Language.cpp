@@ -16,7 +16,7 @@ Language::Language(const char* languageName, GameData::LanguageFile* languageFil
 
 Language::~Language()
 {
-	// TODO: delete languagefile
+	// TODO: delete languagefile (it has something to do with the constructor)
 //	delete languageFile;
 }
 

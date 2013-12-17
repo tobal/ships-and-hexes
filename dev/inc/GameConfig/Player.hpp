@@ -2,6 +2,7 @@
 #ifndef PLAYER_HPP_
 #define PLAYER_HPP_
 
+#include "PlayerConfig/PlayerConfig.hpp"
 #include <string>
 
 namespace GameConfig
@@ -20,8 +21,10 @@ private:
 	std::string name;
 	playerColors color;
 	bool controlledByAI;
+	PlayerConfig::PlayerConfig* config;
 
 public:
+	Player(std::string name, playerColors color, bool controlledByAI);
 	Player();
 	~Player();
 	std::string getName() const;
@@ -30,6 +33,7 @@ public:
 	void setColor(const playerColors color);
 	bool isControlledByAI() const;
 	void controlByAI(const bool controlledByAI);
+	PlayerConfig::PlayerConfig* getPlayerConfig() const;
 };
 
 }

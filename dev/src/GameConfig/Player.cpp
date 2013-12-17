@@ -4,14 +4,21 @@
 using namespace GameConfig;
 using namespace std;
 
-Player::Player() : name(string("Player")), color(RED), controlledByAI(false)
+Player::Player(std::string name, playerColors color, bool controlledByAI)
+	: name(name), color(color), controlledByAI(controlledByAI)
 {
+	config = new PlayerConfig::PlayerConfig();
+}
 
+Player::Player()
+{
+	Player(string("Player"), RED, false);
 }
 
 Player::~Player()
 {
-
+	// TODO delete config (it has something to do with the constructor)
+//	delete config;
 }
 
 string Player::getName() const
@@ -42,4 +49,9 @@ bool Player::isControlledByAI() const
 void Player::controlByAI(const bool controlledByAI)
 {
 	this->controlledByAI = controlledByAI;
+}
+
+PlayerConfig::PlayerConfig* Player::getPlayerConfig() const
+{
+	return config;
 }
