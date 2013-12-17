@@ -10,6 +10,7 @@
 #include "GlobalConfig/ConfigFileHandlerTest.cpp"
 #include "GameConfig/SessionConfigTest.cpp"
 #include "GameConfig/MapConfigTest.cpp"
+#include "GameConfig/PlayerTest.cpp"
 
 using namespace CppUnit;
 
@@ -24,6 +25,7 @@ int main()
     runner.addTest(ConfigFileHandlerTest::suite());
     runner.addTest(SessionConfigTest::suite());
     runner.addTest(MapConfigTest::suite());
+    runner.addTest(PlayerTest::suite());
     runner.run();
     return 0;
 }
