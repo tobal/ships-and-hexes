@@ -2,25 +2,17 @@
 #ifndef PLAYER_HPP_
 #define PLAYER_HPP_
 
+#include "GameConfig/PlayerSettings.hpp"
 #include "PlayerConfig/PlayerConfig.hpp"
 #include <string>
 
 namespace GameConfig
 {
 
-enum playerColors
-{
-	RED,
-	GREEN,
-	BLACK
-};
-
 class Player
 {
 private:
-	std::string name;
-	playerColors color;
-	bool controlledByAI;
+	PlayerSettings settings;
 	PlayerConfig::PlayerConfig* config;
 
 public:

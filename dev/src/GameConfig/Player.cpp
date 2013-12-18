@@ -5,8 +5,11 @@ using namespace GameConfig;
 using namespace std;
 
 Player::Player(std::string name, playerColors color, bool controlledByAI)
-	: name(name), color(color), controlledByAI(controlledByAI)
 {
+	settings = PlayerSettings();
+	settings.name = name;
+	settings.color = color;
+	settings.controlledByAI = controlledByAI;
 	config = new PlayerConfig::PlayerConfig();
 }
 
@@ -23,32 +26,32 @@ Player::~Player()
 
 string Player::getName() const
 {
-	return name;
+	return settings.name;
 }
 
 void Player::setName(const std::string name)
 {
-	this->name = name;
+	settings.name = name;
 }
 
 playerColors Player::getColor() const
 {
-	return color;
+	return settings.color;
 }
 
 void Player::setColor(const playerColors color)
 {
-	this->color = color;
+	settings.color = color;
 }
 
 bool Player::isControlledByAI() const
 {
-	return controlledByAI;
+	return settings.controlledByAI;
 }
 
 void Player::controlByAI(const bool controlledByAI)
 {
-	this->controlledByAI = controlledByAI;
+	settings.controlledByAI = controlledByAI;
 }
 
 PlayerConfig::PlayerConfig* Player::getPlayerConfig() const

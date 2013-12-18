@@ -11,6 +11,7 @@
 #include "GameConfig/SessionConfigTest.cpp"
 #include "GameConfig/MapConfigTest.cpp"
 #include "GameConfig/PlayerTest.cpp"
+#include "GameConfig/GameConfigTest.cpp"
 
 using namespace CppUnit;
 
@@ -26,6 +27,7 @@ int main()
     runner.addTest(SessionConfigTest::suite());
     runner.addTest(MapConfigTest::suite());
     runner.addTest(PlayerTest::suite());
+    runner.addTest(GameConfigTest::suite());
     runner.run();
     return 0;
 }
