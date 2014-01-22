@@ -12,10 +12,10 @@ private:
 	int height;
 	int density;
 
-	static const int maxDensity = 100;
-	static const int minDensity = 0;
-	static const int maxDimension = 30;
-	static const int minDimension = 5;
+	static const int maxDensity = 90;
+	static const int minDensity = 10;
+	static const int maxDimension = 32;
+	static const int minDimension = 8;
 
 	int limitDimension(const int dimension);
 	int limitDensity(const int density);
@@ -29,6 +29,12 @@ public:
 	void setWidth(const int width);
 	void setHeight(const int height);
 	void setDensity(const int density);
+	void setSmallMap();
+	void setMediumMap();
+	void setLargeMap();
+	void setRareDensity();
+	void setMediumDensity();
+	void setDenseDensity();
 };
 
 }

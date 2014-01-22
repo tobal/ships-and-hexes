@@ -36,10 +36,12 @@ public:
     void settingsCanBeSetAndHasBounds()
     {
     	mapConf->setWidth(3);
-    	CPPUNIT_ASSERT_EQUAL(5, mapConf->getWidth());
+    	CPPUNIT_ASSERT_EQUAL(8, mapConf->getWidth());
     	mapConf->setHeight(50);
-    	CPPUNIT_ASSERT_EQUAL(30, mapConf->getHeight());
+    	CPPUNIT_ASSERT_EQUAL(32, mapConf->getHeight());
+    	mapConf->setDensity(5);
+    	CPPUNIT_ASSERT_EQUAL(10, mapConf->getDensity());
     	mapConf->setDensity(120);
-    	CPPUNIT_ASSERT_EQUAL(100, mapConf->getDensity());
+    	CPPUNIT_ASSERT_EQUAL(90, mapConf->getDensity());
     }
 };

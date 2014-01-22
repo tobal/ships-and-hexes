@@ -41,5 +41,6 @@ public:
     void getPlayerConfigGivesPointerToIt()
     {
     	PlayerConfig::PlayerConfig* playerConf = player->getPlayerConfig();
+    	CPPUNIT_ASSERT(playerConf);
     }
 };

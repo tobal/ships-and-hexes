@@ -62,3 +62,36 @@ void MapConfig::setDensity(const int density)
 {
 	this->density = limitDensity(density);
 }
+
+void MapConfig::setSmallMap()
+{
+	setWidth(10);
+	setHeight(10);
+}
+
+void MapConfig::setMediumMap()
+{
+	setWidth(16);
+	setHeight(14);
+}
+
+void MapConfig::setLargeMap()
+{
+	setWidth(24);
+	setHeight(20);
+}
+
+void MapConfig::setRareDensity()
+{
+	setDensity(20);
+}
+
+void MapConfig::setMediumDensity()
+{
+	setDensity(45);
+}
+
+void MapConfig::setDenseDensity()
+{
+	setDensity(70);
+}

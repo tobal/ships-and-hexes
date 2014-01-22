@@ -46,6 +46,7 @@ GlobalConfigImpl::~GlobalConfigImpl()
 
 GlobalSettings GlobalConfigImpl::getSettings() const
 {
+	// TODO: load settings from file
 	GlobalSettings settings = GlobalSettings();
 	settings.fullscreen = graphConf->getFullScreen();
 	settings.widescreen = graphConf->getWideScreen();
@@ -66,4 +67,5 @@ void GlobalConfigImpl::setSettings(const GlobalSettings& settings)
 	soundConf->setSoundVolume(settings.soundVolume);
 	soundConf->setMusicVolume(settings.musicVolume);
 	langConf->setLanguage(settings.language);
+	// TODO: save settings to file
 }

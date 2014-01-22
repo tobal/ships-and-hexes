@@ -9,9 +9,15 @@ namespace GameConfig
 
 enum playerColors
 {
+	WHITE,
+	CYAN,
+	YELLOW,
+	MAGENTA,
 	RED,
 	GREEN,
-	BLACK
+	BLUE,
+	DARKGREEN,
+	ORANGE
 };
 
 struct PlayerSettings

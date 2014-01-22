@@ -53,7 +53,7 @@ public:
     {
     	PlayerSettings playerSettings = PlayerSettings();
     	playerSettings.name = std::string("neuromanta");
-    	playerSettings.color = BLACK;
+    	playerSettings.color = YELLOW;
     	playerSettings.controlledByAI = false;
 
     	gameConf->addPlayer("tobal", GREEN, true);
@@ -63,7 +63,7 @@ public:
 
 		PlayerSettings output = gameConf->getPlayerSettings(index);
 		CPPUNIT_ASSERT(output.name.compare("neuromanta") == 0);
-		CPPUNIT_ASSERT_EQUAL(BLACK, output.color);
+		CPPUNIT_ASSERT_EQUAL(YELLOW, output.color);
 		CPPUNIT_ASSERT_EQUAL(false, output.controlledByAI);
     }
 
