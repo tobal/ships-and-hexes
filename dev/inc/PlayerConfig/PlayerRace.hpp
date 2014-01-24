@@ -3,13 +3,15 @@
 #define PLAYERRACE_HPP_
 
 #include <vector>
+#include <map>
 
 namespace PlayerConfig
 {
 
-// TODO: remove these two
+// TODO: remove these two, replace with actual data classes
 typedef int Effect;
 typedef int BuildingType;
+// TODO: after replaced with classes, add more tests to test them
 
 typedef std::vector<Effect> Effects;
 
@@ -35,6 +37,8 @@ enum CredoType
 
 struct Credo
 {
+	Credo(CredoType type, int traitPoints, Effects effects, BuildingType specialBuilding)
+		: type(type), traitPoints(traitPoints), effects(effects), specialBuilding(specialBuilding) {}
 	CredoType type;
 	int traitPoints;
 	Effects effects;
@@ -51,21 +55,41 @@ enum PlanetType
 
 struct Race
 {
+	Race() : type(HUMAN), homeworld(WATER), credo(JACKOFALL) {}
+	Race(RaceType type, PlanetType homeworld, CredoType credo)
+		: type(type), homeworld(homeworld), credo(credo) {}
 	RaceType type;
-	PlanetType defaultHomeworld;
-	CredoType defaultCredo;
+	PlanetType homeworld;
+	CredoType credo;
 };
+
+typedef std::pair<CredoType, Credo> CredoPair;
+typedef std::map<CredoType, Credo> CredoPrototypes;
+typedef std::pair<RaceType, Race> RacePair;
+typedef std::map<RaceType, Race> RacePrototypes;
 
 class PlayerRace
 {
 private:
 	Race race;
-	PlanetType homeworldType;
-	Credo credo;
+	CredoPrototypes* credoPrototypes;
+	RacePrototypes* racePrototypes;
+
+	void createCredoPrototypes();
+	void addCredoPrototype(CredoType type, int traitPoints, Effects effects, BuildingType specialBuilding);
+	void createRacePrototypes();
+	void addRacePrototype(RaceType type, PlanetType homeworld, CredoType credo);
 
 public:
-	PlayerRace();
+	PlayerRace(RaceType raceType);
 	~PlayerRace();
+	RaceType getRaceType() const;
+	PlanetType getHomeworldType() const;
+	CredoType getCredoType() const;
+	Credo getCredo() const;
+	void setRace(const RaceType raceType);
+	void setHomeworld(const PlanetType homeworld);
+	void setCredo(const CredoType credo);
 };
 
 }
