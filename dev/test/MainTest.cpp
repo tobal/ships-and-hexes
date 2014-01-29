@@ -13,6 +13,7 @@
 #include "GameConfig/PlayerTest.cpp"
 #include "GameConfig/GameConfigTest.cpp"
 #include "PlayerConfig/PlayerRaceTest.cpp"
+#include "PlayerConfig/TraitTest.cpp"
 
 using namespace CppUnit;
 
@@ -30,6 +31,7 @@ int main()
     runner.addTest(PlayerTest::suite());
     runner.addTest(GameConfigTest::suite());
     runner.addTest(PlayerRaceTest::suite());
+    runner.addTest(TraitTest::suite());
     runner.run();
     return 0;
 }

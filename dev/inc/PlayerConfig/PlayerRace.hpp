@@ -13,6 +13,7 @@ typedef int Effect;
 typedef int BuildingType;
 // TODO: after replaced with classes, add more tests to test them
 
+// TODO: put this to Empire package
 typedef std::vector<Effect> Effects;
 
 enum RaceType
