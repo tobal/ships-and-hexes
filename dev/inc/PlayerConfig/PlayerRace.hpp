@@ -8,10 +8,9 @@
 namespace PlayerConfig
 {
 
-// TODO: remove these two, replace with actual data classes
+// TODO: remove these two, replace with mocks
 typedef int Effect;
 typedef int BuildingType;
-// TODO: after replaced with classes, add more tests to test them
 
 // TODO: put this to Empire package
 typedef std::vector<Effect> Effects;
@@ -46,7 +45,7 @@ struct Credo
 	BuildingType specialBuilding;
 };
 
-// TODO: put this to a better place
+// TODO: put this to Empire package
 enum PlanetType
 {
 	WATER,

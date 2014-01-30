@@ -21,7 +21,7 @@ void PlayerRace::createCredoPrototypes()
 {
 	credoPrototypes = new CredoPrototypes();
 
-	// TODO: replace these stubs with actual data
+	// TODO: replace these stubs with actual mocks
 	Effects effectsStub = Effects();
 	BuildingType buildingStub = 0;
 

@@ -14,6 +14,7 @@
 #include "GameConfig/GameConfigTest.cpp"
 #include "PlayerConfig/PlayerRaceTest.cpp"
 #include "PlayerConfig/TraitTest.cpp"
+#include "PlayerConfig/RandomizerTest.cpp"
 
 using namespace CppUnit;
 
@@ -32,6 +33,7 @@ int main()
     runner.addTest(GameConfigTest::suite());
     runner.addTest(PlayerRaceTest::suite());
     runner.addTest(TraitTest::suite());
+    runner.addTest(RandomizerTest::suite());
     runner.run();
     return 0;
 }
