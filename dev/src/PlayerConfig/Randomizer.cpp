@@ -14,49 +14,71 @@ Randomizer::~Randomizer()
 
 }
 
-bool Randomizer::indexNotPicked(size_t index, vector<int>& pickedIndexes)
+intMap Randomizer::mapIndexesToTraitPoints(Traits traits)
 {
-	return find(pickedIndexes.begin(), pickedIndexes.end(), index)
-			== pickedIndexes.end();
-}
-
-void Randomizer::pickTrait(size_t index, Traits& traits,
-		vector<int>& pickedIndexes, int& points)
-{
-	Trait trait = traits.at(index);
-	// TODO: randomize when not running tests
-	if ((rand() % 100) < threshold)
-	{
-		pickedIndexes.push_back(index);
-		points -= trait.getTraitPoints();
-	}
-}
-
-void Randomizer::pickRandomTraits(Traits& traits, vector<int>& pickedIndexes, int& points)
-{
+	intMap indexPoints = intMap();
 	for (size_t index = 0; index < traits.size(); ++index)
 	{
-		if (indexNotPicked(index, pickedIndexes))
+		intPair p = intPair(index, traits.at(index).getTraitPoints());
+		indexPoints.insert(p);
+	}
+	return indexPoints;
+}
+
+intPair Randomizer::chooseRandomTrait(intMap indexPoints)
+{
+	intMap::iterator picked = indexPoints.begin();
+	srand(time(NULL));
+	int randomIndex = rand() % indexPoints.size();
+	advance(picked, randomIndex);
+	return *picked;
+}
+
+vector<int> Randomizer::collectUnpickables(int points, intMap& indexPoints)
+{
+	vector<int> indexesToDelete = vector<int>();
+	for (intMap::iterator it = indexPoints.begin(); it != indexPoints.end(); ++it)
+	{
+		if (it->second > points)
 		{
-			pickTrait(index, traits, pickedIndexes, points);
-		}
-		if (points == 0)
-		{
-			break;
+			indexesToDelete.push_back(it->first);
 		}
 	}
+	return indexesToDelete;
+}
+
+void Randomizer::eraseUnpickables(vector<int> indexesToDelete,
+		intMap& indexPoints) {
+	// eraseUnpickables
+	for (vector<int>::iterator it = indexesToDelete.begin();
+			it != indexesToDelete.end(); ++it) {
+		indexPoints.erase(*it);
+	}
+}
+
+void Randomizer::cleanUnpickableTraits(int points, intMap& indexPoints)
+{
+	vector<int> indexesToDelete = collectUnpickables(points, indexPoints);
+	eraseUnpickables(indexesToDelete, indexPoints);
 }
 
 vector<int> Randomizer::pickTraits(Traits traits, int points)
 {
 	vector<int> pickedIndexes = vector<int>();
-	while (points != 0)
+	intMap indexPoints = mapIndexesToTraitPoints(traits);
+	while(points != 0)
 	{
-		if(pickedIndexes.size() < traits.size())
+		intPair picked = chooseRandomTrait(indexPoints);
+		int pickedIndex = picked.first;
+		int pickedPoint = picked.second;
+		if (points >= pickedPoint)
 		{
-			pickRandomTraits(traits, pickedIndexes, points);
+			points -= pickedPoint;
+			pickedIndexes.push_back(pickedIndex);
+			indexPoints.erase(pickedIndex);
+			cleanUnpickableTraits(points, indexPoints);
 		}
-		else
+		if(indexPoints.empty() && points > 0)
 		{
 			throw TraitRandomizerException("Trait points cannot be spent");
 			break;

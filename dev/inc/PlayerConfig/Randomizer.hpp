@@ -3,7 +3,9 @@
 #define RANDOMIZER_HPP_
 
 #include <cstdlib>
-#include <algorithm>
+#include <time.h>
+#include <vector>
+#include <map>
 #include "PlayerConfig/Trait.hpp"
 #include "Exceptions/TraitRandomizerException.hpp"
 
@@ -11,16 +13,20 @@ namespace PlayerConfig
 {
 
 typedef std::vector<Trait> Traits;
+typedef std::map<int,int> intMap;
+typedef std::pair<int,int> intPair;
 
 // TODO: make this class static
 class Randomizer
 {
 private:
-	static const int threshold = 30;
+	static const int threshold = 50;
 
-	bool indexNotPicked(size_t i, std::vector<int>& pickedIndexes);
-	void pickTrait(size_t index, Traits& traits, std::vector<int>& pickedIndexes, int& points);
-	void pickRandomTraits(Traits& traits, std::vector<int>& pickedIndexes, int& points);
+	intMap mapIndexesToTraitPoints(Traits traits);
+	intPair chooseRandomTrait(intMap indexPoints);
+	void cleanUnpickableTraits(int points, intMap& indexPoints);
+	std::vector<int> collectUnpickables(int points, intMap& indexPoints);
+	void eraseUnpickables(std::vector<int> indexesToDelete, intMap& indexPoints);
 
 public:
 	Randomizer();

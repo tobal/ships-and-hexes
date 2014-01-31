@@ -9,7 +9,7 @@ PlayerRace::PlayerRace(RaceType raceType)
 	// TODO: put prototypes to separate class
 	createCredoPrototypes();
 	createRacePrototypes();
-	race = racePrototypes->find(raceType)->second;
+	race = racePrototypes->at(raceType);
 }
 
 PlayerRace::~PlayerRace()
@@ -76,12 +76,12 @@ CredoType PlayerRace::getCredoType() const
 
 Credo PlayerRace::getCredo() const
 {
-	return credoPrototypes->find(race.credo)->second;
+	return credoPrototypes->at(race.credo);
 }
 
 void PlayerRace::setRace(const RaceType raceType)
 {
-	race = racePrototypes->find(raceType)->second;
+	race = racePrototypes->at(raceType);
 }
 
 void PlayerRace::setHomeworld(const PlanetType homeworld)

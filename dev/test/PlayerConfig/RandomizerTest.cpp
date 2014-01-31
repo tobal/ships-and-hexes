@@ -5,6 +5,7 @@
 #include "PlayerConfig/Randomizer.hpp"
 #include "PlayerConfig/Trait.hpp"
 #include "Exceptions/TraitRandomizerException.hpp"
+#include <cstdio>
 
 using namespace CppUnit;
 using namespace PlayerConfig;
@@ -12,6 +13,32 @@ using namespace std;
 
 class RandomizerTest : public TestFixture
 {
+
+	vector<Trait> getTraitsFromGame() {
+		vector<Trait> traits = vector<Trait>();
+		traits.push_back(Trait(4));
+		traits.push_back(Trait(3));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(1));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(1));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(3));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(1));
+		traits.push_back(Trait(1));
+		traits.push_back(Trait(1));
+		traits.push_back(Trait(1));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(2));
+		traits.push_back(Trait(1));
+		return traits;
+	}
+
     CPPUNIT_TEST_SUITE( RandomizerTest );
     CPPUNIT_TEST(randomizerReturnsIndexesOfTraitVector);
     CPPUNIT_TEST(randomizerPicksTraitsToSpendAllTraitPoints);
@@ -46,27 +73,7 @@ public:
 
     void randomizerPicksTraitsToSpendAllTraitPoints()
     {
-    	vector<Trait> traits = vector<Trait>();
-    	traits.push_back(Trait(4));
-    	traits.push_back(Trait(3));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(1));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(1));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(3));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(1));
-    	traits.push_back(Trait(1));
-    	traits.push_back(Trait(1));
-    	traits.push_back(Trait(1));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(2));
-    	traits.push_back(Trait(1));
+		vector<Trait> traits = getTraitsFromGame();
     	int points = 10;
     	vector<int> picked = randomizer->pickTraits(traits, points);
     	int pointsSpent = 0;
