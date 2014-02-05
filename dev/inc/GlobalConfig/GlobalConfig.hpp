@@ -3,7 +3,6 @@
 #define GLOBALCONFIG_HPP_
 
 #include "GlobalConfig/GlobalSettings.hpp"
-#include "GameData/LanguageFileHandler.hpp"
 
 namespace GlobalConfig
 {

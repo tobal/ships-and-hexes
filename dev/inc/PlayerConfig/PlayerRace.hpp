@@ -4,36 +4,13 @@
 
 #include <vector>
 #include <map>
+#include "Empire/CommonTypes.hpp"
 
 namespace PlayerConfig
 {
 
-// TODO: remove these two, replace with mocks
-typedef int Effect;
+// TODO: remove, replace with mocks
 typedef int BuildingType;
-
-// TODO: put this to Empire package
-typedef std::vector<Effect> Effects;
-
-enum RaceType
-{
-	HUMAN,
-	AMAZON,
-	INSECTOID,
-	TENTACLE,
-	SILICONITIS,
-	MECHANIZED
-};
-
-enum CredoType
-{
-	EXPANSIONIST,
-	WARMONGER,
-	SCIENTIFIC,
-	UNIFIED,
-	JACKOFALL,
-	ALTERNATE
-};
 
 struct Credo
 {
@@ -43,14 +20,6 @@ struct Credo
 	int traitPoints;
 	Effects effects;
 	BuildingType specialBuilding;
-};
-
-// TODO: put this to Empire package
-enum PlanetType
-{
-	WATER,
-	DESERT,
-	LAVA
 };
 
 struct Race
