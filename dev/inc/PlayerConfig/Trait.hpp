@@ -3,15 +3,10 @@
 #define TRAIT_HPP_
 
 #include <vector>
+#include "Empire/CommonTypes.hpp"
 
 namespace PlayerConfig
 {
-// TODO: remove these two, replace with actual data classes
-typedef int Effect;
-// TODO: after replaced with classes, add more tests to test them
-
-// TODO: put this to Empire package
-typedef std::vector<Effect> Effects;
 
 class Trait
 {
@@ -26,6 +21,8 @@ public:
 	int getTraitPoints() const;
 	Effects getEffects() const;
 };
+
+typedef std::vector<Trait> Traits;
 
 }
 

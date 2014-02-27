@@ -6,6 +6,7 @@
 #include "PlayerConfig/PlayerRace.hpp"
 #include "PlayerConfig/Randomizer.hpp"
 #include "PlayerConfig/Trait.hpp"
+#include "Exceptions/TraitPointsNotSpentException.hpp"
 
 namespace PlayerConfig
 {
@@ -15,20 +16,26 @@ class PlayerConfigImpl : public PlayerConfig
 private:
 	PlayerRace* race;
 	Randomizer* randomizer;
-	// TODO: make traits static
-	Traits* traits;
+	Traits* allTraits;
+	std::vector<int>* pickedIndexes;
 
 	void constructTraits();
 
 public:
 	PlayerConfigImpl();
 	~PlayerConfigImpl();
-	RaceType getRace() const;
+	RaceType getRaceType() const;
+	Credo getCredo() const;
 	void setRace(const RaceType raceType);
 	PlanetType getHomeworld() const;
 	void setHomeworld(const PlanetType planetType);
-	CredoType getCredo() const;
+	CredoType getCredoType() const;
 	void setCredo(const CredoType credoType);
+	Traits getAllTraits() const;
+	void pickTraits(std::vector<int> picked) throw(TraitPointsNotSpentException);
+	Traits getPickedTraits() const;
+	void pickRandomTraits();
+	Effects getAllEffects() const;
 };
 
 }

@@ -12,7 +12,6 @@
 namespace PlayerConfig
 {
 
-typedef std::vector<Trait> Traits;
 typedef std::map<int,int> intMap;
 typedef std::pair<int,int> intPair;
 
