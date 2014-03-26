@@ -6,6 +6,7 @@
 
 using namespace CppUnit;
 using namespace PlayerConfig;
+using namespace Empire::Effect;
 using namespace std;
 
 class PlayerConfigTest : public TestFixture

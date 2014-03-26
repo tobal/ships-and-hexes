@@ -35,7 +35,7 @@ public:
 	void pickTraits(std::vector<int> picked) throw(TraitPointsNotSpentException);
 	Traits getPickedTraits() const;
 	void pickRandomTraits();
-	Effects getAllEffects() const;
+	Empire::Effect::Effects getAllEffects() const;
 };
 
 }

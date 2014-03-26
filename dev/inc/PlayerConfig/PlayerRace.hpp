@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include "Empire/CommonTypes.hpp"
+#include "Empire/Effect/Effect.hpp"
 
 namespace PlayerConfig
 {
@@ -14,11 +15,11 @@ typedef int BuildingType;
 
 struct Credo
 {
-	Credo(CredoType type, int traitPoints, Effects effects, BuildingType specialBuilding)
+	Credo(CredoType type, int traitPoints, Empire::Effect::Effects effects, BuildingType specialBuilding)
 		: type(type), traitPoints(traitPoints), effects(effects), specialBuilding(specialBuilding) {}
 	CredoType type;
 	int traitPoints;
-	Effects effects;
+	Empire::Effect::Effects effects;
 	BuildingType specialBuilding;
 };
 
@@ -45,7 +46,7 @@ private:
 	RacePrototypes* racePrototypes;
 
 	void createCredoPrototypes();
-	void addCredoPrototype(CredoType type, int traitPoints, Effects effects, BuildingType specialBuilding);
+	void addCredoPrototype(CredoType type, int traitPoints, Empire::Effect::Effects effects, BuildingType specialBuilding);
 	void createRacePrototypes();
 	void addRacePrototype(RaceType type, PlanetType homeworld, CredoType credo);
 

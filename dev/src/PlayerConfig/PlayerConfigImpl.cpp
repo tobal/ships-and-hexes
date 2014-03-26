@@ -1,17 +1,21 @@
 
 #include "PlayerConfig/PlayerConfigImpl.hpp"
+#include "EffectMock.cpp"
 #include <vector>
 
 using namespace PlayerConfig;
+using namespace Empire::Effect;
 using namespace std;
 
 void PlayerConfigImpl::constructTraits()
 {
-	allTraits->push_back(Trait(4).withEffect(1).withEffect(2));
+	// TODO: replace mock with actual effects
+	Effect effect = EffectMock();
+	allTraits->push_back(Trait(4).withEffect(effect).withEffect(effect));
 	allTraits->push_back(Trait(3));
-	allTraits->push_back(Trait(2).withEffect(4));
+	allTraits->push_back(Trait(2).withEffect(effect));
 	allTraits->push_back(Trait(2));
-	allTraits->push_back(Trait(1).withEffect(1).withEffect(1).withEffect(1));
+	allTraits->push_back(Trait(1).withEffect(effect).withEffect(effect).withEffect(effect));
 	allTraits->push_back(Trait(2));
 	allTraits->push_back(Trait(1));
 	allTraits->push_back(Trait(2));

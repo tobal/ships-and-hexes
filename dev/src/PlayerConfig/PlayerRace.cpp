@@ -2,6 +2,7 @@
 #include "PlayerConfig/PlayerRace.hpp"
 
 using namespace PlayerConfig;
+using namespace Empire::Effect;
 using namespace std;
 
 PlayerRace::PlayerRace(RaceType raceType)

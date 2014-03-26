@@ -25,7 +25,7 @@ public:
 	virtual void pickTraits(std::vector<int> picked) {}
 	virtual Traits getPickedTraits() const {}
 	virtual void pickRandomTraits() {}
-	virtual Effects getAllEffects() const {}
+	virtual Empire::Effect::Effects getAllEffects() const {}
 };
 
 }

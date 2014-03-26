@@ -3,7 +3,7 @@
 #define TRAIT_HPP_
 
 #include <vector>
-#include "Empire/CommonTypes.hpp"
+#include "Empire/Effect/Effect.hpp"
 
 namespace PlayerConfig
 {
@@ -12,14 +12,14 @@ class Trait
 {
 private:
 	int points;
-	Effects effects;
+	Empire::Effect::Effects effects;
 
 public:
 	Trait(int points);
 	~Trait();
-	Trait& withEffect(Effect effect);
+	Trait& withEffect(Empire::Effect::Effect effect);
 	int getTraitPoints() const;
-	Effects getEffects() const;
+	Empire::Effect::Effects getEffects() const;
 };
 
 typedef std::vector<Trait> Traits;

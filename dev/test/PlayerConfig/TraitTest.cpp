@@ -2,9 +2,12 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "PlayerConfig/Trait.hpp"
+#include "Empire/Effect/Effect.hpp"
+#include "EffectMock.cpp"
 
 using namespace CppUnit;
 using namespace PlayerConfig;
+using namespace Empire::Effect;
 
 class TraitTest : public TestFixture
 {
@@ -25,15 +28,12 @@ public:
     void traitDataClassCanBeCreatedWithEffects()
     {
     	int points = -3;
-    	Effect effect = 100;
+    	Effect effect = EffectMock();
     	Trait trait = Trait(points)
     			.withEffect(effect)
     			.withEffect(effect);
     	CPPUNIT_ASSERT_EQUAL(points, trait.getTraitPoints());
     	Effects effects = trait.getEffects();
-    	for(Effects::iterator it = effects.begin(); it != effects.end(); ++it)
-    	{
-        	CPPUNIT_ASSERT_EQUAL(effect, *it);
-    	}
+    	CPPUNIT_ASSERT_EQUAL((size_t)2, effects.size());
     }
 };

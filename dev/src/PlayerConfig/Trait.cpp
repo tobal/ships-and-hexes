@@ -2,6 +2,7 @@
 #include "PlayerConfig/Trait.hpp"
 
 using namespace PlayerConfig;
+using namespace Empire::Effect;
 
 Trait::Trait(int points) : points(points)
 {

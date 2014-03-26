@@ -3,10 +3,7 @@
 #define COMMONTYPES_HPP_
 
 #include <vector>
-
-// TODO: implement Effect class
-typedef int Effect;
-typedef std::vector<Effect> Effects;
+#include "Empire/Effect/Effect.hpp"
 
 enum RaceType
 {
