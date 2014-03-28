@@ -25,7 +25,6 @@ enum CredoType
 	ALTERNATE
 };
 
-// TODO: put this to Empire package
 enum PlanetType
 {
 	WATER,

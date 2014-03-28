@@ -7,7 +7,7 @@ using namespace std;
 
 PlayerRace::PlayerRace(RaceType raceType)
 {
-	// TODO: put prototypes to separate class
+	// TODO: put prototypes into a singleton
 	createCredoPrototypes();
 	createRacePrototypes();
 	race = racePrototypes->at(raceType);

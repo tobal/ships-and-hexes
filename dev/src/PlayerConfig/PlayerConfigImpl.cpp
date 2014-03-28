@@ -10,6 +10,7 @@ using namespace std;
 void PlayerConfigImpl::constructTraits()
 {
 	// TODO: replace mock with actual effects
+	// TODO: put this into a singleton
 	Effect effect = EffectMock();
 	allTraits->push_back(Trait(4).withEffect(effect).withEffect(effect));
 	allTraits->push_back(Trait(3));
