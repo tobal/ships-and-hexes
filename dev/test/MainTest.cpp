@@ -16,6 +16,7 @@
 #include "PlayerConfig/TraitTest.cpp"
 #include "PlayerConfig/RandomizerTest.cpp"
 #include "PlayerConfig/PlayerConfigTest.cpp"
+#include "Empire/Effect/EffectTest.cpp"
 
 using namespace CppUnit;
 
@@ -36,6 +37,7 @@ int main()
     runner.addTest(TraitTest::suite());
     runner.addTest(RandomizerTest::suite());
     runner.addTest(PlayerConfigTest::suite());
+    runner.addTest(EffectTest::suite());
     runner.run();
     return 0;
 }
