@@ -2,9 +2,6 @@
 #ifndef COMMONTYPES_HPP_
 #define COMMONTYPES_HPP_
 
-#include <vector>
-#include "Empire/Effect/Effect.hpp"
-
 enum RaceType
 {
 	HUMAN,
@@ -30,6 +27,13 @@ enum PlanetType
 	WATER,
 	DESERT,
 	LAVA
+};
+
+enum AnomalyType
+{
+	ASTEROIDFIELD,
+	GASCLOUD,
+	ALIENWRECK
 };
 
 #endif /* COMMONTYPES_HPP_ */
