@@ -18,6 +18,7 @@
 #include "PlayerConfig/PlayerConfigTest.cpp"
 #include "Empire/Effect/EffectTest.cpp"
 #include "Empire/EmpireTest.cpp"
+#include "MapElement/MapElementTest.cpp"
 
 using namespace CppUnit;
 
@@ -40,6 +41,7 @@ int main()
     runner.addTest(PlayerConfigTest::suite());
     runner.addTest(EffectTest::suite());
     runner.addTest(EmpireTest::suite());
+    runner.addTest(MapElementTest::suite());
     runner.run();
     return 0;
 }
