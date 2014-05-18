@@ -16,13 +16,13 @@ private:
 	PlayerConfig::PlayerConfig* config;
 
 public:
-	Player(std::string name, playerColors color, bool controlledByAI);
+	Player(std::string name, PlayerColors color, bool controlledByAI);
 	Player();
 	~Player();
 	std::string getName() const;
 	void setName(const std::string name);
-	playerColors getColor() const;
-	void setColor(const playerColors color);
+	PlayerColors getColor() const;
+	void setColor(const PlayerColors color);
 	bool isControlledByAI() const;
 	void controlByAI(const bool controlledByAI);
 	PlayerConfig::PlayerConfig* getPlayerConfig() const;

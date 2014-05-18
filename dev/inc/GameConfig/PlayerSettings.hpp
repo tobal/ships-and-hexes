@@ -7,7 +7,7 @@
 namespace GameConfig
 {
 
-enum playerColors
+enum PlayerColors
 {
 	WHITE,
 	CYAN,
@@ -23,7 +23,7 @@ enum playerColors
 struct PlayerSettings
 {
 	std::string name;
-	playerColors color;
+	PlayerColors color;
 	bool controlledByAI;
 };
 

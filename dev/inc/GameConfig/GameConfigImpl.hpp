@@ -22,7 +22,7 @@ private:
 public:
 	GameConfigImpl();
 	~GameConfigImpl();
-	void addPlayer(std::string name, playerColors color, bool controlledByAI);
+	void addPlayer(std::string name, PlayerColors color, bool controlledByAI);
 	int getNumberOfPlayers() const;
 	PlayerSettings getPlayerSettings(const int index) const;
 	void setPlayerSettings(const int index, PlayerSettings settings);

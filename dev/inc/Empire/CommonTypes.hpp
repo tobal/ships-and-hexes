@@ -36,4 +36,12 @@ enum AnomalyType
 	ALIENWRECK
 };
 
+enum MapElementType
+{
+	SHIP,
+	PLANET,
+	ANOMALY,
+	SPACESTATION
+};
+
 #endif /* COMMONTYPES_HPP_ */

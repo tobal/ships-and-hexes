@@ -13,7 +13,7 @@ class GameConfig
 public:
 	GameConfig() {}
 	virtual ~GameConfig() {}
-	virtual void addPlayer(std::string name, playerColors color, bool controlledByAI) {}
+	virtual void addPlayer(std::string name, PlayerColors color, bool controlledByAI) {}
 	virtual int getNumberOfPlayers() const {}
 	virtual PlayerSettings getPlayerSettings(const int index) const {}
 	virtual void setPlayerSettings(const int index, PlayerSettings settings) {}

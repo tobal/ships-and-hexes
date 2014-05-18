@@ -1,10 +1,13 @@
 
 #include "GameConfig/Player.hpp"
+#include "GameConfig/PlayerSettings.hpp"
 
 using namespace GameConfig;
 using namespace std;
 
-Player::Player(std::string name, playerColors color, bool controlledByAI)
+// TODO: aligence enum instead of controlledByAI
+
+Player::Player(std::string name, PlayerColors color, bool controlledByAI)
 {
 	settings = PlayerSettings();
 	settings.name = name;
@@ -34,12 +37,12 @@ void Player::setName(const std::string name)
 	settings.name = name;
 }
 
-playerColors Player::getColor() const
+PlayerColors Player::getColor() const
 {
 	return settings.color;
 }
 
-void Player::setColor(const playerColors color)
+void Player::setColor(const PlayerColors color)
 {
 	settings.color = color;
 }

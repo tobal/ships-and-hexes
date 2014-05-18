@@ -21,7 +21,7 @@ GameConfigImpl::~GameConfigImpl()
 	}
 }
 
-void GameConfigImpl::addPlayer(std::string name, playerColors color, bool controlledByAI)
+void GameConfigImpl::addPlayer(std::string name, PlayerColors color, bool controlledByAI)
 {
 	Player* player = new Player(name, color, controlledByAI);
 	players.push_back(player);
