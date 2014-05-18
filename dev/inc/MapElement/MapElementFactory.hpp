@@ -4,6 +4,8 @@
 
 #include <string>
 #include "MapElement/Fighter.hpp"
+#include "MapElement/Bomber.hpp"
+#include "MapElement/Colonizer.hpp"
 
 namespace MapElement
 {
@@ -17,6 +19,8 @@ public:
 	MapElementFactory(std::string playerName);
 	~MapElementFactory();
 	Fighter* createFighter(const int count) const;
+	Bomber* createBomber(const int count) const;
+	Colonizer* createColonizer(const int count) const;
 };
 
 }
