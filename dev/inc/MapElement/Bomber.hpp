@@ -13,6 +13,7 @@ class Bomber : public Ship
 public:
 	Bomber(std::string playerName, const int count);
 	~Bomber();
+	void merge(Bomber* otherFighter);
 };
 
 }

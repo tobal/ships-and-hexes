@@ -13,3 +13,8 @@ Colonizer::~Colonizer()
 {
 
 }
+
+void Colonizer::merge(Colonizer* otherFighter)
+{
+	this->mergeShips(otherFighter);
+}

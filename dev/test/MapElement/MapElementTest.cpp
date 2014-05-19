@@ -1,5 +1,4 @@
 
-
 #include <cppunit/extensions/HelperMacros.h>
 
 #include <string>
@@ -83,4 +82,3 @@ public:
     	delete colonizer;
     }
 };
-

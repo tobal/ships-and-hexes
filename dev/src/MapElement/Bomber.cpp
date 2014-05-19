@@ -13,3 +13,8 @@ Bomber::~Bomber()
 {
 
 }
+
+void Bomber::merge(Bomber* otherFighter)
+{
+	this->mergeShips(otherFighter);
+}

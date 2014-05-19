@@ -19,6 +19,7 @@
 #include "Empire/Effect/EffectTest.cpp"
 #include "Empire/EmpireTest.cpp"
 #include "MapElement/MapElementTest.cpp"
+#include "MapElement/ShipTest.cpp"
 
 using namespace CppUnit;
 
@@ -42,6 +43,7 @@ int main()
     runner.addTest(EffectTest::suite());
     runner.addTest(EmpireTest::suite());
     runner.addTest(MapElementTest::suite());
+    runner.addTest(ShipTest::suite());
     runner.run();
     return 0;
 }
