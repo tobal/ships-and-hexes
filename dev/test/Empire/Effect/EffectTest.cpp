@@ -11,6 +11,7 @@
 #include <Empire/Effect/ResearchBonus.hpp>
 #include <Empire/Effect/MovementBonus.hpp>
 #include <Empire/Effect/PopulationBonus.hpp>
+#include <Empire/Effect/BuildingEffect.hpp>
 
 using namespace CppUnit;
 using namespace Empire::Effect;
@@ -25,6 +26,7 @@ public:
     void setUp()
     {
     }
+
     void tearDown()
     {
     }
@@ -41,5 +43,6 @@ public:
     	ResearchBonus rbonus = ResearchBonus();
     	MovementBonus mbonus = MovementBonus();
     	PopulationBonus pobonus = PopulationBonus();
+    	BuildingEffect building = BuildingEffect();
     }
 };
