@@ -6,6 +6,7 @@
 #include "MapElement/Ship.hpp"
 #include "GameConfig/Player.hpp"
 #include "GameConfig/PlayerSettings.hpp"
+#include <Empire/Effect/PopulationBonus.hpp>
 
 using namespace CppUnit;
 using namespace std;
@@ -18,6 +19,7 @@ class MapElementTest : public TestFixture
     CPPUNIT_TEST(createFighter);
     CPPUNIT_TEST(createBomber);
     CPPUNIT_TEST(createColonizer);
+    CPPUNIT_TEST(createPlanet);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -80,5 +82,18 @@ public:
     	CPPUNIT_ASSERT_EQUAL(string("tobal"), colonizer->getPlayerName());
 
     	delete colonizer;
+    }
+
+    void createPlanet()
+    {
+    	Empire::Effect::PopulationBonus* pobonus = new Empire::Effect::PopulationBonus();
+    	MapElement::MapElement* mapelem = factory->createPlanet(DESERT, SMALL, pobonus);
+    	Planet* planet = dynamic_cast<Planet*>(mapelem);
+    	CPPUNIT_ASSERT(planet != NULL);
+    	CPPUNIT_ASSERT_EQUAL(DESERT, planet->getPlanetType());
+    	CPPUNIT_ASSERT_EQUAL(SMALL, planet->getPlanetSize());
+    	Empire::Effect::Effect* trait = planet->getPlanetTrait();
+    	CPPUNIT_ASSERT(dynamic_cast<Empire::Effect::PopulationBonus*>(trait) != NULL);
+    	CPPUNIT_ASSERT_EQUAL(string("tobal"), planet->getPlayerName());
     }
 };

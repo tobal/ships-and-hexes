@@ -6,6 +6,9 @@
 #include "MapElement/Fighter.hpp"
 #include "MapElement/Bomber.hpp"
 #include "MapElement/Colonizer.hpp"
+#include "MapElement/Planet.hpp"
+#include "Empire/CommonTypes.hpp"
+#include "Empire/Effect/Effect.hpp"
 
 namespace MapElement
 {
@@ -21,6 +24,7 @@ public:
 	Fighter* createFighter(const int count) const;
 	Bomber* createBomber(const int count) const;
 	Colonizer* createColonizer(const int count) const;
+	Planet* createPlanet(PlanetType type, PlanetSize size, Empire::Effect::Effect* trait) const;
 };
 
 }

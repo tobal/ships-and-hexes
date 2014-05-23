@@ -20,6 +20,7 @@
 #include "Empire/EmpireTest.cpp"
 #include "MapElement/MapElementTest.cpp"
 #include "MapElement/ShipTest.cpp"
+#include "MapElement/PlanetTest.cpp"
 
 using namespace CppUnit;
 
@@ -44,6 +45,7 @@ int main()
     runner.addTest(EmpireTest::suite());
     runner.addTest(MapElementTest::suite());
     runner.addTest(ShipTest::suite());
+    runner.addTest(PlanetTest::suite());
     runner.run();
     return 0;
 }

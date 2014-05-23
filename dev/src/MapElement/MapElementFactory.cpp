@@ -3,6 +3,7 @@
 
 using namespace MapElement;
 using namespace std;
+using namespace Empire::Effect;
 
 MapElementFactory::MapElementFactory(string playerName) : playerName(playerName)
 {
@@ -27,4 +28,9 @@ Bomber* MapElementFactory::createBomber(const int count) const
 Colonizer* MapElementFactory::createColonizer(const int count) const
 {
 	return new Colonizer(playerName, count);
+}
+
+Planet* MapElementFactory::createPlanet(PlanetType type, PlanetSize size, Effect* trait) const
+{
+	return new Planet(playerName, type, size, trait);
 }

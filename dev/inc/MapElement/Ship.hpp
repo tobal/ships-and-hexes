@@ -3,7 +3,6 @@
 #define SHIP_HPP_
 
 #include <string>
-#include <typeinfo>
 #include "MapElement/MapElement.hpp"
 #include "Exceptions/OutOfMovePointsException.hpp"
 #include "Exceptions/CannotMergeShipsException.hpp"

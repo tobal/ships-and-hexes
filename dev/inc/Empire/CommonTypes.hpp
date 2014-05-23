@@ -29,6 +29,13 @@ enum PlanetType
 	LAVA
 };
 
+enum PlanetSize
+{
+	SMALL,
+	MEDIUM,
+	LARGE
+};
+
 enum AnomalyType
 {
 	ASTEROIDFIELD,
