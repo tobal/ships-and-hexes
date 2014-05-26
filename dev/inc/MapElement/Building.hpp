@@ -12,6 +12,7 @@ namespace MapElement
 
 enum BuildingType
 {
+	NO_BUILDING,
 	FIGHTER_FACTORY,
 	BOMBER_FACTORY,
 	CITY,
@@ -32,6 +33,21 @@ public:
 };
 
 typedef std::vector<Building*> Buildings;
+
+class BuildingSlot
+{
+private:
+	Building* building;
+
+public:
+	BuildingSlot();
+	~BuildingSlot();
+	Building* getBuilding() const;
+	void build(BuildingType buildingType);
+	void demolish();
+};
+
+typedef std::vector<BuildingSlot*> BuildingSlots;
 
 }
 

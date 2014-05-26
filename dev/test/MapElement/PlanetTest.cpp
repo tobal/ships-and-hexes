@@ -17,7 +17,9 @@ using namespace Empire::Effect;
 class PlanetTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( PlanetTest );
+    CPPUNIT_TEST(variousSizedPlanetsHaveCorrectBuildingSlots);
     CPPUNIT_TEST(canBuildOnPlanet);
+    CPPUNIT_TEST(canDemolishBuilding);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -37,19 +39,46 @@ public:
     	delete factory;
     }
 
+    void variousSizedPlanetsHaveCorrectBuildingSlots()
+    {
+    	PopulationBonus* trait = new PopulationBonus();
+    	Planet* smallPlanet = factory->createPlanet(WATER, SMALL, trait);
+    	Planet* mediumPlanet = factory->createPlanet(WATER, MEDIUM, trait);
+    	Planet* largePlanet = factory->createPlanet(WATER, LARGE, trait);
+		CPPUNIT_ASSERT_EQUAL(size_t(2), smallPlanet->getBuildingSlots()->size() );
+		CPPUNIT_ASSERT_EQUAL(size_t(3), mediumPlanet->getBuildingSlots()->size() );
+		CPPUNIT_ASSERT_EQUAL(size_t(4), largePlanet->getBuildingSlots()->size() );
+    }
+
     void canBuildOnPlanet()
     {
-    	planet->build(BOMBER_FACTORY);
-    	Buildings* buildings;
-    	buildings = planet->getBuildings();
-    	for( Buildings::iterator it = buildings->begin(); it != buildings->end(); ++it )
+    	BuildingSlots* slots;
+    	slots = planet->getBuildingSlots();
+    	for( BuildingSlots::iterator slot = slots->begin(); slot != slots->end(); ++slot )
     	{
-    		CPPUNIT_ASSERT_EQUAL(BOMBER_FACTORY, (*it)->getType() );
-    		vector<BuildingEffect*> effects = (*it)->getEffects();
+    		Building* building = (*slot)->getBuilding();
+    		CPPUNIT_ASSERT_EQUAL(NO_BUILDING, building->getType() );
+    		(*slot)->build(BOMBER_FACTORY);
+    		building = (*slot)->getBuilding();
+    		CPPUNIT_ASSERT_EQUAL(BOMBER_FACTORY, building->getType() );
+    		vector<BuildingEffect*> effects = building->getEffects();
         	for( vector<BuildingEffect*>::iterator it = effects.begin(); it != effects.end(); ++it )
         	{
             	// TODO: somehow test this
         	}
+    	}
+    }
+
+    void canDemolishBuilding()
+    {
+    	BuildingSlots* slots;
+    	slots = planet->getBuildingSlots();
+    	for( BuildingSlots::iterator slot = slots->begin(); slot != slots->end(); ++slot )
+    	{
+    		(*slot)->build(BOMBER_FACTORY);
+    		(*slot)->demolish();
+    		Building* building = (*slot)->getBuilding();
+    		CPPUNIT_ASSERT_EQUAL(NO_BUILDING, building->getType() );
     	}
     }
 };

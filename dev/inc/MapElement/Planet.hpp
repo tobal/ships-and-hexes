@@ -18,7 +18,7 @@ private:
 	PlanetType type;
 	PlanetSize size;
 	Empire::Effect::Effect* trait;
-	Buildings* buildings;
+	BuildingSlots* buildingSlots;
 
 public:
 	Planet(std::string playerName, PlanetType type, PlanetSize size, Empire::Effect::Effect* trait);
@@ -26,8 +26,7 @@ public:
 	PlanetType getPlanetType() const;
 	PlanetSize getPlanetSize() const;
 	Empire::Effect::Effect* getPlanetTrait() const;
-	void build(BuildingType building);
-	Buildings* getBuildings() const;
+	BuildingSlots* getBuildingSlots() const;
 };
 
 }

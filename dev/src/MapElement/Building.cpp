@@ -33,3 +33,31 @@ vector<BuildingEffect*> Building::getEffects() const
 {
 	return effects;
 }
+
+
+
+BuildingSlot::BuildingSlot()
+{
+	building = new Building(NO_BUILDING);
+}
+
+BuildingSlot::~BuildingSlot()
+{
+	delete building;
+}
+
+Building* BuildingSlot::getBuilding() const
+{
+	return building;
+}
+
+void BuildingSlot::build(BuildingType buildingType)
+{
+	building = new Building(buildingType);
+}
+
+void BuildingSlot::demolish()
+{
+	delete building;
+	building = new Building(NO_BUILDING);
+}
