@@ -4,14 +4,17 @@
 #include <string>
 #include "MapElement/MapElementFactory.hpp"
 #include "MapElement/Ship.hpp"
+#include "MapElement/Anomaly.hpp"
 #include "GameConfig/Player.hpp"
 #include "GameConfig/PlayerSettings.hpp"
+#include <Empire/Effect/EmpireEffect.hpp>
 #include <Empire/Effect/PopulationBonus.hpp>
 
 using namespace CppUnit;
 using namespace std;
 using namespace MapElement;
 using namespace GameConfig;
+using namespace Empire::Effect;
 
 class MapElementTest : public TestFixture
 {
@@ -86,14 +89,28 @@ public:
 
     void createPlanet()
     {
-    	Empire::Effect::PopulationBonus* pobonus = new Empire::Effect::PopulationBonus();
+    	PopulationBonus* pobonus = new PopulationBonus();
     	MapElement::MapElement* mapelem = factory->createPlanet(DESERT, SMALL, pobonus);
     	Planet* planet = dynamic_cast<Planet*>(mapelem);
     	CPPUNIT_ASSERT(planet != NULL);
     	CPPUNIT_ASSERT_EQUAL(DESERT, planet->getPlanetType());
     	CPPUNIT_ASSERT_EQUAL(SMALL, planet->getPlanetSize());
     	Empire::Effect::Effect* trait = planet->getPlanetTrait();
-    	CPPUNIT_ASSERT(dynamic_cast<Empire::Effect::PopulationBonus*>(trait) != NULL);
+    	CPPUNIT_ASSERT(dynamic_cast<PopulationBonus*>(trait) != NULL);
     	CPPUNIT_ASSERT_EQUAL(string("tobal"), planet->getPlayerName());
+    }
+
+    void createAnomaly()
+    {
+    	Anomaly* anomaly = factory->createAnomaly(ALIENWRECK, LITTLE);
+    	CPPUNIT_ASSERT_EQUAL(ALIENWRECK, anomaly->getType());
+    	CPPUNIT_ASSERT_EQUAL(LITTLE, anomaly->getSize());
+    	anomaly->setControl(10);
+    	CPPUNIT_ASSERT_EQUAL(10, anomaly->getControl());
+    	EmpireEffect* empireEffect = anomaly->getEffect();
+    	CPPUNIT_ASSERT(dynamic_cast<ResearchBonus*>(empireEffect) != NULL);
+    	// TODO sort out how to implement and test getting effect bonus
+    	//effectValue = empireEffect->getEffectBonus()
+    	//effect bonus equals anomaly control * 2 TODO: make formula
     }
 };

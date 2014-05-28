@@ -7,8 +7,12 @@
 #include "MapElement/Bomber.hpp"
 #include "MapElement/Colonizer.hpp"
 #include "MapElement/Planet.hpp"
+#include "MapElement/Anomaly.hpp"
 #include "Empire/CommonTypes.hpp"
 #include "Empire/Effect/Effect.hpp"
+#include "Empire/Effect/ProductionBonus.hpp"
+#include "Empire/Effect/PopulationBonus.hpp"
+#include "Empire/Effect/ResearchBonus.hpp"
 
 namespace MapElement
 {
@@ -25,6 +29,7 @@ public:
 	Bomber* createBomber(const int count) const;
 	Colonizer* createColonizer(const int count) const;
 	Planet* createPlanet(PlanetType type, PlanetSize size, Empire::Effect::Effect* trait) const;
+	Anomaly* createAnomaly(AnomalyType type, AnomalySize size) const;
 };
 
 }

@@ -43,6 +43,12 @@ enum AnomalyType
 	ALIENWRECK
 };
 
+enum AnomalySize
+{
+	LITTLE,
+	BIG
+};
+
 enum MapElementType
 {
 	SHIP,
