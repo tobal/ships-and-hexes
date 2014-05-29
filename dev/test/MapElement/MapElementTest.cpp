@@ -117,6 +117,8 @@ public:
 
     void createStation()
     {
-
+    	SpaceStation* station = factory->createStation();
+    	CPPUNIT_ASSERT_EQUAL(string("tobal"), station->getPlayerName());
+    	CPPUNIT_ASSERT_EQUAL(3, station->getAura());
     }
 };

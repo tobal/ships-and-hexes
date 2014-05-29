@@ -8,6 +8,7 @@
 #include "MapElement/Colonizer.hpp"
 #include "MapElement/Planet.hpp"
 #include "MapElement/Anomaly.hpp"
+#include "MapElement/SpaceStation.hpp"
 #include "Empire/CommonTypes.hpp"
 #include "Empire/Effect/Effect.hpp"
 #include "Empire/Effect/ProductionBonus.hpp"
@@ -30,6 +31,7 @@ public:
 	Colonizer* createColonizer(const int count) const;
 	Planet* createPlanet(PlanetType type, PlanetSize size, Empire::Effect::Effect* trait) const;
 	Anomaly* createAnomaly(AnomalyType type, AnomalySize size) const;
+	SpaceStation* createStation() const;
 };
 
 }

@@ -52,3 +52,8 @@ Anomaly* MapElementFactory::createAnomaly(AnomalyType type, AnomalySize size) co
 	}
 	return new Anomaly(playerName, type, size, effect);
 }
+
+SpaceStation* MapElementFactory::createStation() const
+{
+	return new SpaceStation(playerName);
+}
