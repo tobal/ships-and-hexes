@@ -2,6 +2,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "MapElement/Building.hpp"
+#include "MapElement/BuildingSlot.hpp"
 #include "Empire/CommonTypes.hpp"
 #include "Exceptions/CannotBuildException.hpp"
 

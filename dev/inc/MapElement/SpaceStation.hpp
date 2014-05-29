@@ -4,7 +4,7 @@
 
 #include <string>
 #include "MapElement/MapElement.hpp"
-#include "MapElement/Building.hpp"
+#include "MapElement/BuildingSlot.hpp"
 
 namespace MapElement
 {

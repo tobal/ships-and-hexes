@@ -8,6 +8,7 @@
 #include "Empire/CommonTypes.hpp"
 #include "Empire/Effect/Effect.hpp"
 #include "MapElement/Building.hpp"
+#include "MapElement/BuildingSlot.hpp"
 
 namespace MapElement
 {
