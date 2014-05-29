@@ -24,6 +24,7 @@ class MapElementTest : public TestFixture
     CPPUNIT_TEST(createColonizer);
     CPPUNIT_TEST(createPlanet);
     CPPUNIT_TEST(createAnomaly);
+    CPPUNIT_TEST(createStation);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -112,5 +113,10 @@ public:
     	EmpireEffect* empireEffect = anomaly->getEffect();
     	CPPUNIT_ASSERT(dynamic_cast<ResearchBonus*>(empireEffect) != NULL);
     	CPPUNIT_ASSERT_EQUAL(1.1, empireEffect->getEffectMultiplier());
+    }
+
+    void createStation()
+    {
+
     }
 };

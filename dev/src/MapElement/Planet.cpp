@@ -24,7 +24,7 @@ Planet::Planet(string playerName, PlanetType type, PlanetSize size, Effect* trai
 	}
 	for (int i = 0; i < slots; ++i)
 	{
-		 buildingSlots->push_back(new BuildingSlot());
+		 buildingSlots->push_back(new BuildingSlot(PLANET));
 	}
 }
 
