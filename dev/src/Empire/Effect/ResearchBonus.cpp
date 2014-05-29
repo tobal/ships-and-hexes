@@ -3,7 +3,7 @@
 
 using namespace Empire::Effect;
 
-ResearchBonus::ResearchBonus()
+ResearchBonus::ResearchBonus() : EmpireEffect()
 {
 
 }

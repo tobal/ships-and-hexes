@@ -38,5 +38,6 @@ void Anomaly::setControl(const int control)
 
 EmpireEffect* Anomaly::getEffect() const
 {
+	effect->setEffectByShipControl(control);
 	return effect;
 }

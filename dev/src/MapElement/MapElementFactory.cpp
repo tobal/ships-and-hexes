@@ -49,6 +49,6 @@ Anomaly* MapElementFactory::createAnomaly(AnomalyType type, AnomalySize size) co
 	case ALIENWRECK:
 		effect = new ResearchBonus();
 		break;
-	return new Anomaly(playerName, type, size, effect);
 	}
+	return new Anomaly(playerName, type, size, effect);
 }

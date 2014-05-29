@@ -3,7 +3,7 @@
 
 using namespace Empire::Effect;
 
-PopulationBonus::PopulationBonus()
+PopulationBonus::PopulationBonus() : EmpireEffect()
 {
 
 }

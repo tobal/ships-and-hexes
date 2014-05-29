@@ -23,6 +23,7 @@ class MapElementTest : public TestFixture
     CPPUNIT_TEST(createBomber);
     CPPUNIT_TEST(createColonizer);
     CPPUNIT_TEST(createPlanet);
+    CPPUNIT_TEST(createAnomaly);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -103,14 +104,13 @@ public:
     void createAnomaly()
     {
     	Anomaly* anomaly = factory->createAnomaly(ALIENWRECK, LITTLE);
+    	CPPUNIT_ASSERT_EQUAL(string("tobal"), anomaly->getPlayerName());
     	CPPUNIT_ASSERT_EQUAL(ALIENWRECK, anomaly->getType());
     	CPPUNIT_ASSERT_EQUAL(LITTLE, anomaly->getSize());
     	anomaly->setControl(10);
     	CPPUNIT_ASSERT_EQUAL(10, anomaly->getControl());
     	EmpireEffect* empireEffect = anomaly->getEffect();
     	CPPUNIT_ASSERT(dynamic_cast<ResearchBonus*>(empireEffect) != NULL);
-    	// TODO sort out how to implement and test getting effect bonus
-    	//effectValue = empireEffect->getEffectBonus()
-    	//effect bonus equals anomaly control * 2 TODO: make formula
+    	CPPUNIT_ASSERT_EQUAL(1.1, empireEffect->getEffectMultiplier());
     }
 };

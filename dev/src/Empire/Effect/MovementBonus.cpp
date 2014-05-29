@@ -3,7 +3,7 @@
 
 using namespace Empire::Effect;
 
-MovementBonus::MovementBonus()
+MovementBonus::MovementBonus() : EmpireEffect()
 {
 
 }

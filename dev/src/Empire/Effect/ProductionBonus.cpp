@@ -3,7 +3,7 @@
 
 using namespace Empire::Effect;
 
-ProductionBonus::ProductionBonus()
+ProductionBonus::ProductionBonus() : EmpireEffect()
 {
 
 }
