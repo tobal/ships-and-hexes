@@ -14,6 +14,7 @@ class ResearchBonus : public EmpireEffect
 public:
 	ResearchBonus();
 	~ResearchBonus();
+	void setEffectByShipControl(const int control);
 };
 
 } /* namespace Effect */

@@ -14,6 +14,7 @@ class PopulationBonus : public EmpireEffect
 public:
 	PopulationBonus();
 	~PopulationBonus();
+	void setEffectByShipControl(const int control);
 };
 
 } /* namespace Effect */

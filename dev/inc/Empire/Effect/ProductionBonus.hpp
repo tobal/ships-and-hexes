@@ -14,6 +14,7 @@ class ProductionBonus : public EmpireEffect
 public:
 	ProductionBonus();
 	~ProductionBonus();
+	void setEffectByShipControl(const int control);
 };
 
 } /* namespace Effect */

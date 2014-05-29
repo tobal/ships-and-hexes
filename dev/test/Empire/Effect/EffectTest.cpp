@@ -20,6 +20,7 @@ class EffectTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( EffectTest );
     CPPUNIT_TEST(concreteSubclassesCanBeInstantiated);
+    CPPUNIT_TEST(empireEffectValueCanBeSetWithShipControl);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -44,5 +45,18 @@ public:
     	MovementBonus mbonus = MovementBonus();
     	PopulationBonus pobonus = PopulationBonus();
     	BuildingEffect building = BuildingEffect();
+    }
+
+    void empireEffectValueCanBeSetWithShipControl()
+    {
+    	ProductionBonus prbonus = ProductionBonus();
+    	prbonus.setEffectByShipControl(10);
+    	CPPUNIT_ASSERT_EQUAL(1.1, prbonus.getEffectMultiplier());	// TODO: figure out correct formula
+    	ResearchBonus rbonus = ResearchBonus();
+    	rbonus.setEffectByShipControl(20);
+    	CPPUNIT_ASSERT_EQUAL(1.2, rbonus.getEffectMultiplier());	// TODO: figure out correct formula
+    	PopulationBonus pobonus = PopulationBonus();
+    	pobonus.setEffectByShipControl(30);
+    	CPPUNIT_ASSERT_EQUAL(1.3, pobonus.getEffectMultiplier());	// TODO: figure out correct formula
     }
 };

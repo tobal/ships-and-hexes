@@ -12,3 +12,8 @@ ProductionBonus::~ProductionBonus()
 {
 
 }
+
+void ProductionBonus::setEffectByShipControl(const int control)
+{
+	effectMultiplier = computeMultiplier(double(control));
+}
