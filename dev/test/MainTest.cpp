@@ -22,6 +22,7 @@
 #include "MapElement/ShipTest.cpp"
 #include "MapElement/PlanetTest.cpp"
 #include "MapElement/BuildingTest.cpp"
+#include "GameMap/FleetTest.cpp"
 
 using namespace CppUnit;
 
@@ -48,6 +49,7 @@ int main()
     runner.addTest(ShipTest::suite());
     runner.addTest(PlanetTest::suite());
     runner.addTest(BuildingTest::suite());
+    runner.addTest(FleetTest::suite());
     runner.run();
     return 0;
 }

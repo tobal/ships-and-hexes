@@ -99,7 +99,7 @@ public:
     	CPPUNIT_ASSERT(planet != NULL);
     	CPPUNIT_ASSERT_EQUAL(DESERT, planet->getPlanetType());
     	CPPUNIT_ASSERT_EQUAL(SMALL, planet->getPlanetSize());
-    	Effect* trait = planet->getPlanetTrait();
+    	Empire::Effect::Effect* trait = planet->getPlanetTrait();
     	CPPUNIT_ASSERT(dynamic_cast<PopulationBonus*>(trait) != NULL);
     	CPPUNIT_ASSERT_EQUAL(string("tobal"), planet->getPlayerName());
     }
