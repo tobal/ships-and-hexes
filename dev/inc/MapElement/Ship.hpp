@@ -12,6 +12,8 @@ namespace MapElement
 
 class Ship : public MapElement
 {
+static const int maxFleetSize = 100;
+
 protected:
 	int baseSpeed;
 	void mergeShips(Ship* otherShip);
@@ -32,6 +34,7 @@ public:
 	void move(const int toMove) throw(OutOfMovePointsException);
 	void addShips(const int toAdd);
 	void destroy(const int toDestroy);
+	void resetMoves();
 };
 
 }

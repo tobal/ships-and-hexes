@@ -27,7 +27,7 @@ int Ship::getSpeed() const
 
 int Ship::getMovePoints()
 {
-	if(movePoints == -1)
+	if( movePoints == -1 )
 	{
 		movePoints = baseSpeed + bonusSpeed;
 	}
@@ -41,7 +41,7 @@ int Ship::getCount() const
 
 void Ship::move(const int toMove) throw(OutOfMovePointsException)
 {
-	if( movePoints < toMove)
+	if( getMovePoints() < toMove)
 	{
 		int moved = movePoints;
 		movePoints = 0;
@@ -55,24 +55,30 @@ void Ship::move(const int toMove) throw(OutOfMovePointsException)
 
 void Ship::addShips(const int toAdd)
 {
-	count += toAdd;
+	int calc = count + toAdd;
+	count = calc <= maxFleetSize ? calc : maxFleetSize;
 }
 
 void Ship::destroy(const int toDestroy)
 {
-	count -= toDestroy;
+	int calc = count - toDestroy;
+	count = calc >= 0 ? calc : 0;
 }
 
 void Ship::mergeShips(Ship* otherShip)
 {
-	int maxFleetSize = 100;		// TODO: put this somewhere else
-	if (count + otherShip->getCount() <= 100)
+	if (count + otherShip->getCount() <= maxFleetSize)
 	{
 		movePoints = movePoints < otherShip->getMovePoints() ? movePoints : otherShip->getMovePoints();
-		count += otherShip->getCount();
+		addShips(otherShip->getCount());
 	}
 	else
 	{
 		throw CannotMergeShipsException("Cannot merge, fleets too large");
 	}
+}
+
+void Ship::resetMoves()
+{
+	movePoints = getSpeed();
 }

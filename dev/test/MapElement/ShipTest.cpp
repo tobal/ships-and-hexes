@@ -23,6 +23,7 @@ class ShipTest : public TestFixture
     CPPUNIT_TEST(shipsCanBeAddedAndDestroyed);
     CPPUNIT_TEST(shipMergeChangesMovePointsToMin);
     CPPUNIT_TEST(tooLargeFleetsCannotMerge);
+    CPPUNIT_TEST(resetMovesResetsToSpeed);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -99,5 +100,14 @@ public:
     	Fighter* fighter = dynamic_cast<Fighter*>(ship);
     	Fighter* largeFleet = factory->createFighter(95);
     	CPPUNIT_ASSERT_THROW(fighter->merge(largeFleet), CannotMergeShipsException);
+    }
+
+    void resetMovesResetsToSpeed()
+    {
+    	int speed = ship->getSpeed();
+    	ship->move(2);
+    	CPPUNIT_ASSERT_EQUAL(speed - 2, ship->getMovePoints());
+    	ship->resetMoves();
+    	CPPUNIT_ASSERT_EQUAL(speed, ship->getMovePoints());
     }
 };
