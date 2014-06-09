@@ -3,13 +3,13 @@
 #define SPACESTATION_HPP_
 
 #include <string>
-#include "MapElement/MapElement.hpp"
+#include "MapElement/SpaceObject.hpp"
 #include "MapElement/BuildingSlot.hpp"
 
 namespace MapElement
 {
 
-class SpaceStation : public MapElement
+class SpaceStation : public SpaceObject
 {
 private:
 	int baseAura;

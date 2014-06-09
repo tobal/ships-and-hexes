@@ -6,7 +6,7 @@ using namespace std;
 using namespace Empire::Effect;
 
 Anomaly::Anomaly(string playerName, AnomalyType type, AnomalySize size, EmpireEffect* effect)
-	: MapElement(playerName), type(type), size(size), effect(effect), control(0)
+	: SpaceObject(playerName), type(type), size(size), effect(effect), control(0)
 {
 
 }

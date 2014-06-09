@@ -4,13 +4,13 @@
 
 #include <string>
 #include "Empire/CommonTypes.hpp"
-#include "MapElement/MapElement.hpp"
+#include "MapElement/SpaceObject.hpp"
 #include "Empire/Effect/EmpireEffect.hpp"
 
 namespace MapElement
 {
 
-class Anomaly : public MapElement
+class Anomaly : public SpaceObject
 {
 private:
 	AnomalyType type;

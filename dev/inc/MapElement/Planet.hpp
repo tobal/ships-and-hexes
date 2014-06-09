@@ -4,16 +4,16 @@
 
 #include <vector>
 #include <string>
-#include "MapElement/MapElement.hpp"
 #include "Empire/CommonTypes.hpp"
 #include "Empire/Effect/Effect.hpp"
 #include "MapElement/Building.hpp"
 #include "MapElement/BuildingSlot.hpp"
+#include "MapElement/SpaceObject.hpp"
 
 namespace MapElement
 {
 
-class Planet : public MapElement
+class Planet : public SpaceObject
 {
 private:
 	PlanetType type;

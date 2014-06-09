@@ -12,10 +12,10 @@ class MapElement
 {
 protected:
 	std::string playerName;
-
-public:
 	MapElement(std::string playerName) : playerName(playerName) {}
 	virtual ~MapElement() {}
+
+public:
 	virtual Empire::Effect::Effects getEffects() {}
 	std::string getPlayerName() const { return playerName; }
 };

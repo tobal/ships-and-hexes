@@ -5,7 +5,7 @@ using namespace MapElement;
 using namespace std;
 
 SpaceStation::SpaceStation(string playerName)
-	: MapElement(playerName), baseAura(3)
+	: SpaceObject(playerName), baseAura(3)
 {
 	buildingSlot = new BuildingSlot(SPACESTATION);
 }

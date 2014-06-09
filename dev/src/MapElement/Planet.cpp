@@ -6,7 +6,7 @@ using namespace std;
 using namespace Empire::Effect;
 
 Planet::Planet(string playerName, PlanetType type, PlanetSize size, Effect* trait)
-	: MapElement(playerName), type(type), size(size), trait(trait)
+	: SpaceObject(playerName), type(type), size(size), trait(trait)
 {
 	buildingSlots = new BuildingSlots();
 	int slots = 0;

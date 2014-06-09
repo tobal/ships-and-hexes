@@ -5,6 +5,7 @@
 #include "MapElement/MapElementFactory.hpp"
 #include "MapElement/Ship.hpp"
 #include "MapElement/Anomaly.hpp"
+#include "MapElement/SpaceObject.hpp"
 #include "GameConfig/Player.hpp"
 #include "GameConfig/PlayerSettings.hpp"
 #include <Empire/Effect/EmpireEffect.hpp>
@@ -25,6 +26,7 @@ class MapElementTest : public TestFixture
     CPPUNIT_TEST(createPlanet);
     CPPUNIT_TEST(createAnomaly);
     CPPUNIT_TEST(createStation);
+    CPPUNIT_TEST(spaceObjectIsMutualBaseClass);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -97,7 +99,7 @@ public:
     	CPPUNIT_ASSERT(planet != NULL);
     	CPPUNIT_ASSERT_EQUAL(DESERT, planet->getPlanetType());
     	CPPUNIT_ASSERT_EQUAL(SMALL, planet->getPlanetSize());
-    	Empire::Effect::Effect* trait = planet->getPlanetTrait();
+    	Effect* trait = planet->getPlanetTrait();
     	CPPUNIT_ASSERT(dynamic_cast<PopulationBonus*>(trait) != NULL);
     	CPPUNIT_ASSERT_EQUAL(string("tobal"), planet->getPlayerName());
     }
@@ -120,5 +122,16 @@ public:
     	SpaceStation* station = factory->createStation();
     	CPPUNIT_ASSERT_EQUAL(string("tobal"), station->getPlayerName());
     	CPPUNIT_ASSERT_EQUAL(3, station->getAura());
+    }
+
+    void spaceObjectIsMutualBaseClass()
+    {
+    	PopulationBonus* pobonus = new PopulationBonus();
+    	SpaceObject* planet = factory->createPlanet(DESERT, SMALL, pobonus);
+    	SpaceObject* anomaly = factory->createAnomaly(ALIENWRECK, LITTLE);
+    	SpaceObject* station = factory->createStation();
+    	CPPUNIT_ASSERT(dynamic_cast<Planet*>(planet) != NULL);
+    	CPPUNIT_ASSERT(dynamic_cast<Anomaly*>(anomaly) != NULL);
+    	CPPUNIT_ASSERT(dynamic_cast<SpaceStation*>(station) != NULL);
     }
 };
