@@ -10,7 +10,7 @@ namespace MapElement
 
 class SpaceObject : public MapElement
 {
-protected:
+public:
 	SpaceObject(std::string playerName) : MapElement(playerName) {}
 	virtual ~SpaceObject() {}
 };
