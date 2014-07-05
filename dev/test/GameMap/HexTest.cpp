@@ -2,6 +2,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "GameMap/Hex.hpp"
+#include "GameMap/Fleet.hpp"
 #include "MapElement/MapElementFactory.hpp"
 #include "MapElement/Planet.hpp"
 #include "MapElement/Anomaly.hpp"
@@ -20,14 +21,20 @@ class HexTest : public TestFixture
     CPPUNIT_TEST(canAddSpaceObjectAndVerifyItsType);
     CPPUNIT_TEST(canGetSpaceObject);
     CPPUNIT_TEST(canRemoveSpaceObject);
-//    CPPUNIT_TEST(canAddFleet);
-//    CPPUNIT_TEST(canGetFleet);
-//    CPPUNIT_TEST(canRemoveFleet);
+    CPPUNIT_TEST(canAddFleet);
+    CPPUNIT_TEST(canGetFleet);
+    CPPUNIT_TEST(canRemoveFleet);
     CPPUNIT_TEST_SUITE_END();
 
 private:
     Hex* hex;
     MapElementFactory* factory;
+
+    void addFleet()
+    {
+    	Fleet* fleet = new Fleet(30,20,10);
+    	hex->addFleet(fleet);
+    }
 
 public:
     void setUp()
@@ -71,13 +78,31 @@ public:
 
     void canAddFleet()
     {
+    	CPPUNIT_ASSERT( !hex->hasFleet() );
+    	addFleet();
+    	CPPUNIT_ASSERT( hex->hasFleet() );
     }
 
     void canGetFleet()
     {
+    	addFleet();
+    	Fleet* fleetOnHex = hex->getFleet();
+    	FleetCount flc = fleetOnHex->getFleetCount();
+    	CPPUNIT_ASSERT_EQUAL(30, flc.fighters);
+    	CPPUNIT_ASSERT_EQUAL(20, flc.bombers);
+    	CPPUNIT_ASSERT_EQUAL(10, flc.colonizers);
+    	delete fleetOnHex;
     }
 
     void canRemoveFleet()
     {
+    	addFleet();
+    	CPPUNIT_ASSERT( hex->hasFleet() );
+    	Fleet* fleetOnHex = hex->moveOutFleet();
+    	CPPUNIT_ASSERT_EQUAL(3, fleetOnHex->getMovePoints());
+    	CPPUNIT_ASSERT( !hex->hasFleet() );
+    	addFleet();
+    	hex->destroyFleet();
+    	CPPUNIT_ASSERT( !hex->hasFleet() );
     }
 };

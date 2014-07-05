@@ -28,6 +28,11 @@ public:
 	MapElementType getSpaceObjectType() const;
 	MapElement::SpaceObject* getSpaceObject() const;
 	void removeSpaceObject();
+	bool hasFleet() const;
+	void addFleet(Fleet* fleet);
+	Fleet* getFleet() const;
+	Fleet* moveOutFleet();
+	void destroyFleet();
 };
 
 }

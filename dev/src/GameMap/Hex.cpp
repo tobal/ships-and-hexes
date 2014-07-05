@@ -50,3 +50,31 @@ void Hex::removeSpaceObject()
 	delete object;
 	object = NULL;
 }
+
+bool Hex::hasFleet() const
+{
+	return fleet != NULL;
+}
+
+void Hex::addFleet(Fleet* fleet)
+{
+	this->fleet = fleet;
+}
+
+Fleet* Hex::getFleet() const
+{
+	return fleet;
+}
+
+Fleet* Hex::moveOutFleet()
+{
+	Fleet* fl = fleet;
+	fleet = NULL;
+	return fl;
+}
+
+void Hex::destroyFleet()
+{
+	delete fleet;
+	fleet = NULL;
+}
