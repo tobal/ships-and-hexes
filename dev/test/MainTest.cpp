@@ -24,6 +24,7 @@
 #include "MapElement/BuildingTest.cpp"
 #include "GameMap/FleetTest.cpp"
 #include "GameMap/HexTest.cpp"
+#include "GameMap/GameMapTest.cpp"
 
 using namespace CppUnit;
 
@@ -52,6 +53,7 @@ int main()
     runner.addTest(BuildingTest::suite());
     runner.addTest(FleetTest::suite());
     runner.addTest(HexTest::suite());
+    runner.addTest(GameMapTest::suite());
     runner.run();
     return 0;
 }
