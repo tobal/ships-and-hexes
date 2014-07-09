@@ -2,6 +2,7 @@
 #ifndef HEX_HPP_
 #define HEX_HPP_
 
+#include <vector>
 #include "MapElement/SpaceObject.hpp"
 #include "MapElement/Anomaly.hpp"
 #include "MapElement/Planet.hpp"
@@ -34,6 +35,8 @@ public:
 	Fleet* moveOutFleet();
 	void destroyFleet();
 };
+
+typedef std::vector<Hex*> HexVector;
 
 }
 

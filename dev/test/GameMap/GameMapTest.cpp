@@ -10,7 +10,7 @@ using namespace GameMap;
 class GameMapTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( GameMapTest );
-    CPPUNIT_TEST(init);
+    CPPUNIT_TEST(canCreateGameMapGivenDimensions);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -24,8 +24,42 @@ public:
     {
     }
 
-    void init()
+    void canCreateGameMapGivenDimensions()
     {
-    	CPPUNIT_ASSERT(true);
+    	GameMapImpl* map = new GameMapImpl(16, 20);
+    	Coord* mapDimensions = map->getDimensions();
+    	CPPUNIT_ASSERT_EQUAL(16, mapDimensions->x);
+    	CPPUNIT_ASSERT_EQUAL(20, mapDimensions->y);
+    	delete map;
+    }
+
+    void canGetHexOnCoordinates()
+    {
+
+    }
+
+    void canGenerateGameMapWithEffects()
+    {
+
+    }
+
+    void canIterateOverDifferentObjectsOverTheMap()
+    {
+
+    }
+
+    void canGetTrailGivenSourceAndDestination()
+    {
+
+    }
+
+    void canMoveFleetAcrossTrail()
+    {
+
+    }
+
+    void canDetectCollisionWhileMoving()
+    {
+
     }
 };

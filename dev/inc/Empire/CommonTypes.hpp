@@ -57,4 +57,11 @@ enum MapElementType
 	SPACESTATION
 };
 
+struct Coord
+{
+	Coord(const int x, const int y) : x(x), y(y) {}
+	int x;
+	int y;
+};
+
 #endif /* COMMONTYPES_HPP_ */
