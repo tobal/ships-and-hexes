@@ -22,6 +22,7 @@ public:
 	GameMapImpl(const int x, const int y);
 	~GameMapImpl();
 	Coord* getDimensions();
+	Hex* getHexOnCoord(Coord coord);
 };
 
 }

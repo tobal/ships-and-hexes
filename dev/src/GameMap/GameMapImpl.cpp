@@ -35,3 +35,8 @@ Coord* GameMapImpl::getDimensions()
 {
 	return dimensions;
 }
+
+Hex* GameMapImpl::getHexOnCoord(Coord coord)
+{
+	return hexMap->at(coord.x)->at(coord.y);
+}

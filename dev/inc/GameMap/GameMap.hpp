@@ -3,6 +3,7 @@
 #define GAMEMAP_HPP_
 
 #include "Empire/CommonTypes.hpp"
+#include "GameMap/Hex.hpp"
 
 namespace GameMap
 {
@@ -13,6 +14,7 @@ public:
 	GameMap() {}
 	virtual ~GameMap() {}
 	Coord* getDimensions() {}
+	Hex* getHexOnCoord(Coord coord) {}
 };
 
 }
