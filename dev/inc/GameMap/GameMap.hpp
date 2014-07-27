@@ -13,8 +13,9 @@ class GameMap
 public:
 	GameMap() {}
 	virtual ~GameMap() {}
-	Coord* getDimensions() {}
-	Hex* getHexOnCoord(Coord coord) {}
+	virtual Coord* getDimensions() {}
+	virtual Hex* getHexOnCoord(Coord coord) {}
+	virtual bool isObjectInVicinity(MapElementType type, Coord coord, int radius) {}
 };
 
 }
