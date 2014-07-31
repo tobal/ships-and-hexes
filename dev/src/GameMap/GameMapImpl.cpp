@@ -96,8 +96,8 @@ Hex* GameMapImpl::getHexOnCoord(Coord coord)
 
 void GameMapImpl::addCoordToVector(Coords& coords, int x, int y)
 {
-	if(x >= 0 && x <= dimensions->x &&
-	   y >= 0 && y <= dimensions->y)
+	if(x >= 0 && x <= dimensions->x - 1 &&
+	   y >= 0 && y <= dimensions->y - 1)
 	{
 		coords.push_back(Coord(x, y));
 	}
@@ -131,7 +131,14 @@ Coords GameMapImpl::getCoordNeighbours(Coord coord)
 
 bool GameMapImpl::isObjectInVicinity(MapElementType type, Coord coord, int radius)
 {
-
+	GameMapImpl::CircularMapIterator vicinity = this->getCircularIterator(coord, radius);
+	for(Hex* hex; vicinity.hasNext(); hex = vicinity.next())
+	{
+		if(hex->getSpaceObjectType() == type)
+		{
+			return true;
+		}
+	}
 	return false;
 }
 

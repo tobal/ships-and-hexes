@@ -19,7 +19,10 @@ class GameMapTest : public TestFixture
     CPPUNIT_TEST(canGetHexOnCoordinates);
     CPPUNIT_TEST(canGetHexNeighbourCoordinates);
     CPPUNIT_TEST(canItearateWithCircularIterator);
-    //CPPUNIT_TEST(canCheckIfGivenHexIsCloseToCertainObject);
+    CPPUNIT_TEST(canGetLargerVicinity);
+    CPPUNIT_TEST(canGetVicinityInCorners);
+    CPPUNIT_TEST(canCheckIfGivenHexIsCloseToCertainObject);
+    CPPUNIT_TEST(canGenerateGameMapWithEffects);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -83,17 +86,60 @@ public:
 
     void canItearateWithCircularIterator()
     {
-    	GameMapImpl::CircularMapIterator it = map->getCircularIterator(Coord(2, 1), 1);
-    	CPPUNIT_ASSERT(it.hasNext());
-    	CPPUNIT_ASSERT(Coord(1, 1) == it.nextCoord());
-    	CPPUNIT_ASSERT(Coord(2, 0) == it.nextCoord());
-    	CPPUNIT_ASSERT(Coord(3, 0) == it.nextCoord());
-    	CPPUNIT_ASSERT(Coord(3, 1) == it.nextCoord());
-    	CPPUNIT_ASSERT(Coord(2, 2) == it.nextCoord());
-    	CPPUNIT_ASSERT(Coord(3, 2) == it.nextCoord());
-    	CPPUNIT_ASSERT(!it.hasNext());
+    	GameMapImpl::CircularMapIterator itNeighbours = map->getCircularIterator(Coord(2, 1), 1);
+    	CPPUNIT_ASSERT(itNeighbours.hasNext());
+    	CPPUNIT_ASSERT(Coord(1, 1) == itNeighbours.nextCoord());
+    	CPPUNIT_ASSERT(Coord(2, 0) == itNeighbours.nextCoord());
+    	CPPUNIT_ASSERT(Coord(2, 2) == itNeighbours.nextCoord());
+    	CPPUNIT_ASSERT(Coord(3, 0) == itNeighbours.nextCoord());
+    	CPPUNIT_ASSERT(Coord(3, 1) == itNeighbours.nextCoord());
+    	CPPUNIT_ASSERT(Coord(3, 2) == itNeighbours.nextCoord());
+    	CPPUNIT_ASSERT(!itNeighbours.hasNext());
+    }
 
-    	// TODO: expand the test with further cases
+    void canGetLargerVicinity()
+    {
+    	GameMapImpl::CircularMapIterator itAura = map->getCircularIterator(Coord(2, 1), 2);
+    	CPPUNIT_ASSERT(itAura.hasNext());
+    	CPPUNIT_ASSERT(Coord(0, 1) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(1, 0) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(1, 1) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(1, 2) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(1, 3) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(2, 0) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(2, 2) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(2, 3) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(3, 0) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(3, 1) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(3, 2) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(3, 3) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(4, 0) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(4, 1) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(Coord(4, 2) == itAura.nextCoord());
+    	CPPUNIT_ASSERT(!itAura.hasNext());
+    }
+
+    void canGetVicinityInCorners()
+    {
+    	GameMapImpl::CircularMapIterator itTopCorner = map->getCircularIterator(Coord(0, 0), 3);
+    	CPPUNIT_ASSERT(itTopCorner.hasNext());
+    	CPPUNIT_ASSERT(Coord(0, 1) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(0, 2) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(0, 3) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(1, 0) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(1, 1) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(1, 2) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(1, 3) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(2, 0) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(2, 1) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(2, 2) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(3, 0) == itTopCorner.nextCoord());
+    	CPPUNIT_ASSERT(!itTopCorner.hasNext());
+
+    	GameMapImpl::CircularMapIterator itBottomCorner = map->getCircularIterator(Coord(15, 19), 1);
+    	CPPUNIT_ASSERT(itBottomCorner.hasNext());
+    	CPPUNIT_ASSERT(Coord(14, 19) == itBottomCorner.nextCoord());
+    	CPPUNIT_ASSERT(Coord(15, 18) == itBottomCorner.nextCoord());
     }
 
     void canCheckIfGivenHexIsCloseToCertainObject()
@@ -101,7 +147,8 @@ public:
     	SpaceStation* station = factory->createStation();
     	map->getHexOnCoord(Coord(2, 3))->addSpaceObject(station);
     	CPPUNIT_ASSERT(map->isObjectInVicinity(SPACESTATION, Coord(3, 3), 1));
-    	CPPUNIT_ASSERT(! map->isObjectInVicinity(SPACESTATION, Coord(4, 3), 1));
+    	CPPUNIT_ASSERT(!map->isObjectInVicinity(ANOMALY, Coord(3, 3), 1));
+    	CPPUNIT_ASSERT(!map->isObjectInVicinity(SPACESTATION, Coord(4, 3), 1));
     	CPPUNIT_ASSERT(map->isObjectInVicinity(SPACESTATION, Coord(4, 3), 2));
     }
 

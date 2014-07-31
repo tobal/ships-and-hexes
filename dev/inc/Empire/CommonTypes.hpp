@@ -78,7 +78,9 @@ struct Coord
 
 inline bool operator<(const Coord& lhs, const Coord& rhs)
 {
-	return lhs.x < rhs.x || lhs.y < rhs.y;
+	if (lhs.x < rhs.x) return true;
+	else if ( (lhs.x == rhs.x) && (lhs.y < rhs.y) ) return true;
+	else return false;
 }
 
 typedef std::vector<Coord> Coords;
