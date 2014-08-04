@@ -25,6 +25,7 @@
 #include "GameMap/FleetTest.cpp"
 #include "GameMap/HexTest.cpp"
 #include "GameMap/GameMapTest.cpp"
+#include "GameMap/GameMapGeneratorTest.cpp"
 
 using namespace CppUnit;
 
@@ -54,6 +55,7 @@ int main()
     runner.addTest(FleetTest::suite());
     runner.addTest(HexTest::suite());
     runner.addTest(GameMapTest::suite());
+    runner.addTest(GameMapGeneratorTest::suite());
     runner.run();
     return 0;
 }
