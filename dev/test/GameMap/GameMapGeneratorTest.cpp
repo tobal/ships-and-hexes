@@ -73,8 +73,8 @@ public:
 				hex->getSpaceObjectType() == ANOMALY ? anomalyCount++ : anomalyCount;
 			}
 		}
-    	CPPUNIT_ASSERT(anomalyCount > 20);
-    	CPPUNIT_ASSERT(planetCount > 20);
+    	CPPUNIT_ASSERT(anomalyCount == 24);
+    	CPPUNIT_ASSERT(planetCount == 48);
     }
 
     void canGenerateGameMapWithPlayers()
