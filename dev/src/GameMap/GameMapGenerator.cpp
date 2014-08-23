@@ -5,7 +5,7 @@ using namespace GameMap;
 using namespace MapElement;
 using namespace std;
 
-GameMapGenerator::GameMapGenerator()
+GameMapGenerator::GameMapGenerator() : planetsOnMap(0)
 {
 	neutralFactory = new MapElementFactory("nobody");
 }
@@ -22,16 +22,17 @@ GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions) const
 
 GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const int density)
 {
+	calculatePlanetsOnMap(dimensions, density);
 	GameMap* map = this->generateMap(dimensions);
-	Sections sections = sliceMapIntoSections(map->getDimensions());
-	sections = calculateOrbitalCount(sections, map->getDimensions(), density);
-	map = generateOrbitals(map, sections);
+	Sections sections = sliceMapIntoSections(dimensions);
+	sections = calculateOrbitalCount(sections);
+	generateOrbitals(map, sections);
 	return map;
 }
 
-Sections GameMapGenerator::sliceMapIntoSections(Coord* dimensions)
+Sections GameMapGenerator::sliceMapIntoSections(const Coord& dimensions)
 {
-	Coord sectionDims(int(dimensions->x / 3), int(dimensions->y) / 3);
+	Coord sectionDims(int(dimensions.x / 3), int(dimensions.y / 3));
 	Sections sections = Sections();
 	for (int x = 0; x < sectionDims.x; ++x)
 	{
@@ -54,35 +55,48 @@ Sections GameMapGenerator::sliceMapIntoSections(Coord* dimensions)
 	return sections;
 }
 
-Sections GameMapGenerator::calculateOrbitalCount(Sections sections, Coord* dimensions, const int density)
+Sections GameMapGenerator::calculateOrbitalCount(Sections sections)
 {
-	int realDensity = int(ceil(density / 3.5));
-	int hexesOnMap = dimensions->x * dimensions->y;
-	int planetsOnMap = int( (realDensity*100) / hexesOnMap );
+	size_t s = sections.size();
 	int planetsInOneSection = floor(planetsOnMap / sections.size());
 	for(Sections::iterator it = sections.begin(); it != sections.end(); ++it)
 	{
 		(*it).orbitalCount = planetsInOneSection;
 	}
+	int o = planetsOnMap % sections.size();
 	sections.at(0).orbitalCount += planetsOnMap % sections.size();
 	return sections;
 }
 
-GameMap::GameMap* GameMapGenerator::generateOrbitals(GameMap* map, Sections sections)
+void GameMapGenerator::calculatePlanetsOnMap(const Coord& dimensions, const int density)
+{
+	int realDensity = int(ceil(density / 3.5));
+	int hexesOnMap = dimensions.x * dimensions.y;
+	planetsOnMap = int( (realDensity/100.0) * hexesOnMap );
+}
+
+void GameMapGenerator::generateOrbitals(GameMap* map, Sections sections)
+{
+	srand(time(NULL));
+	generatePlanets(map, sections);
+	generateAnomalies(map);
+}
+
+void GameMapGenerator::generatePlanets(GameMap* map, Sections sections)
 {
 	int carry = 0;
 	for(Sections::iterator it = sections.begin(); it != sections.end(); ++it)
 	{
+		(*it).orbitalCount += carry;
 		for (int i = 0; i < 5; ++i)
 		{
-			srand(time(NULL));
 			int pick = rand() % (*it).coords.size();
 			Coord pickedHex = (*it).coords.at(pick);
 			if(noPlanetInVicinity(map, pickedHex))
 			{
 				(*it).orbitalCount -= 1;
 				Planet* planet = neutralFactory->createPlanet(
-						pickRandomType(), pickRandomSize(), pickRandomEffect());
+						pickRandomPlanetType(), pickRandomPlanetSize(), pickRandomPlanetEffect());
 				map->getHexOnCoord(pickedHex)->addSpaceObject(planet);
 			}
 			if((*it).orbitalCount == 0)
@@ -94,27 +108,70 @@ GameMap::GameMap* GameMapGenerator::generateOrbitals(GameMap* map, Sections sect
 	}
 }
 
+void GameMapGenerator::generateAnomalies(GameMap* map)
+{
+	int anomaliesOnMap = floor(planetsOnMap / 2.0);
+	while(anomaliesOnMap != 0)
+	{
+		putRandomAnomaly(map);
+		anomaliesOnMap--;
+	}
+}
+
+void GameMapGenerator::putRandomAnomaly(GameMap* map)
+{
+	Coord dimensions = map->getDimensions();
+	while(true)
+	{
+		int pickedX = rand() % dimensions.x;
+		int pickedY = rand() % dimensions.y;
+		Coord pickedHex = Coord(pickedX, pickedY);
+		if(noAnomalyInVicinity(map, pickedHex))
+		{
+			Anomaly* anomaly = neutralFactory->createAnomaly(
+					pickRandomAnomalyType(), pickRandomAnomalySize());
+			map->getHexOnCoord(pickedHex)->addSpaceObject(anomaly);
+			break;
+		}
+	}
+}
+
 bool GameMapGenerator::noPlanetInVicinity(GameMap* map, Coord center) const
 {
 	return ! map->isObjectInVicinity(PLANET, center, 1);
 }
 
-PlanetType GameMapGenerator::pickRandomType()
+bool GameMapGenerator::noAnomalyInVicinity(GameMap* map, Coord center) const
+{
+	return ! map->isObjectInVicinity(ANOMALY, center, 1);
+}
+
+PlanetType GameMapGenerator::pickRandomPlanetType()
 {
 	// FIXME: don't depend on fix size of enum
-	srand(time(NULL));
 	return PlanetType(rand() % 3);
 }
 
-PlanetSize GameMapGenerator::pickRandomSize()
+PlanetSize GameMapGenerator::pickRandomPlanetSize()
 {
 	// FIXME: don't depend on fix size of enum
-	srand(time(NULL));
 	return PlanetSize(rand() % 3);
 }
 
-Empire::Effect::Effect* GameMapGenerator::pickRandomEffect()
+Empire::Effect::Effect* GameMapGenerator::pickRandomPlanetEffect()
 {
 	// TODO: pick real planet effect
 	return new Empire::Effect::Effect();
+}
+
+AnomalyType GameMapGenerator::pickRandomAnomalyType()
+{
+	// FIXME: don't depend on fix size of enum
+	return AnomalyType(rand() % 3);
+}
+
+AnomalySize GameMapGenerator::pickRandomAnomalySize()
+{
+	// FIXME: don't depend on fix size of enum
+	return AnomalySize(rand() % 2);
 }

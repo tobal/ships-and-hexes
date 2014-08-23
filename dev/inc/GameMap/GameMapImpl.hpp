@@ -17,7 +17,7 @@ class GameMapImpl : public GameMap
 {
 private:
 	HexMap* hexMap;
-	Coord* dimensions;
+	Coord dimensions;
 
 	void addCoordToVector(Coords& coords, int x, int y);
 
@@ -44,7 +44,7 @@ public:
 		Coord nextCoord();
 	};
 
-	Coord* getDimensions();
+	Coord getDimensions();
 	Hex* getHexOnCoord(Coord coord);
 	Coords getCoordNeighbours(Coord coord);
 	CircularMapIterator getCircularIterator(Coord origo, int radius);

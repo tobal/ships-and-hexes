@@ -25,16 +25,11 @@ class GameMapGeneratorTest : public TestFixture
 
 private:
     GameMapGenerator* generator;
-    MapElementFactory *p1Factory, *p2Factory, *p3Factory, *p4Factory;
 
 public:
     void setUp()
     {
     	generator = new GameMapGenerator();
-    	p1Factory = new MapElementFactory("player1");
-    	p2Factory = new MapElementFactory("player2");
-    	p3Factory = new MapElementFactory("player3");
-    	p4Factory = new MapElementFactory("player4");
     }
 
     void tearDown()
@@ -45,10 +40,10 @@ public:
     void canGenerateEmptyGameMap()
     {
     	GameMap::GameMap* map = generator->generateMap(Coord(20, 20));
-    	Coord* dimensions = map->getDimensions();
-    	for (int x = 0; x < dimensions->x; ++x)
+    	Coord dimensions = map->getDimensions();
+    	for (int x = 0; x < dimensions.x; ++x)
     	{
-			for (int y = 0; y < dimensions->y; ++y)
+			for (int y = 0; y < dimensions.y; ++y)
 			{
 				Hex* hex = map->getHexOnCoord(Coord(x, y));
 				CPPUNIT_ASSERT(!hex->hasFleet());
@@ -61,20 +56,25 @@ public:
     {
     	int density = 40;
     	GameMap::GameMap* map = generator->generateMap(Coord(20, 20), density);
-    	Coord* dimensions = map->getDimensions();
+    	Coord dimensions = map->getDimensions();
     	int planetCount = 0;
     	int anomalyCount = 0;
-    	for (int x = 0; x < dimensions->x; ++x)
+    	for (int x = 0; x < dimensions.x; ++x)
     	{
-			for (int y = 0; y < dimensions->y; ++y)
+			for (int y = 0; y < dimensions.y; ++y)
 			{
 				Hex* hex = map->getHexOnCoord(Coord(x, y));
 				hex->getSpaceObjectType() == PLANET ? planetCount++ : planetCount;
 				hex->getSpaceObjectType() == ANOMALY ? anomalyCount++ : anomalyCount;
 			}
 		}
-    	CPPUNIT_ASSERT(anomalyCount == 24);
-    	CPPUNIT_ASSERT(planetCount == 48);
+    	CPPUNIT_ASSERT(planetCount >= 46);
+    	CPPUNIT_ASSERT_EQUAL(anomalyCount, 24);
+    }
+
+    void canPlaceNewRandomAnomaly()
+    {
+
     }
 
     void canGenerateGameMapWithPlayers()
@@ -93,10 +93,5 @@ public:
     	/*
     	 * az effekteknek lehetnek belépési pontjaik az algoritmusba, template method
     	 */
-    }
-
-    void canPlaceNewRandomAnomaly()
-    {
-
     }
 };

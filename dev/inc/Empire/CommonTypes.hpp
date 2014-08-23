@@ -56,7 +56,8 @@ enum MapElementType
 	SHIP,
 	PLANET,
 	ANOMALY,
-	SPACESTATION
+	SPACESTATION,
+	NOTHING
 };
 
 struct Coord

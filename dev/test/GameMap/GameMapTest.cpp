@@ -42,9 +42,9 @@ public:
 
     void canCreateGameMapGivenDimensions()
     {
-    	Coord* mapDimensions = map->getDimensions();
-    	CPPUNIT_ASSERT_EQUAL(16, mapDimensions->x);
-    	CPPUNIT_ASSERT_EQUAL(20, mapDimensions->y);
+    	Coord mapDimensions = map->getDimensions();
+    	CPPUNIT_ASSERT_EQUAL(16, mapDimensions.x);
+    	CPPUNIT_ASSERT_EQUAL(20, mapDimensions.y);
     	delete map;
     }
 

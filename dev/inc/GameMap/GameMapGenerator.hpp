@@ -28,19 +28,27 @@ class GameMapGenerator
 {
 private:
 	MapElement::MapElementFactory* neutralFactory;
-	Sections sliceMapIntoSections(Coord* dimensions);
-	Sections calculateOrbitalCount(Sections sections, Coord* dimensions, const int density);
-	GameMap* generateOrbitals(GameMap* map, Sections sections);
+	int planetsOnMap;
+	Sections sliceMapIntoSections(const Coord& dimensions);
+	Sections calculateOrbitalCount(Sections sections);
+	void calculatePlanetsOnMap(const Coord& dimensions, const int density);
+	void generateOrbitals(GameMap* map, Sections sections);
+	void generatePlanets(GameMap* map, Sections sections);
+	void generateAnomalies(GameMap* map);
 	bool noPlanetInVicinity(GameMap* map, Coord center) const;
-	PlanetType pickRandomType();
-	PlanetSize pickRandomSize();
-	Empire::Effect::Effect* pickRandomEffect();
+	bool noAnomalyInVicinity(GameMap* map, Coord center) const;
+	PlanetType pickRandomPlanetType();
+	PlanetSize pickRandomPlanetSize();
+	Empire::Effect::Effect* pickRandomPlanetEffect();
+	AnomalyType pickRandomAnomalyType();
+	AnomalySize pickRandomAnomalySize();
 
 public:
 	GameMapGenerator();
 	~GameMapGenerator();
 	GameMap* generateMap(const Coord& dimensions) const;
 	GameMap* generateMap(const Coord& dimensions, const int density);
+	void putRandomAnomaly(GameMap* map);
 };
 
 }

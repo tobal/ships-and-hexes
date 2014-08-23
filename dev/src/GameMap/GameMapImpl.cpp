@@ -44,12 +44,15 @@ bool GameMapImpl::CircularMapIterator::hasNext()
 
 Hex* GameMapImpl::CircularMapIterator::next()
 {
-	return parent.getHexOnCoord(nextCoord());
+	Coord c = nextCoord();
+	Hex* h = parent.getHexOnCoord(c);
+	return h;
 }
 
 Coord GameMapImpl::CircularMapIterator::nextCoord()
 {
-	return *hexIt++;
+	Coord c = *(hexIt++);
+	return c;
 }
 
 GameMapImpl::CircularMapIterator GameMapImpl::getCircularIterator(Coord origo, int radius)
@@ -57,7 +60,7 @@ GameMapImpl::CircularMapIterator GameMapImpl::getCircularIterator(Coord origo, i
 	return CircularMapIterator(*this, origo, radius);
 }
 
-GameMapImpl::GameMapImpl(const int x, const int y) : dimensions(new Coord(x, y))
+GameMapImpl::GameMapImpl(const int x, const int y) : dimensions(Coord(x, y))
 {
 	hexMap = new HexMap();
 	for (int i = 0; i < x; ++i)
@@ -72,19 +75,18 @@ GameMapImpl::GameMapImpl(const int x, const int y) : dimensions(new Coord(x, y))
 
 GameMapImpl::~GameMapImpl()
 {
-	for (int i = 0; i < dimensions->x; ++i)
+	for (int i = 0; i < dimensions.x; ++i)
 	{
-		for (int j = 0; j < dimensions->y; ++j)
+		for (int j = 0; j < dimensions.y; ++j)
 		{
 			delete hexMap->at(i)->at(j);
 		}
 		delete hexMap->at(i);
 	}
 	delete hexMap;
-	delete dimensions;
 }
 
-Coord* GameMapImpl::getDimensions()
+Coord GameMapImpl::getDimensions()
 {
 	return dimensions;
 }
@@ -96,8 +98,8 @@ Hex* GameMapImpl::getHexOnCoord(Coord coord)
 
 void GameMapImpl::addCoordToVector(Coords& coords, int x, int y)
 {
-	if(x >= 0 && x <= dimensions->x - 1 &&
-	   y >= 0 && y <= dimensions->y - 1)
+	if(x >= 0 && x <= dimensions.x - 1 &&
+	   y >= 0 && y <= dimensions.y - 1)
 	{
 		coords.push_back(Coord(x, y));
 	}
@@ -132,8 +134,14 @@ Coords GameMapImpl::getCoordNeighbours(Coord coord)
 bool GameMapImpl::isObjectInVicinity(MapElementType type, Coord coord, int radius)
 {
 	GameMapImpl::CircularMapIterator vicinity = this->getCircularIterator(coord, radius);
-	for(Hex* hex; vicinity.hasNext(); hex = vicinity.next())
+	if(getHexOnCoord(coord)->getSpaceObjectType() != NOTHING)
 	{
+		return true;
+	}
+	while(vicinity.hasNext())
+	{
+		Hex* hex = vicinity.next();
+		MapElementType t = hex->getSpaceObjectType();
 		if(hex->getSpaceObjectType() == type)
 		{
 			return true;

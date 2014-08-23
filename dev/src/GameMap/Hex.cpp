@@ -4,7 +4,7 @@
 using namespace GameMap;
 using namespace MapElement;
 
-Hex::Hex() : object(NULL), objectType(PLANET), fleet(NULL)
+Hex::Hex() : object(NULL), objectType(NOTHING), fleet(NULL)
 {
 }
 
