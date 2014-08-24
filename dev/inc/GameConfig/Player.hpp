@@ -5,6 +5,7 @@
 #include "GameConfig/PlayerSettings.hpp"
 #include "PlayerConfig/PlayerConfig.hpp"
 #include <string>
+#include <vector>
 
 namespace GameConfig
 {
@@ -27,6 +28,8 @@ public:
 	void controlByAI(const bool controlledByAI);
 	PlayerConfig::PlayerConfig* getPlayerConfig() const;
 };
+
+typedef std::vector<Player> Players;
 
 }
 

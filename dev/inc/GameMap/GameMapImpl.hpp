@@ -49,6 +49,7 @@ public:
 	Coords getCoordNeighbours(Coord coord);
 	CircularMapIterator getCircularIterator(Coord origo, int radius);
 	bool isObjectInVicinity(MapElementType type, Coord coord, int radius);
+	int countPlanetsOfPlayer(std::string playerName);
 };
 
 }

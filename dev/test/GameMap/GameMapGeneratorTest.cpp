@@ -1,6 +1,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
+#include "GameConfig/Player.hpp"
 #include "GameMap/GameMapGenerator.hpp"
 #include "GameMap/GameMapImpl.hpp"
 #include "GameMap/Hex.hpp"
@@ -11,6 +12,7 @@
 using namespace CppUnit;
 using namespace std;
 using namespace GameMap;
+using namespace GameConfig;
 using namespace MapElement;
 
 class GameMapGeneratorTest : public TestFixture
@@ -90,7 +92,23 @@ public:
 
     void canGenerateGameMapWithPlayers()
     {
-
+    	Players players = Players();
+    	int maxPlayers = 8;
+    	for (int i = 0; i < maxPlayers; ++i)
+    	{
+    		ostringstream playerName;
+    		playerName << "player" << i;
+    		players.push_back(Player(playerName.str(), RED, false));
+		}
+    	int density = 40;
+    	GameMap::GameMap* map = generator->generateMap(Coord(20, 20), density, players);
+    	for (int i = 0; i < maxPlayers; ++i)
+		{
+			ostringstream playerName;
+			playerName << "player" << i;
+	    	int planetCount = map->countPlanetsOfPlayer(playerName.str());
+	    	CPPUNIT_ASSERT_EQUAL(1, planetCount);
+		}
     }
 
     void canGenerateGameMapWithEffects()

@@ -11,6 +11,7 @@
 #include "MapElement/MapElementFactory.hpp"
 #include "Empire/CommonTypes.hpp"
 #include "Empire/Effect/Effect.hpp"
+#include "GameConfig/Player.hpp"
 
 namespace GameMap
 {
@@ -48,6 +49,7 @@ public:
 	~GameMapGenerator();
 	GameMap* generateMap(const Coord& dimensions) const;
 	GameMap* generateMap(const Coord& dimensions, const int density);
+	GameMap* generateMap(const Coord& dimensions, const int density, GameConfig::Players players);
 	void putRandomAnomaly(GameMap* map);
 };
 

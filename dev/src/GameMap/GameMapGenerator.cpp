@@ -2,6 +2,7 @@
 #include "GameMap/GameMapGenerator.hpp"
 
 using namespace GameMap;
+using namespace GameConfig;
 using namespace MapElement;
 using namespace std;
 
@@ -27,6 +28,12 @@ GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const i
 	Sections sections = sliceMapIntoSections(dimensions);
 	sections = calculateOrbitalCount(sections);
 	generateOrbitals(map, sections);
+	return map;
+}
+
+GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const int density, Players players)
+{
+	GameMap* map = this->generateMap(dimensions, density);
 	return map;
 }
 

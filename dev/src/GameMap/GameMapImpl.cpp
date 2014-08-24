@@ -150,3 +150,7 @@ bool GameMapImpl::isObjectInVicinity(MapElementType type, Coord coord, int radiu
 	return false;
 }
 
+int GameMapImpl::countPlanetsOfPlayer(std::string playerName)
+{
+	return 0;
+}
