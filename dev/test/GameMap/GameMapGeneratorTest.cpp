@@ -17,10 +17,10 @@ class GameMapGeneratorTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( GameMapGeneratorTest );
     CPPUNIT_TEST(canGenerateEmptyGameMap);
+    CPPUNIT_TEST(canPlaceNewRandomAnomaly);
     CPPUNIT_TEST(canGenerateGameMapWithPlanetsAndAnomalies);
     CPPUNIT_TEST(canGenerateGameMapWithPlayers);
     CPPUNIT_TEST(canGenerateGameMapWithEffects);
-    CPPUNIT_TEST(canPlaceNewRandomAnomaly);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -35,6 +35,21 @@ public:
     void tearDown()
     {
 
+    }
+
+    int countSpaceObject(MapElementType type, GameMap::GameMap* map)
+    {
+    	Coord dimensions = map->getDimensions();
+    	int count = 0;
+    	for (int x = 0; x < dimensions.x; ++x)
+    	{
+			for (int y = 0; y < dimensions.y; ++y)
+			{
+				Hex* hex = map->getHexOnCoord(Coord(x, y));
+				hex->getSpaceObjectType() == type ? count++ : count;
+			}
+		}
+    	return count;
     }
 
     void canGenerateEmptyGameMap()
@@ -52,29 +67,25 @@ public:
 		}
     }
 
+    void canPlaceNewRandomAnomaly()
+    {
+    	int anomaliesPlaced = 5;
+    	GameMap::GameMap* map = generator->generateMap(Coord(20, 20));
+    	for (int i = 0; i < anomaliesPlaced; ++i) {
+        	generator->putRandomAnomaly(map);
+		}
+    	int anomalyCount = countSpaceObject(ANOMALY, map);
+    	CPPUNIT_ASSERT_EQUAL(anomaliesPlaced, anomalyCount);
+    }
+
     void canGenerateGameMapWithPlanetsAndAnomalies()
     {
     	int density = 40;
     	GameMap::GameMap* map = generator->generateMap(Coord(20, 20), density);
-    	Coord dimensions = map->getDimensions();
-    	int planetCount = 0;
-    	int anomalyCount = 0;
-    	for (int x = 0; x < dimensions.x; ++x)
-    	{
-			for (int y = 0; y < dimensions.y; ++y)
-			{
-				Hex* hex = map->getHexOnCoord(Coord(x, y));
-				hex->getSpaceObjectType() == PLANET ? planetCount++ : planetCount;
-				hex->getSpaceObjectType() == ANOMALY ? anomalyCount++ : anomalyCount;
-			}
-		}
+    	int planetCount = countSpaceObject(PLANET, map);
+    	int anomalyCount = countSpaceObject(ANOMALY, map);
     	CPPUNIT_ASSERT(planetCount >= 46);
     	CPPUNIT_ASSERT_EQUAL(anomalyCount, 24);
-    }
-
-    void canPlaceNewRandomAnomaly()
-    {
-
     }
 
     void canGenerateGameMapWithPlayers()
