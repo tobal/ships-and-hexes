@@ -38,6 +38,9 @@ private:
 	void generateAnomalies(GameMap* map);
 	bool noPlanetInVicinity(GameMap* map, Coord center) const;
 	bool noAnomalyInVicinity(GameMap* map, Coord center) const;
+	void placePlayersOnMap(GameMap* map, GameConfig::Players players);
+	Coord getRandomPlanetCoord(Coords planets);
+	void swapPlanetToHomeworld(GameMap* map, GameConfig::Player player, Coord planetCoord);
 	PlanetType pickRandomPlanetType();
 	PlanetSize pickRandomPlanetSize();
 	Empire::Effect::Effect* pickRandomPlanetEffect();

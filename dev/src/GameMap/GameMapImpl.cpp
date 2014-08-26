@@ -150,7 +150,34 @@ bool GameMapImpl::isObjectInVicinity(MapElementType type, Coord coord, int radiu
 	return false;
 }
 
+Coords GameMapImpl::getPlanets()
+{
+	Coords planets = Coords();
+	for (int i = 0; i < dimensions.x; ++i)
+	{
+		for (int j = 0; j < dimensions.y; ++j)
+		{
+			Hex* hex = this->getHexOnCoord(Coord(i, j));
+			if(hex->getSpaceObjectType() == PLANET)
+			{
+				planets.push_back(Coord(i, j));
+			}
+		}
+	}
+	return planets;
+}
+
 int GameMapImpl::countPlanetsOfPlayer(std::string playerName)
 {
-	return 0;
+	int count = 0;
+	Coords planets = getPlanets();
+	for (Coords::iterator planet = planets.begin(); planet != planets.end(); ++planet)
+	{
+		Hex* hex = this->getHexOnCoord(*planet);
+		if(hex->getSpaceObject()->getPlayerName() == playerName)
+		{
+			count++;
+		}
+	}
+	return count;
 }

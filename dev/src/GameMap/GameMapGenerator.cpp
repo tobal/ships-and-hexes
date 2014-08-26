@@ -34,6 +34,8 @@ GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const i
 GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const int density, Players players)
 {
 	GameMap* map = this->generateMap(dimensions, density);
+	Sections sections = sliceMapIntoSections(dimensions);
+	placePlayersOnMap(map, players);
 	return map;
 }
 
@@ -151,6 +153,31 @@ bool GameMapGenerator::noPlanetInVicinity(GameMap* map, Coord center) const
 bool GameMapGenerator::noAnomalyInVicinity(GameMap* map, Coord center) const
 {
 	return ! map->isObjectInVicinity(ANOMALY, center, 1);
+}
+
+void GameMapGenerator::placePlayersOnMap(GameMap* map, Players players)
+{
+	for (Players::iterator player = players.begin(); player != players.end(); ++player)
+	{
+		Coords planets = map->getPlanets();
+		Coord randomPlanet = getRandomPlanetCoord(planets);
+		swapPlanetToHomeworld(map, *player, randomPlanet);
+	}
+}
+
+Coord GameMapGenerator::getRandomPlanetCoord(Coords planets)
+{
+	return planets.at(rand() % planets.size());
+}
+
+void GameMapGenerator::swapPlanetToHomeworld(GameMap* map, Player player, Coord planetCoord)
+{
+	map->getHexOnCoord(planetCoord)->removeSpaceObject();
+	MapElementFactory* playerFactory = new MapElementFactory(player.getName());
+	Planet* homeworld = playerFactory->createPlanet(player.getPlayerConfig()->getHomeworld(),
+												  LARGE, pickRandomPlanetEffect());
+	map->getHexOnCoord(planetCoord)->addSpaceObject(homeworld);
+	delete playerFactory;
 }
 
 PlanetType GameMapGenerator::pickRandomPlanetType()
