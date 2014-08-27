@@ -7,6 +7,7 @@
 #include "GameMap/Hex.hpp"
 #include "MapElement/MapElementFactory.hpp"
 #include "MapElement/Anomaly.hpp"
+#include "Empire/Effect/TwinPlanet.hpp"
 #include "Empire/CommonTypes.hpp"
 
 using namespace CppUnit;
@@ -14,6 +15,7 @@ using namespace std;
 using namespace GameMap;
 using namespace GameConfig;
 using namespace MapElement;
+using namespace Empire::Effect;
 
 class GameMapGeneratorTest : public TestFixture
 {
@@ -113,14 +115,14 @@ public:
 
     void canGenerateGameMapWithEffects()
     {
-    	/*
-    	 * generáljunk bolygókat úgy, hogy négyzet alakú részekre osztjuk a térképet,
-    	 * és azok közül választunk ki egy hexát véletlenszerűen. a részek méretével
-    	 * és a részeken belül elhelyezett bolygók számával lehet állítani a sűrűséget
-    	 */
-
-    	/*
-    	 * az effekteknek lehetnek belépési pontjaik az algoritmusba, template method
-    	 */
+    	MapEffects mapEffects = MapEffects();
+    	mapEffects.push_back(TwinPlanet("player1"));
+    	Players players = Players();
+    	players.push_back(Player("player1", RED, false));
+    	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(Coord(20, 20), 40, players, mapEffects));
+    	Coords planetsOfPlayer = map->getPlanetsOfPlayer("player1");
+    	//CPPUNIT_ASSERT_EQUAL(1, planetsOfPlayer.size());
+    	//GameMap::CircularMapIterator it = map->getCircularIterator(planetsOfPlayer.at(0), 2);
+    	//while()
     }
 };

@@ -10,8 +10,28 @@
 
 namespace GameMap
 {
-
 typedef std::vector< HexVector* > HexMap;
+
+class GameMapImpl;
+
+class CircularMapIterator
+{
+private:
+	GameMapImpl& parent;
+	Coord origo;
+	int radius;
+	std::set<Coord> vicinity;
+	std::set<Coord>::iterator hexIt;
+
+	std::set<Coord> expandVicinity(const std::set<Coord> vicinity);
+
+public:
+	CircularMapIterator(GameMapImpl& parent, Coord origo, int radius);
+	~CircularMapIterator();
+	bool hasNext();
+	Hex* next();
+	Coord nextCoord();
+};
 
 class GameMapImpl : public GameMap
 {
@@ -25,25 +45,6 @@ public:
 	GameMapImpl(const int x, const int y);
 	~GameMapImpl();
 
-	class CircularMapIterator
-	{
-	private:
-		GameMapImpl& parent;
-		Coord origo;
-		int radius;
-		std::set<Coord> vicinity;
-		std::set<Coord>::iterator hexIt;
-
-		std::set<Coord> expandVicinity(const std::set<Coord> vicinity);
-
-	public:
-		CircularMapIterator(GameMapImpl& parent, Coord origo, int radius);
-		~CircularMapIterator();
-		bool hasNext();
-		Hex* next();
-		Coord nextCoord();
-	};
-
 	Coord getDimensions();
 	Hex* getHexOnCoord(Coord coord);
 	Coords getCoordNeighbours(Coord coord);
@@ -51,6 +52,7 @@ public:
 	bool isObjectInVicinity(MapElementType type, Coord coord, int radius);
 	Coords getPlanets();
 	int countPlanetsOfPlayer(std::string playerName);
+	Coords getPlanetsOfPlayer(std::string playerName);
 };
 
 }

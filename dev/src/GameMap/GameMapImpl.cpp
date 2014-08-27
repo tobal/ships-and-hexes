@@ -4,7 +4,7 @@
 using namespace GameMap;
 using namespace std;
 
-GameMapImpl::CircularMapIterator::CircularMapIterator(GameMapImpl& parent, Coord origo, int radius)
+CircularMapIterator::CircularMapIterator(GameMapImpl& parent, Coord origo, int radius)
  : parent(parent), origo(origo), radius(radius)
 {
 	vicinity = set<Coord>();
@@ -16,11 +16,11 @@ GameMapImpl::CircularMapIterator::CircularMapIterator(GameMapImpl& parent, Coord
 	hexIt = vicinity.begin();
 }
 
-GameMapImpl::CircularMapIterator::~CircularMapIterator()
+CircularMapIterator::~CircularMapIterator()
 {
 }
 
-set<Coord> GameMapImpl::CircularMapIterator::expandVicinity(const set<Coord> vicinity)
+set<Coord> CircularMapIterator::expandVicinity(const set<Coord> vicinity)
 {
 	set<Coord> expanded = set<Coord>();
 	for(set<Coord>::iterator it = vicinity.begin(); it != vicinity.end(); it++)
@@ -37,25 +37,25 @@ set<Coord> GameMapImpl::CircularMapIterator::expandVicinity(const set<Coord> vic
 	return expanded;
 }
 
-bool GameMapImpl::CircularMapIterator::hasNext()
+bool CircularMapIterator::hasNext()
 {
 	return hexIt != vicinity.end();
 }
 
-Hex* GameMapImpl::CircularMapIterator::next()
+Hex* CircularMapIterator::next()
 {
 	Coord c = nextCoord();
 	Hex* h = parent.getHexOnCoord(c);
 	return h;
 }
 
-Coord GameMapImpl::CircularMapIterator::nextCoord()
+Coord CircularMapIterator::nextCoord()
 {
 	Coord c = *(hexIt++);
 	return c;
 }
 
-GameMapImpl::CircularMapIterator GameMapImpl::getCircularIterator(Coord origo, int radius)
+CircularMapIterator GameMapImpl::getCircularIterator(Coord origo, int radius)
 {
 	return CircularMapIterator(*this, origo, radius);
 }
@@ -133,7 +133,7 @@ Coords GameMapImpl::getCoordNeighbours(Coord coord)
 
 bool GameMapImpl::isObjectInVicinity(MapElementType type, Coord coord, int radius)
 {
-	GameMapImpl::CircularMapIterator vicinity = this->getCircularIterator(coord, radius);
+	CircularMapIterator vicinity = this->getCircularIterator(coord, radius);
 	if(getHexOnCoord(coord)->getSpaceObjectType() != NOTHING)
 	{
 		return true;
@@ -180,4 +180,19 @@ int GameMapImpl::countPlanetsOfPlayer(std::string playerName)
 		}
 	}
 	return count;
+}
+
+Coords GameMapImpl::getPlanetsOfPlayer(std::string playerName)
+{
+	Coords coords = Coords();
+	Coords planets = getPlanets();
+	for (Coords::iterator planet = planets.begin(); planet != planets.end(); ++planet)
+	{
+		Hex* hex = this->getHexOnCoord(*planet);
+		if(hex->getSpaceObject()->getPlayerName() == playerName)
+		{
+			coords.push_back(*planet);
+		}
+	}
+	return coords;
 }

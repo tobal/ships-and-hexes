@@ -16,6 +16,8 @@ public:
 	virtual ~MapEffect() {}
 };
 
+typedef std::vector<MapEffect> MapEffects;
+
 } /* namespace Effect */
 } /* namespace Empire */
 

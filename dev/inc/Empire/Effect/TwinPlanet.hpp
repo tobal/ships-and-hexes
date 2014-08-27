@@ -3,6 +3,7 @@
 #define TWINPLANET_HPP_
 
 #include "Empire/Effect/MapEffect.hpp"
+#include <string>
 
 namespace Empire
 {
@@ -12,7 +13,7 @@ namespace Effect
 class TwinPlanet : public MapEffect
 {
 public:
-	TwinPlanet();
+	TwinPlanet(std::string playerName);
 	~TwinPlanet();
 };
 

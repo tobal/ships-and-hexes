@@ -4,6 +4,7 @@
 using namespace GameMap;
 using namespace GameConfig;
 using namespace MapElement;
+using namespace Empire::Effect;
 using namespace std;
 
 GameMapGenerator::GameMapGenerator() : planetsOnMap(0)
@@ -36,6 +37,12 @@ GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const i
 	GameMap* map = this->generateMap(dimensions, density);
 	Sections sections = sliceMapIntoSections(dimensions);
 	placePlayersOnMap(map, players);
+	return map;
+}
+
+GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const int density, Players players, MapEffects mapEffects)
+{
+	GameMap* map = this->generateMap(dimensions, density, players);
 	return map;
 }
 
