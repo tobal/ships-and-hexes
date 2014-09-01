@@ -141,7 +141,6 @@ bool GameMapImpl::isObjectInVicinity(MapElementType type, Coord coord, int radiu
 	while(vicinity.hasNext())
 	{
 		Hex* hex = vicinity.next();
-		MapElementType t = hex->getSpaceObjectType();
 		if(hex->getSpaceObjectType() == type)
 		{
 			return true;
@@ -169,17 +168,7 @@ Coords GameMapImpl::getPlanets()
 
 int GameMapImpl::countPlanetsOfPlayer(std::string playerName)
 {
-	int count = 0;
-	Coords planets = getPlanets();
-	for (Coords::iterator planet = planets.begin(); planet != planets.end(); ++planet)
-	{
-		Hex* hex = this->getHexOnCoord(*planet);
-		if(hex->getSpaceObject()->getPlayerName() == playerName)
-		{
-			count++;
-		}
-	}
-	return count;
+	return int(this->getPlanetsOfPlayer(playerName).size());
 }
 
 Coords GameMapImpl::getPlanetsOfPlayer(std::string playerName)

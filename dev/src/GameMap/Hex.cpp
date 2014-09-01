@@ -49,6 +49,7 @@ void Hex::removeSpaceObject()
 {
 	delete object;
 	object = NULL;
+	objectType = NOTHING;
 }
 
 bool Hex::hasFleet() const
