@@ -35,7 +35,6 @@ GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const i
 GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const int density, Players players)
 {
 	GameMap* map = this->generateMap(dimensions, density);
-	Sections sections = sliceMapIntoSections(dimensions);
 	placePlayersOnMap(map, players);
 	return map;
 }
@@ -162,13 +161,34 @@ bool GameMapGenerator::noAnomalyInVicinity(GameMap* map, Coord center) const
 	return ! map->isObjectInVicinity(ANOMALY, center, 1);
 }
 
+set<Coord> GameMapGenerator::pickRandomPlanets(Players& players, Coords planets)
+{
+	set < Coord > pickedPlanets = set<Coord>();
+	for (size_t playerIdx = 0; playerIdx < players.size(); ++playerIdx)
+	{
+		size_t initialSize = pickedPlanets.size();
+		while (pickedPlanets.size() != initialSize + 1)
+		{
+			pickedPlanets.insert(getRandomPlanetCoord(planets));
+		}
+	}
+
+	return pickedPlanets;
+}
+
 void GameMapGenerator::placePlayersOnMap(GameMap* map, Players players)
 {
-	for (Players::iterator player = players.begin(); player != players.end(); ++player)
+	Coords planets = map->getPlanets();
+	if(players.size() > planets.size())
 	{
-		Coords planets = map->getPlanets();
-		Coord randomPlanet = getRandomPlanetCoord(planets);
-		swapPlanetToHomeworld(map, *player, randomPlanet);
+		return;		// TODO: throw exception
+	}
+	set<Coord> pickedPlanets = pickRandomPlanets(players, planets);
+	int idx = 0;
+	for (set<Coord>::iterator planet = pickedPlanets.begin(); planet != pickedPlanets.end(); ++planet)
+	{
+		swapPlanetToHomeworld(map, players.at(idx), *planet);
+		++idx;
 	}
 }
 

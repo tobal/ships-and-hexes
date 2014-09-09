@@ -47,6 +47,7 @@ private:
 	Empire::Effect::Effect* pickRandomPlanetEffect();
 	AnomalyType pickRandomAnomalyType();
 	AnomalySize pickRandomAnomalySize();
+	std::set<Coord> pickRandomPlanets(GameConfig::Players& players, Coords planets);
 
 public:
 	GameMapGenerator();

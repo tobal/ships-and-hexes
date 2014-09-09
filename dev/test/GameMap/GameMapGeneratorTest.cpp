@@ -121,7 +121,7 @@ public:
     	players.push_back(Player("player1", RED, false));
     	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(Coord(20, 20), 40, players, mapEffects));
     	Coords planetsOfPlayer = map->getPlanetsOfPlayer("player1");
-    	//CPPUNIT_ASSERT_EQUAL(1, planetsOfPlayer.size());
+    	CPPUNIT_ASSERT_EQUAL(1, int(planetsOfPlayer.size()));
     	//GameMap::CircularMapIterator it = map->getCircularIterator(planetsOfPlayer.at(0), 2);
     	//while()
     }
