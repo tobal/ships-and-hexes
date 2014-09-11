@@ -118,11 +118,23 @@ public:
     	MapEffects mapEffects = MapEffects();
     	mapEffects.push_back(TwinPlanet("player1"));
     	Players players = Players();
-    	players.push_back(Player("player1", RED, false));
+    	Player player = Player("player1", RED, false);
+    	players.push_back(player);
     	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(Coord(20, 20), 40, players, mapEffects));
     	Coords planetsOfPlayer = map->getPlanetsOfPlayer("player1");
-    	CPPUNIT_ASSERT_EQUAL(1, int(planetsOfPlayer.size()));
-    	//GameMap::CircularMapIterator it = map->getCircularIterator(planetsOfPlayer.at(0), 2);
-    	//while()
+    	GameMap::CircularMapIterator vicinity = map->getCircularIterator(planetsOfPlayer.at(0), 2);
+    	bool foundTwinPlanet = false;
+    	while(vicinity.hasNext())
+    	{
+    		Hex* hex = vicinity.next();
+    		if(hex->hasSpaceObject() && hex->getSpaceObjectType() == PLANET)
+    		{
+    			Planet* planet = dynamic_cast<Planet*>(hex->getSpaceObject());
+    			CPPUNIT_ASSERT_EQUAL(player.getPlayerConfig()->getHomeworld(), planet->getPlanetType());
+    			CPPUNIT_ASSERT_EQUAL(LARGE, planet->getPlanetSize());
+    			foundTwinPlanet = false;
+    		}
+    	}
+    	CPPUNIT_ASSERT(foundTwinPlanet);
     }
 };
