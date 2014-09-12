@@ -115,12 +115,13 @@ public:
 
     void canGenerateGameMapWithEffects()
     {
-    	MapEffects mapEffects = MapEffects();
-    	mapEffects.push_back(TwinPlanet("player1"));
-    	Players players = Players();
+    	MapEffect* twinEffect = dynamic_cast<MapEffect*>(new TwinPlanet("player1"));
     	Player player = Player("player1", RED, false);
+    	player.addTraitWithEffect(twinEffect);
+    	Players players = Players();
     	players.push_back(player);
-    	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(Coord(20, 20), 40, players, mapEffects));
+    	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(Coord(20, 20), 40, players));
+
     	Coords planetsOfPlayer = map->getPlanetsOfPlayer("player1");
     	GameMap::CircularMapIterator vicinity = map->getCircularIterator(planetsOfPlayer.at(0), 2);
     	bool foundTwinPlanet = false;
