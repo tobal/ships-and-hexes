@@ -1,5 +1,6 @@
 
 #include "PlayerConfig/PlayerConfigImpl.hpp"
+#include "Empire/Effect/TwinPlanet.hpp"
 #include "EffectMock.cpp"
 #include <vector>
 
@@ -11,7 +12,9 @@ void PlayerConfigImpl::constructTraits()
 {
 	// TODO: replace mock with actual effects
 	// TODO: put this into a singleton
+	// TODO: refactor picked traits logic (PlayerConfig should have a traits array)
 	Effect effect = EffectMock();
+	TwinPlanet twinPlanet = TwinPlanet();
 	allTraits->push_back(Trait(4).withEffect(effect).withEffect(effect));
 	allTraits->push_back(Trait(3));
 	allTraits->push_back(Trait(2).withEffect(effect));
@@ -29,7 +32,7 @@ void PlayerConfigImpl::constructTraits()
 	allTraits->push_back(Trait(1));
 	allTraits->push_back(Trait(1));
 	allTraits->push_back(Trait(1));
-	allTraits->push_back(Trait(2));
+	allTraits->push_back(Trait(2).withEffect(twinPlanet));
 	allTraits->push_back(Trait(2));
 	allTraits->push_back(Trait(1));
 }

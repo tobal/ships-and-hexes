@@ -37,7 +37,7 @@ public:
     	ShipBonus ship = ShipBonus(10);
     	EffectivenessBonus eff = EffectivenessBonus(10);
     	SensePlanetType sense = SensePlanetType();
-    	TwinPlanet twin = TwinPlanet("");
+    	TwinPlanet twin = TwinPlanet();
     	ExtraShips exship = ExtraShips();
     	ExtraBuildings exbuild = ExtraBuildings();
     	ProductionBonus prbonus = ProductionBonus();

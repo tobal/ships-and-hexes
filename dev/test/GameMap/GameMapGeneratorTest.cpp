@@ -115,9 +115,11 @@ public:
 
     void canGenerateGameMapWithEffects()
     {
-    	MapEffect* twinEffect = dynamic_cast<MapEffect*>(new TwinPlanet("player1"));
+    	MapEffect* twinEffect = dynamic_cast<MapEffect*>(new TwinPlanet());
     	Player player = Player("player1", RED, false);
-    	player.addTraitWithEffect(twinEffect);
+    	vector<int> picked = vector<int>();
+    	picked.push_back(18);	// twin planet
+    	player.getPlayerConfig()->pickTraits(picked);
     	Players players = Players();
     	players.push_back(player);
     	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(Coord(20, 20), 40, players));

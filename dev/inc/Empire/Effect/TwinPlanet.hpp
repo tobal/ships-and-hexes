@@ -13,7 +13,7 @@ namespace Effect
 class TwinPlanet : public MapEffect
 {
 public:
-	TwinPlanet(std::string playerName);
+	TwinPlanet();
 	~TwinPlanet();
 };
 
