@@ -118,6 +118,9 @@ public:
     	MapEffect* twinEffect = dynamic_cast<MapEffect*>(new TwinPlanet());
     	Player player = Player("player1", RED, false);
     	vector<int> picked = vector<int>();
+    	picked.push_back(0);
+    	picked.push_back(2);
+    	picked.push_back(3);
     	picked.push_back(18);	// twin planet
     	player.getPlayerConfig()->pickTraits(picked);
     	Players players = Players();
@@ -133,9 +136,11 @@ public:
     		if(hex->hasSpaceObject() && hex->getSpaceObjectType() == PLANET)
     		{
     			Planet* planet = dynamic_cast<Planet*>(hex->getSpaceObject());
-    			CPPUNIT_ASSERT_EQUAL(player.getPlayerConfig()->getHomeworld(), planet->getPlanetType());
-    			CPPUNIT_ASSERT_EQUAL(LARGE, planet->getPlanetSize());
-    			foundTwinPlanet = false;
+    			if(planet->getPlanetType() == player.getPlayerConfig()->getHomeworld() &&
+    			   LARGE == planet->getPlanetSize())
+    			{
+    				foundTwinPlanet = true;
+    			}
     		}
     	}
     	CPPUNIT_ASSERT(foundTwinPlanet);

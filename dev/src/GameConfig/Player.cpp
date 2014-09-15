@@ -13,7 +13,7 @@ Player::Player(std::string name, PlayerColors color, bool controlledByAI)
 	settings.name = name;
 	settings.color = color;
 	settings.controlledByAI = controlledByAI;
-	config = new PlayerConfig::PlayerConfig();
+	config = new PlayerConfig::PlayerConfigImpl();
 }
 
 Player::Player()

@@ -4,6 +4,7 @@
 
 #include "GameConfig/PlayerSettings.hpp"
 #include "PlayerConfig/PlayerConfig.hpp"
+#include "PlayerConfig/PlayerConfigImpl.hpp"
 #include <string>
 #include <vector>
 
