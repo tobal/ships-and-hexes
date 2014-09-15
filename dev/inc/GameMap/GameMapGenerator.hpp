@@ -48,6 +48,8 @@ private:
 	AnomalyType pickRandomAnomalyType();
 	AnomalySize pickRandomAnomalySize();
 	std::set<Coord> pickRandomPlanets(GameConfig::Players& players, Coords planets);
+	void applyMapEffects(GameMap* map, GameConfig::Players players);
+	Empire::Effect::MapEffects getMapEffectsOfPlayer(std::string playerName);
 
 public:
 	GameMapGenerator();
@@ -55,8 +57,6 @@ public:
 	GameMap* generateMap(const Coord& dimensions) const;
 	GameMap* generateMap(const Coord& dimensions, const int density);
 	GameMap* generateMap(const Coord& dimensions, const int density, GameConfig::Players players);
-	GameMap* generateMap(const Coord& dimensions, const int density, GameConfig::Players players,
-						 Empire::Effect::MapEffects mapEffects);
 	void putRandomAnomaly(GameMap* map);
 };
 

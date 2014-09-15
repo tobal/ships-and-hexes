@@ -3,6 +3,7 @@
 #define MAPEFFECT_HPP_
 
 #include "Empire/Effect/Effect.hpp"
+#include "GameMap/GameMap.hpp"
 
 namespace Empire
 {
@@ -14,6 +15,7 @@ class MapEffect : public Effect::Effect
 public:
 	MapEffect() {}
 	virtual ~MapEffect() {}
+	virtual void applyEffect(GameMap::GameMap* map, Coord homeworld) {}
 };
 
 typedef std::vector<MapEffect> MapEffects;

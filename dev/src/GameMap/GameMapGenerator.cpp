@@ -36,12 +36,7 @@ GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const i
 {
 	GameMap* map = this->generateMap(dimensions, density);
 	placePlayersOnMap(map, players);
-	return map;
-}
-
-GameMap::GameMap* GameMapGenerator::generateMap(const Coord& dimensions, const int density, Players players, MapEffects mapEffects)
-{
-	GameMap* map = this->generateMap(dimensions, density, players);
+	applyMapEffects(map, players);
 	return map;
 }
 
@@ -190,6 +185,26 @@ void GameMapGenerator::placePlayersOnMap(GameMap* map, Players players)
 		swapPlanetToHomeworld(map, players.at(idx), *planet);
 		++idx;
 	}
+}
+
+void GameMapGenerator::applyMapEffects(GameMap* map, Players players)
+{
+	for (Players::iterator player = players.begin(); player != players.end(); ++player)
+	{
+		string playerName = (*player).getName();
+		MapEffects mapEffs = getMapEffectsOfPlayer(playerName);
+		Coord homeworld = map->getPlanetsOfPlayer(playerName).at(0);
+		for (MapEffects::iterator effect = mapEffs.begin(); effect != mapEffs.end(); ++effect)
+		{
+			(*effect).applyEffect(map, homeworld);
+		}
+	}
+}
+
+MapEffects GameMapGenerator::getMapEffectsOfPlayer(string playerName)
+{
+	MapEffects mapEffs = MapEffects();
+	return mapEffs;
 }
 
 Coord GameMapGenerator::getRandomPlanetCoord(Coords planets)

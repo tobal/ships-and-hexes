@@ -16,8 +16,9 @@ public:
 	virtual Coord getDimensions() {}
 	virtual Hex* getHexOnCoord(Coord coord) {}
 	virtual bool isObjectInVicinity(MapElementType type, Coord coord, int radius) {}
-	virtual int countPlanetsOfPlayer(std::string playerName) {}
 	virtual Coords getPlanets() {}
+	virtual int countPlanetsOfPlayer(std::string playerName) {}
+	virtual Coords getPlanetsOfPlayer(std::string playerName) {}
 };
 
 }
