@@ -14,6 +14,8 @@ typedef std::vector< HexVector* > HexMap;
 
 class GameMapImpl;
 
+// TODO: extract this to separate file
+// TODO: root out circular dependency
 class CircularMapIterator
 {
 private:

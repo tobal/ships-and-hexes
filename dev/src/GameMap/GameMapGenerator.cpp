@@ -193,10 +193,11 @@ void GameMapGenerator::applyMapEffects(GameMap* map, Players players)
 	{
 		string playerName = (*player).getName();
 		MapEffects mapEffs = getMapEffectsOfPlayer(playerName);
-		Coord homeworld = map->getPlanetsOfPlayer(playerName).at(0);
+		Coord homeworldCoord = map->getPlanetsOfPlayer(playerName).at(0);
 		for (MapEffects::iterator effect = mapEffs.begin(); effect != mapEffs.end(); ++effect)
 		{
-			(*effect).applyEffect(map, homeworld);
+			Planet* planet = neutralFactory->createPlanet((*player).getPlayerConfig()->getHomeworld(), LARGE, pickRandomPlanetEffect());
+			(*effect).applyEffect(map, homeworldCoord, planet);
 		}
 	}
 }

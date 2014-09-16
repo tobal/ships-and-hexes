@@ -121,7 +121,7 @@ public:
     	picked.push_back(0);
     	picked.push_back(2);
     	picked.push_back(3);
-    	picked.push_back(18);	// twin planet
+    	picked.push_back(17);	// twin planet
     	player.getPlayerConfig()->pickTraits(picked);
     	Players players = Players();
     	players.push_back(player);

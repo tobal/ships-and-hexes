@@ -4,6 +4,8 @@
 
 #include "Empire/Effect/MapEffect.hpp"
 #include "GameMap/GameMap.hpp"
+#include "GameMap/GameMapImpl.hpp"
+#include "MapElement/Planet.hpp"
 #include <string>
 
 namespace Empire
@@ -16,7 +18,7 @@ class TwinPlanet : public MapEffect
 public:
 	TwinPlanet();
 	~TwinPlanet();
-	void applyEffect(GameMap::GameMap* map, Coord homeworld);
+	void applyEffect(GameMap::GameMap* map, Coord homeworld, MapElement::Planet* planet);
 };
 
 } /* namespace Effect */
