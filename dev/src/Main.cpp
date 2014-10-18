@@ -1,105 +1,168 @@
-///* Orx - Portable Game Engine
-// *
-// * Copyright (c) 2008-2010 Orx-Project
-// *
-// * This software is provided 'as-is', without any express or implied
-// * warranty. In no event will the authors be held liable for any damages
-// * arising from the use of this software.
-// *
-// * Permission is granted to anyone to use this software for any purpose,
-// * including commercial applications, and to alter it and redistribute it
-// * freely, subject to the following restrictions:
-// *
-// *    1. The origin of this software must not be misrepresented; you must not
-// *    claim that you wrote the original software. If you use this software
-// *    in a product, an acknowledgment in the product documentation would be
-// *    appreciated but is not required.
-// *
-// *    2. Altered source versions must be plainly marked as such, and must not be
-// *    misrepresented as being the original software.
-// *
-// *    3. This notice may not be removed or altered from any source
-// *    distribution.
-// */
+
+#include "orx.h"
+#include "GameMap/GameMapGenerator.hpp"
+#include "MapElement/Planet.hpp"
+#include "MapElement/Anomaly.hpp"
+#include <sstream>
+
+using namespace GameMap;
+using namespace MapElement;
+
+orxSTATUS orxFASTCALL Init()
+{
+  orxConfig_Load("cfg/mainConf.ini");
+
+  orxViewport_CreateFromConfig("Viewport");
+
+  float x0 = -370.0;
+  float y0 = -270.0;
+//  for (int i = 0; i < 10; ++i) {
+//	for (int j = 0; j < 10; ++j) {
+//		orxVECTOR pos;
+//		pos.fX = x0 + i * 50;
+//		if(j % 2 > 0)
+//			pos.fX += 25.0;
+//		pos.fY = y0 + j * 43;
+//		pos.fZ = 0.0;
 //
-///**
-// * @file 01_Object.c
-// * @date 04/08/2008
-// * @author iarwain@orx-project.org
-// *
-// * Object creation tutorial
-// */
+//		orxOBJECT *hex;
+//		hex = orxObject_CreateFromConfig("HexaObj");
+//		orxObject_SetPosition(hex, &pos);
 //
-//
-//#include "orx.h"
-//
-//
-///* This is a basic C tutorial creating a viewport and an object.
-// *
-// * As orx is data driven, here we just write 2 lines of code to create a viewport
-// * and an object. All their properties are defined in the config file (01_Object.ini).
-// * As a matter of fact, the viewport is associated with a camera implicitly created from the
-// * info given in the config file. You can also set their sizes, positions, the object colors,
-// * scales, rotations, animations, physical properties, and so on. You can even request
-// * random values for these without having to add a single line of code.
-// * In a later tutorial we'll see how to generate your whole scene (all background
-// * and landscape objects for example) with a simple for loop written in 3 lines of code.
-// *
-// * For now, you can try to uncomment some of the lines of 01_Object.ini, play with them,
-// * then relaunch this tutorial. For an exhaustive list of options, please look at CreationTemplate.ini.
-// */
-//
-//
-///** Inits the tutorial
-// */
-//orxSTATUS orxFASTCALL Init()
-//{
-//  /* Displays a small hint in console */
-//  orxLOG("\n* This tutorial creates a viewport/camera couple and an object"
-//         "\n* You can play with the config parameters in ../01_Object.ini"
-//         "\n* After changing them, relaunch the tutorial to see their effects");
-//
-//  orxConfig_Load("cfg/mainConf.ini");
-//
-//  /* Creates viewport */
-//  orxViewport_CreateFromConfig("Viewport");
-//
-//  /* Creates object */
-//  orxObject_CreateFromConfig("Object");
-//
-//  /* Done! */
-//  return orxSTATUS_SUCCESS;
-//}
-//
-///** Run function
-// */
-//orxSTATUS orxFASTCALL Run()
-//{
-//  orxSTATUS eResult = orxSTATUS_SUCCESS;
-//
-//  /* Should quit? */
-//  if(orxInput_IsActive("Quit"))
-//  {
-//    /* Updates result */
-//    eResult = orxSTATUS_FAILURE;
+//		orxVECTOR scale;
+//		orxVECTOR *help;
+//		help = orxObject_GetScale(hex, &scale);
+//		help = orxVector_Mulf(&scale, help, orx2F(0.5f));
+//		orxObject_SetScale(hex, help);
+//	}
 //  }
-//
-//  /* Done! */
-//  return eResult;
-//}
-//
-///** Exit function
-// */
-//void orxFASTCALL Exit()
-//{
-//  /* We're a bit lazy here so we let orx clean all our mess! :) */
-//}
-//
-///** Main function
-// */
-//int main(int argc, char **argv)
-//{
-//  // Executes a new instance of tutorial
-//  orx_Execute(argc, argv, Init, Run, Exit);
-//  return EXIT_SUCCESS;
-//}
+
+
+  GameMapGenerator* generator;
+  generator = new GameMapGenerator();
+  int density = 10;
+  GameMap::GameMap* map = generator->generateMap(Coord(15, 12), density);
+	Coord dimensions = map->getDimensions();
+	for (int x = 0; x < dimensions.x; ++x)
+	{
+		for (int y = 0; y < dimensions.y; ++y)
+		{
+			orxVECTOR pos;
+			pos.fX = x0 + x * 50;
+			if(y % 2 > 0)
+				pos.fX += 25.0;
+			pos.fY = y0 + y * 43;
+			pos.fZ = 0.0;
+
+			orxOBJECT *hexObj;
+			hexObj = orxObject_CreateFromConfig("HexaObj");
+			orxObject_SetPosition(hexObj, &pos);
+			Hex* hex = map->getHexOnCoord(Coord(x, y));
+			if(hex->hasSpaceObject())
+			{
+				if(hex->getSpaceObjectType() == PLANET)
+				{
+					Planet* pl = dynamic_cast<Planet*>(hex->getSpaceObject());
+					orxOBJECT *planetObj;
+					switch(pl->getPlanetType())
+					{
+					case WATER:
+						planetObj = orxObject_CreateFromConfig("PlanetWaterObj");
+						break;
+					case DESERT:
+						planetObj = orxObject_CreateFromConfig("PlanetDesertObj");
+						break;
+					case LAVA:
+						planetObj = orxObject_CreateFromConfig("PlanetLavaObj");
+						break;
+					}
+					orxObject_SetPosition(planetObj, &pos);
+
+					float scaleValue = 0.9;
+					switch(pl->getPlanetSize())
+					{
+					case SMALL:
+						scaleValue = 0.7;
+						break;
+					case MEDIUM:
+						scaleValue = 0.5;
+						break;
+					}
+
+					orxVECTOR scale;
+					orxVECTOR *help;
+					help = orxObject_GetScale(planetObj, &scale);
+					help = orxVector_Mulf(&scale, help, orx2F(scaleValue));
+					orxObject_SetScale(planetObj, help);
+				}
+				if(hex->getSpaceObjectType() == ANOMALY)
+				{
+					std::ostringstream anomalyObjName;
+					anomalyObjName << "Anomaly";
+
+					Anomaly* anom = dynamic_cast<Anomaly*>(hex->getSpaceObject());
+					switch(anom->getType())
+					{
+					case ASTEROIDFIELD:
+						anomalyObjName << "Asteroid";
+						break;
+					case GASCLOUD:
+						anomalyObjName << "Cloud";
+						break;
+					case ALIENWRECK:
+						anomalyObjName << "Wreck";
+						break;
+					}
+					switch(anom->getSize())
+					{
+					case LITTLE:
+						anomalyObjName << "Little";
+						break;
+					case BIG:
+						anomalyObjName << "Big";
+						break;
+					}
+					anomalyObjName << "Obj";
+
+					orxOBJECT *anomalyObj;
+					anomalyObj = orxObject_CreateFromConfig(anomalyObjName.str().c_str());
+					orxObject_SetPosition(anomalyObj, &pos);
+				}
+			}
+		}
+	}
+
+
+  /* Gets current parent position */
+//  orxVECTOR vParentPosition;
+//  orxObject_GetWorldPosition(h1, &vParentPosition);
+//  orxLOG("%f, %f, %f", vParentPosition.fX, vParentPosition.fY, vParentPosition.fZ);
+//  h3 = orxObject_CreateFromConfig("HexaObj");
+  std::ostringstream bg;
+  bg << "BackgroundObj" << ((rand() % 3) + 1);
+  orxObject_CreateFromConfig(bg.str().c_str());
+  return orxSTATUS_SUCCESS;
+}
+
+orxSTATUS orxFASTCALL Run()
+{
+  orxSTATUS eResult = orxSTATUS_SUCCESS;
+
+  if(orxInput_IsActive("Quit"))
+  {
+    eResult = orxSTATUS_FAILURE;
+  }
+
+
+  return eResult;
+}
+
+void orxFASTCALL Exit()
+{
+}
+
+int main(int argc, char **argv)
+{
+  orx_Execute(argc, argv, Init, Run, Exit);
+  return EXIT_SUCCESS;
+}

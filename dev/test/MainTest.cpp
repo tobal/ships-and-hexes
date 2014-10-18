@@ -29,7 +29,7 @@
 
 using namespace CppUnit;
 
-int main()
+int _main()
 {
     TextUi::TestRunner runner;
     runner.addTest(GraphicsConfigTest::suite());
