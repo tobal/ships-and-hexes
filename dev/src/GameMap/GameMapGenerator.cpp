@@ -1,5 +1,6 @@
 
 #include "GameMap/GameMapGenerator.hpp"
+#include "orx.h"
 
 using namespace GameMap;
 using namespace GameConfig;
@@ -67,14 +68,35 @@ Sections GameMapGenerator::sliceMapIntoSections(const Coord& dimensions)
 
 Sections GameMapGenerator::calculateOrbitalCount(Sections sections)
 {
-	size_t s = sections.size();
-	int planetsInOneSection = floor(planetsOnMap / sections.size());
+	size_t sec_size = sections.size();
+	int planetsInOneSection = floor(planetsOnMap / sec_size);
 	for(Sections::iterator it = sections.begin(); it != sections.end(); ++it)
 	{
 		(*it).orbitalCount = planetsInOneSection;
 	}
-	int o = planetsOnMap % sections.size();
-	sections.at(0).orbitalCount += planetsOnMap % sections.size();
+	int remain = planetsOnMap % sec_size;
+	int hop = ceil(sec_size / planetsOnMap) + 1;
+	int sec_index = 0;
+	int sec_index_back = sec_size - 1;
+	orxLOG("%d, %d", remain, hop);
+	while(remain != 0)
+	{
+		sections.at(sec_index).orbitalCount++;
+		remain--;
+		if(remain == 0)
+		{
+			break;
+		}
+		sec_index += hop;
+
+		sections.at(sec_index_back).orbitalCount++;
+		remain--;
+		sec_index_back -= hop;
+//		if(sec_index > sec_size)
+//		{
+//			sec_index -= sec_size;
+//		}
+	}
 	return sections;
 }
 
@@ -100,6 +122,10 @@ void GameMapGenerator::generatePlanets(GameMap* map, Sections sections)
 		(*it).orbitalCount += carry;
 		for (int i = 0; i < 5; ++i)
 		{
+			if((*it).orbitalCount == 0)
+			{
+				break;
+			}
 			int pick = rand() % (*it).coords.size();
 			Coord pickedHex = (*it).coords.at(pick);
 			if(noPlanetInVicinity(map, pickedHex))
@@ -108,10 +134,6 @@ void GameMapGenerator::generatePlanets(GameMap* map, Sections sections)
 				Planet* planet = neutralFactory->createPlanet(
 						pickRandomPlanetType(), pickRandomPlanetSize(), pickRandomPlanetEffect());
 				map->getHexOnCoord(pickedHex)->addSpaceObject(planet);
-			}
-			if((*it).orbitalCount == 0)
-			{
-				break;
 			}
 		}
 		carry = (*it).orbitalCount;

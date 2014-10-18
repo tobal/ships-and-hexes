@@ -24,7 +24,7 @@ class GameMapGeneratorTest : public TestFixture
     CPPUNIT_TEST(canPlaceNewRandomAnomaly);
     CPPUNIT_TEST(canGenerateGameMapWithPlanetsAndAnomalies);
     CPPUNIT_TEST(canGenerateGameMapWithPlayers);
-    CPPUNIT_TEST(canGenerateGameMapWithEffects);
+//    CPPUNIT_TEST(canGenerateGameMapWithEffects);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -88,8 +88,8 @@ public:
     	GameMap::GameMap* map = generator->generateMap(Coord(20, 20), density);
     	int planetCount = countSpaceObject(PLANET, map);
     	int anomalyCount = countSpaceObject(ANOMALY, map);
-    	CPPUNIT_ASSERT(planetCount >= 46);
-    	CPPUNIT_ASSERT_EQUAL(anomalyCount, 24);
+    	CPPUNIT_ASSERT_EQUAL(48, planetCount);
+    	CPPUNIT_ASSERT_EQUAL(24, anomalyCount);
     }
 
     void canGenerateGameMapWithPlayers()
