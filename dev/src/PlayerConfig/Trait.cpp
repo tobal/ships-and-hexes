@@ -14,7 +14,7 @@ Trait::~Trait()
 
 }
 
-Trait& Trait::withEffect(Effect effect)
+Trait& Trait::withEffect(Effect* effect)
 {
 	effects.push_back(effect);
 	return *this;

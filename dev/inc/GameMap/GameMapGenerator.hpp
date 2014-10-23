@@ -5,6 +5,7 @@
 #include <vector>
 #include <math.h>
 #include <time.h>
+#include <typeinfo>
 #include "GameMap/GameMap.hpp"
 #include "GameMap/GameMapImpl.hpp"
 #include "GameMap/Hex.hpp"
@@ -49,7 +50,7 @@ private:
 	AnomalySize pickRandomAnomalySize();
 	std::set<Coord> pickRandomPlanets(GameConfig::Players& players, Coords planets);
 	void applyMapEffects(GameMap* map, GameConfig::Players players);
-	Empire::Effect::MapEffects getMapEffectsOfPlayer(std::string playerName);
+	Empire::Effect::MapEffects getMapEffectsOfPlayer(GameConfig::Player player);
 
 public:
 	GameMapGenerator();

@@ -17,7 +17,7 @@ private:
 public:
 	Trait(int points);
 	~Trait();
-	Trait& withEffect(Empire::Effect::Effect effect);
+	Trait& withEffect(Empire::Effect::Effect* effect);
 	int getTraitPoints() const;
 	Empire::Effect::Effects getEffects() const;
 };

@@ -3,45 +3,44 @@
 #include "GameMap/GameMapGenerator.hpp"
 #include "MapElement/Planet.hpp"
 #include "MapElement/Anomaly.hpp"
+#include "Empire/Effect/MapEffect.hpp"
+#include "Empire/Effect/TwinPlanet.hpp"
+#include "Empire/Effect/ExtraShips.hpp"
+#include "GameConfig/Player.hpp"
 #include <sstream>
+#include <vector>
 
 using namespace GameMap;
 using namespace MapElement;
+using namespace Empire::Effect;
+using namespace GameConfig;
+using namespace std;
 
 orxSTATUS orxFASTCALL Init()
 {
-  orxConfig_Load("cfg/mainConf.ini");
+	orxConfig_Load("cfg/mainConf.ini");
 
-  orxViewport_CreateFromConfig("Viewport");
+	orxViewport_CreateFromConfig("Viewport");
 
-  float x0 = -370.0;
-  float y0 = -270.0;
-//  for (int i = 0; i < 10; ++i) {
-//	for (int j = 0; j < 10; ++j) {
-//		orxVECTOR pos;
-//		pos.fX = x0 + i * 50;
-//		if(j % 2 > 0)
-//			pos.fX += 25.0;
-//		pos.fY = y0 + j * 43;
-//		pos.fZ = 0.0;
-//
-//		orxOBJECT *hex;
-//		hex = orxObject_CreateFromConfig("HexaObj");
-//		orxObject_SetPosition(hex, &pos);
-//
-//		orxVECTOR scale;
-//		orxVECTOR *help;
-//		help = orxObject_GetScale(hex, &scale);
-//		help = orxVector_Mulf(&scale, help, orx2F(0.5f));
-//		orxObject_SetScale(hex, help);
-//	}
-//  }
+	float x0 = -370.0;
+	float y0 = -270.0;
 
+	GameMapGenerator* generator;
+	generator = new GameMapGenerator();
 
-  GameMapGenerator* generator;
-  generator = new GameMapGenerator();
-  int density = 10;
-  GameMap::GameMap* map = generator->generateMap(Coord(15, 12), density);
+	Player player1 = Player("player1", RED, false);
+	Player player2 = Player("player2", YELLOW, true);
+	vector<int> picked = vector<int>();
+	picked.push_back(0);
+	picked.push_back(2);
+	picked.push_back(3);
+	picked.push_back(17);	// twin planet
+	player1.getPlayerConfig()->pickTraits(picked);
+	Players players = Players();
+	players.push_back(player1);
+	players.push_back(player2);
+	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(Coord(15, 12), 40, players));
+
 	Coord dimensions = map->getDimensions();
 	for (int x = 0; x < dimensions.x; ++x)
 	{
@@ -94,6 +93,22 @@ orxSTATUS orxFASTCALL Init()
 					help = orxObject_GetScale(planetObj, &scale);
 					help = orxVector_Mulf(&scale, help, orx2F(scaleValue));
 					orxObject_SetScale(planetObj, help);
+
+
+					if(hex->getSpaceObject()->getPlayerName() == "player1")
+					{
+						  orxOBJECT *textObj;
+						  textObj = orxObject_CreateFromConfig("TextObj");
+						  orxObject_SetTextString(textObj, "player1");
+						  orxObject_SetPosition(textObj, &pos);
+					}
+					if(hex->getSpaceObject()->getPlayerName() == "player2")
+					{
+						  orxOBJECT *textObj;
+						  textObj = orxObject_CreateFromConfig("TextObj");
+						  orxObject_SetTextString(textObj, "player2");
+						  orxObject_SetPosition(textObj, &pos);
+					}
 				}
 				if(hex->getSpaceObjectType() == ANOMALY)
 				{
@@ -133,36 +148,31 @@ orxSTATUS orxFASTCALL Init()
 	}
 
 
-  /* Gets current parent position */
-//  orxVECTOR vParentPosition;
-//  orxObject_GetWorldPosition(h1, &vParentPosition);
-//  orxLOG("%f, %f, %f", vParentPosition.fX, vParentPosition.fY, vParentPosition.fZ);
-//  h3 = orxObject_CreateFromConfig("HexaObj");
-  std::ostringstream bg;
-  bg << "BackgroundObj" << ((rand() % 3) + 1);
-  orxObject_CreateFromConfig(bg.str().c_str());
-  return orxSTATUS_SUCCESS;
+	std::ostringstream bg;
+	bg << "BackgroundObj" << ((rand() % 3) + 1);
+	orxObject_CreateFromConfig(bg.str().c_str());
+	return orxSTATUS_SUCCESS;
 }
 
 orxSTATUS orxFASTCALL Run()
 {
-  orxSTATUS eResult = orxSTATUS_SUCCESS;
+	orxSTATUS eResult = orxSTATUS_SUCCESS;
 
-  if(orxInput_IsActive("Quit"))
-  {
-    eResult = orxSTATUS_FAILURE;
-  }
+	if(orxInput_IsActive("Quit"))
+	{
+		eResult = orxSTATUS_FAILURE;
+	}
 
 
-  return eResult;
+	return eResult;
 }
 
 void orxFASTCALL Exit()
 {
 }
 
-int main(int argc, char **argv)
+int _main(int argc, char **argv)
 {
-  orx_Execute(argc, argv, Init, Run, Exit);
-  return EXIT_SUCCESS;
+	orx_Execute(argc, argv, Init, Run, Exit);
+	return EXIT_SUCCESS;
 }

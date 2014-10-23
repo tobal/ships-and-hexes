@@ -28,7 +28,7 @@ public:
     void traitDataClassCanBeCreatedWithEffects()
     {
     	int points = -3;
-    	Effect effect = EffectMock();
+    	Effect* effect = new EffectMock();
     	Trait trait = Trait(points)
     			.withEffect(effect)
     			.withEffect(effect);

@@ -13,8 +13,8 @@ void PlayerConfigImpl::constructTraits()
 	// TODO: replace mock with actual effects
 	// TODO: put this into a singleton
 	// TODO: refactor picked traits logic (PlayerConfig should have a traits array)
-	Effect effect = EffectMock();
-	TwinPlanet twinPlanet = TwinPlanet();
+	Effect* effect = new EffectMock();
+	TwinPlanet* twinPlanet = new TwinPlanet();
 	allTraits->push_back(Trait(4).withEffect(effect).withEffect(effect));
 	allTraits->push_back(Trait(3));
 	allTraits->push_back(Trait(2).withEffect(effect));

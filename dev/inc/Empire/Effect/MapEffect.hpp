@@ -19,7 +19,7 @@ public:
 	virtual void applyEffect(GameMap::GameMap* map, Coord homeworld, MapElement::Planet* planet) {}
 };
 
-typedef std::vector<MapEffect> MapEffects;
+typedef std::vector<MapEffect*> MapEffects;
 
 } /* namespace Effect */
 } /* namespace Empire */

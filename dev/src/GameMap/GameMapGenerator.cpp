@@ -1,6 +1,6 @@
 
 #include "GameMap/GameMapGenerator.hpp"
-#include "orx.h"
+#include <orx.h>
 
 using namespace GameMap;
 using namespace GameConfig;
@@ -78,7 +78,6 @@ Sections GameMapGenerator::calculateOrbitalCount(Sections sections)
 	int hop = ceil(sec_size / planetsOnMap) + 1;
 	int sec_index = 0;
 	int sec_index_back = sec_size - 1;
-	orxLOG("%d, %d", remain, hop);
 	while(remain != 0)
 	{
 		sections.at(sec_index).orbitalCount++;
@@ -92,10 +91,6 @@ Sections GameMapGenerator::calculateOrbitalCount(Sections sections)
 		sections.at(sec_index_back).orbitalCount++;
 		remain--;
 		sec_index_back -= hop;
-//		if(sec_index > sec_size)
-//		{
-//			sec_index -= sec_size;
-//		}
 	}
 	return sections;
 }
@@ -214,19 +209,28 @@ void GameMapGenerator::applyMapEffects(GameMap* map, Players players)
 	for (Players::iterator player = players.begin(); player != players.end(); ++player)
 	{
 		string playerName = (*player).getName();
-		MapEffects mapEffs = getMapEffectsOfPlayer(playerName);
+		MapEffects mapEffs = getMapEffectsOfPlayer(*player);
 		Coord homeworldCoord = map->getPlanetsOfPlayer(playerName).at(0);
 		for (MapEffects::iterator effect = mapEffs.begin(); effect != mapEffs.end(); ++effect)
 		{
 			Planet* planet = neutralFactory->createPlanet((*player).getPlayerConfig()->getHomeworld(), LARGE, pickRandomPlanetEffect());
-			(*effect).applyEffect(map, homeworldCoord, planet);
+			(*effect)->applyEffect(map, homeworldCoord, planet);
 		}
 	}
 }
 
-MapEffects GameMapGenerator::getMapEffectsOfPlayer(string playerName)
+MapEffects GameMapGenerator::getMapEffectsOfPlayer(Player player)
 {
 	MapEffects mapEffs = MapEffects();
+	Effects playerEffects = player.getPlayerConfig()->getAllEffects();
+	for (Effects::iterator playerEffect = playerEffects.begin(); playerEffect != playerEffects.end(); ++playerEffect)
+	{
+		MapEffect* mapEffect = dynamic_cast<MapEffect*>(*playerEffect);
+		if(mapEffect != NULL)
+		{
+			mapEffs.push_back(mapEffect);
+		}
+	}
 	return mapEffs;
 }
 

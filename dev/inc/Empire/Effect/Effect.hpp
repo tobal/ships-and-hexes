@@ -20,7 +20,7 @@ public:
 
 // TODO: implement concrete subclasses
 
-typedef std::vector<Effect> Effects;
+typedef std::vector<Effect*> Effects;
 
 } /* namespace Effect */
 } /* namespace Empire */
