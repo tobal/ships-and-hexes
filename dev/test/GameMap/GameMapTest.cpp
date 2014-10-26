@@ -22,6 +22,8 @@ class GameMapTest : public TestFixture
     CPPUNIT_TEST(canGetLargerVicinity);
     CPPUNIT_TEST(canGetVicinityInCorners);
     CPPUNIT_TEST(canCheckIfGivenHexIsCloseToCertainObject);
+    CPPUNIT_TEST(canIterateOverDifferentObjectsOverTheMap);
+    CPPUNIT_TEST(canGetTrailGivenSourceAndDestination);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -153,14 +155,33 @@ public:
 
     void canIterateOverDifferentObjectsOverTheMap()
     {
-
+    	map->getHexOnCoord(Coord(0, 0))->addSpaceObject(factory->createStation());
+    	map->getHexOnCoord(Coord(0, 1))->addSpaceObject(factory->createStation());
+    	map->getHexOnCoord(Coord(0, 2))->addSpaceObject(factory->createStation());
+    	Coords coords = map->getObjects(SPACESTATION);
+    	CPPUNIT_ASSERT(Coord(0, 0) == coords.at(0));
+    	CPPUNIT_ASSERT(Coord(0, 1) == coords.at(1));
+    	CPPUNIT_ASSERT(Coord(0, 2) == coords.at(2));
     }
 
     void canGetTrailGivenSourceAndDestination()
     {
-
+    	Coord source = Coord(12, 8);
+    	Coord destination = Coord(5, 3);
+    	Coords trail = map->getTrail(source, destination);
+    	CPPUNIT_ASSERT_EQUAL(9, int(trail.size()));
+    	CPPUNIT_ASSERT(Coord(11, 7) == trail.at(0));
+    	CPPUNIT_ASSERT(Coord(11, 6) == trail.at(1));
+    	CPPUNIT_ASSERT(Coord(10, 5) == trail.at(2));
+    	CPPUNIT_ASSERT(Coord(10, 4) == trail.at(3));
+    	CPPUNIT_ASSERT(Coord(9, 3) == trail.at(4));
+    	CPPUNIT_ASSERT(Coord(8, 3) == trail.at(5));
+    	CPPUNIT_ASSERT(Coord(7, 3) == trail.at(6));
+    	CPPUNIT_ASSERT(Coord(6, 3) == trail.at(7));
+    	CPPUNIT_ASSERT(Coord(5, 3) == trail.at(8));
     }
 
+    // TODO: move these cases to Gameplay Package
     void canMoveFleetAcrossTrail()
     {
 

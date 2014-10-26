@@ -149,21 +149,10 @@ bool GameMapImpl::isObjectInVicinity(MapElementType type, Coord coord, int radiu
 	return false;
 }
 
+// TODO: substitute this function from call sites
 Coords GameMapImpl::getPlanets()
 {
-	Coords planets = Coords();
-	for (int i = 0; i < dimensions.x; ++i)
-	{
-		for (int j = 0; j < dimensions.y; ++j)
-		{
-			Hex* hex = this->getHexOnCoord(Coord(i, j));
-			if(hex->getSpaceObjectType() == PLANET)
-			{
-				planets.push_back(Coord(i, j));
-			}
-		}
-	}
-	return planets;
+	return getObjects(PLANET);
 }
 
 int GameMapImpl::countPlanetsOfPlayer(std::string playerName)
@@ -184,4 +173,65 @@ Coords GameMapImpl::getPlanetsOfPlayer(std::string playerName)
 		}
 	}
 	return coords;
+}
+
+Coords GameMapImpl::getObjects(MapElementType type)
+{
+	Coords objects = Coords();
+	for (int i = 0; i < dimensions.x; ++i)
+	{
+		for (int j = 0; j < dimensions.y; ++j)
+		{
+			Hex* hex = this->getHexOnCoord(Coord(i, j));
+			if(hex->getSpaceObjectType() == type)
+			{
+				objects.push_back(Coord(i, j));
+			}
+		}
+	}
+	return objects;
+}
+
+Coords GameMapImpl::getTrail(Coord source, Coord destination)
+{
+	Coords trail = Coords();
+	int currentX = source.x;
+	int currentY = source.y;
+	while(true)
+	{
+		if(currentX != destination.x)
+		{
+			if(currentX > destination.x)
+			{
+				if(currentY % 2 == 0 || currentY == destination.y)
+				{
+					currentX--;
+				}
+			}
+			else
+			{
+				if(currentY % 2 > 0 || currentY == destination.y)
+				{
+					currentX++;
+				}
+			}
+		}
+		if(currentY != destination.y)
+		{
+			if(currentY > destination.y)
+			{
+				currentY--;
+			}
+			else
+			{
+				currentY++;
+			}
+		}
+		trail.push_back(Coord(currentX, currentY));
+		if(currentX == destination.x && currentY == destination.y)
+		{
+			break;
+		}
+	}
+	return trail;
 }
