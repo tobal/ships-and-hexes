@@ -2,7 +2,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "GameMap/Hex.hpp"
-#include "GameMap/Fleet.hpp"
+#include "MapElement/Fleet.hpp"
 #include "MapElement/MapElementFactory.hpp"
 #include "MapElement/Planet.hpp"
 #include "MapElement/Anomaly.hpp"
@@ -32,7 +32,7 @@ private:
 
     void addFleet()
     {
-    	Fleet* fleet = new Fleet(30,20,10);
+    	Fleet* fleet = factory->createFleet(30, 20, 10);
     	hex->addFleet(fleet);
     }
 

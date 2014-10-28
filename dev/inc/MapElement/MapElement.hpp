@@ -13,9 +13,9 @@ class MapElement
 protected:
 	std::string playerName;
 	MapElement(std::string playerName) : playerName(playerName) {}
-	virtual ~MapElement() {}
 
 public:
+	virtual ~MapElement() {}
 	virtual Empire::Effect::Effects getEffects() {}
 	std::string getPlayerName() const { return playerName; }
 };

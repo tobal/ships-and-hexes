@@ -15,19 +15,9 @@ MapElementFactory::~MapElementFactory()
 
 }
 
-Fighter* MapElementFactory::createFighter(const int count) const
+Fleet* MapElementFactory::createFleet(int fighterCount, int bomberCount, int colonizerCount)
 {
-	return new Fighter(playerName, count);
-}
-
-Bomber* MapElementFactory::createBomber(const int count) const
-{
-	return new Bomber(playerName, count);
-}
-
-Colonizer* MapElementFactory::createColonizer(const int count) const
-{
-	return new Colonizer(playerName, count);
+	return new Fleet(playerName, fighterCount, bomberCount, colonizerCount);
 }
 
 Planet* MapElementFactory::createPlanet(PlanetType type, PlanetSize size, Effect* trait) const

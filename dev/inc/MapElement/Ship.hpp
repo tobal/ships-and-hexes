@@ -10,7 +10,7 @@
 namespace MapElement
 {
 
-class Ship : public MapElement
+class Ship
 {
 static const int maxFleetSize = 100;
 
@@ -25,7 +25,7 @@ private:
 	int count;
 
 public:
-	Ship(std::string playerName, const int count);
+	Ship(const int count);
 	virtual ~Ship();
 	int getBaseSpeed() const;
 	int getSpeed() const;

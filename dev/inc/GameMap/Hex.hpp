@@ -7,7 +7,7 @@
 #include "MapElement/Anomaly.hpp"
 #include "MapElement/Planet.hpp"
 #include "MapElement/SpaceStation.hpp"
-#include "GameMap/Fleet.hpp"
+#include "MapElement/Fleet.hpp"
 
 namespace GameMap
 {
@@ -17,7 +17,7 @@ class Hex
 private:
 	MapElement::SpaceObject* object;
 	MapElementType objectType;
-	Fleet* fleet;
+	MapElement::Fleet* fleet;
 
 public:
 	Hex();
@@ -30,9 +30,9 @@ public:
 	MapElement::SpaceObject* getSpaceObject() const;
 	void removeSpaceObject();
 	bool hasFleet() const;
-	void addFleet(Fleet* fleet);
-	Fleet* getFleet() const;
-	Fleet* moveOutFleet();
+	void addFleet(MapElement::Fleet* fleet);
+	MapElement::Fleet* getFleet() const;
+	MapElement::Fleet* moveOutFleet();
 	void destroyFleet();
 };
 

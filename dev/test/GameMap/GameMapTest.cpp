@@ -180,15 +180,4 @@ public:
     	CPPUNIT_ASSERT(Coord(6, 3) == trail.at(7));
     	CPPUNIT_ASSERT(Coord(5, 3) == trail.at(8));
     }
-
-    // TODO: move these cases to Gameplay Package
-    void canMoveFleetAcrossTrail()
-    {
-
-    }
-
-    void canDetectCollisionWhileMoving()
-    {
-
-    }
 };

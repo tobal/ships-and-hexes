@@ -11,7 +11,7 @@
 #include "MapElement/Colonizer.hpp"
 #include "MapElement/Ship.hpp"
 
-namespace GameMap
+namespace MapElement
 {
 
 struct FleetCount
@@ -23,21 +23,21 @@ struct FleetCount
 	int colonizers;
 };
 
-class Fleet
+class Fleet : public MapElement
 {
 private:
-	MapElement::Fighter* fighter;
-	MapElement::Bomber* bomber;
-	MapElement::Colonizer* colonizer;
+	Fighter* fighter;
+	Bomber* bomber;
+	Colonizer* colonizer;
 
 public:
-	Fleet(int fighters, int bombers, int colonizers);
-	Fleet(FleetCount flc);
+	Fleet(std::string playerName, int fighters, int bombers, int colonizers);
+	Fleet(std::string playerName, FleetCount flc);
 	~Fleet();
 
-	MapElement::Fighter* getFighter() const;
-	MapElement::Bomber* getBomber() const;
-	MapElement::Colonizer* getColonizer() const;
+	Fighter* getFighter() const;
+	Bomber* getBomber() const;
+	Colonizer* getColonizer() const;
 	FleetCount getFleetCount() const;
 	void addFleet(Fleet* fleet);
 	void removeFleet(FleetCount flc);

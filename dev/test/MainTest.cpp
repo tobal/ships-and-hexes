@@ -22,10 +22,11 @@
 #include "MapElement/ShipTest.cpp"
 #include "MapElement/PlanetTest.cpp"
 #include "MapElement/BuildingTest.cpp"
-#include "GameMap/FleetTest.cpp"
+#include "MapElement/FleetTest.cpp"
 #include "GameMap/HexTest.cpp"
 #include "GameMap/GameMapTest.cpp"
 #include "GameMap/GameMapGeneratorTest.cpp"
+#include "Gameplay/GameplayTest.cpp"
 
 using namespace CppUnit;
 
@@ -56,6 +57,7 @@ int main()
     runner.addTest(HexTest::suite());
     runner.addTest(GameMapTest::suite());
     runner.addTest(GameMapGeneratorTest::suite());
+    runner.addTest(GameplayTest::suite());
     runner.run();
     return 0;
 }

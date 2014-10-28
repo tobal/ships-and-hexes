@@ -1,12 +1,12 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "GameMap/Fleet.hpp"
+#include "MapElement/Fleet.hpp"
 #include "Exceptions/OutOfMovePointsException.hpp"
 
 using namespace CppUnit;
 using namespace std;
-using namespace GameMap;
+using namespace MapElement;
 
 class FleetTest : public TestFixture
 {
@@ -23,16 +23,19 @@ class FleetTest : public TestFixture
 
 private:
     Fleet* fleet;
+    MapElementFactory* factory;
 
 public:
     void setUp()
     {
-    	fleet = new Fleet(30, 20, 10);
+    	factory = new MapElementFactory("player");
+    	fleet = factory->createFleet(30, 20, 10);
     }
 
     void tearDown()
     {
     	delete fleet;
+    	delete factory;
     }
 
     void canGetFleetCount()
@@ -45,7 +48,7 @@ public:
 
     void canAddFleet()
     {
-    	Fleet* secondFleet = new Fleet(10, 10, 5);
+    	Fleet* secondFleet = factory->createFleet(10, 10, 5);
     	fleet->addFleet(secondFleet);
     	FleetCount flc = fleet->getFleetCount();
     	CPPUNIT_ASSERT_EQUAL(40, flc.fighters);
@@ -81,7 +84,7 @@ public:
 
     void addTooManyThrowsException()
     {
-    	Fleet* secondFleet = new Fleet(100, 100, 50);
+    	Fleet* secondFleet = factory->createFleet(100, 100, 50);
     	CPPUNIT_ASSERT_THROW(fleet->addFleet(secondFleet), CannotMergeShipsException);
     	delete secondFleet;
     }
@@ -102,7 +105,7 @@ public:
 
     void movePointsCalculatesAfterMove()
     {
-        Fleet* fleet = new Fleet(30, 0, 0);
+        Fleet* fleet = factory->createFleet(30, 0, 0);
     	CPPUNIT_ASSERT_EQUAL(5, fleet->getMovePoints());
     	fleet->move(2);
     	CPPUNIT_ASSERT_EQUAL(3, fleet->getMovePoints());

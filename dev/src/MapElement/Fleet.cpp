@@ -1,24 +1,21 @@
 
-#include "GameMap/Fleet.hpp"
+#include "MapElement/Fleet.hpp"
 
-using namespace GameMap;
 using namespace MapElement;
 using namespace std;
 
-Fleet::Fleet(int fighters, int bombers, int colonizers)
+Fleet::Fleet(string playerName, int fighters, int bombers, int colonizers) : MapElement(playerName)
 {
-	MapElementFactory factory = MapElementFactory("nobody");
-	fighter = factory.createFighter(fighters);
-	bomber = factory.createBomber(bombers);
-	colonizer = factory.createColonizer(colonizers);
+	fighter = new Fighter(fighters);
+	bomber = new Bomber(bombers);
+	colonizer = new Colonizer(colonizers);
 }
 
-Fleet::Fleet(FleetCount flc)
+Fleet::Fleet(string playerName, FleetCount flc) : MapElement(playerName)
 {
-	MapElementFactory factory = MapElementFactory("nobody");
-	fighter = factory.createFighter(flc.fighters);
-	bomber = factory.createBomber(flc.bombers);
-	colonizer = factory.createColonizer(flc.colonizers);
+	fighter = new Fighter(flc.fighters);
+	bomber = new Bomber(flc.bombers);
+	colonizer = new Colonizer(flc.colonizers);
 }
 
 Fleet::~Fleet()
@@ -95,7 +92,7 @@ Fleet* Fleet::splitFleet(FleetCount flc)
 	newFleetCount.bombers = flc.bombers <= bomber->getCount() ? flc.bombers : bomber->getCount();
 	newFleetCount.colonizers = flc.colonizers <= colonizer->getCount() ? flc.colonizers : colonizer->getCount();
 	removeFleet(newFleetCount);
-	Fleet* newFleet = new Fleet(newFleetCount);
+	Fleet* newFleet = new Fleet(this->getPlayerName(), newFleetCount);
 	return newFleet;
 }
 

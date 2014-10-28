@@ -11,7 +11,7 @@ namespace MapElement
 class Colonizer : public Ship
 {
 public:
-	Colonizer(std::string playerName, const int count);
+	Colonizer(const int count);
 	~Colonizer();
 	void merge(Colonizer* otherFighter);
 };

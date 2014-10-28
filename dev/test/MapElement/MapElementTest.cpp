@@ -20,9 +20,7 @@ using namespace Empire::Effect;
 class MapElementTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( MapElementTest );
-    CPPUNIT_TEST(createFighter);
-    CPPUNIT_TEST(createBomber);
-    CPPUNIT_TEST(createColonizer);
+    CPPUNIT_TEST(createFleet);
     CPPUNIT_TEST(createPlanet);
     CPPUNIT_TEST(createAnomaly);
     CPPUNIT_TEST(createStation);
@@ -43,52 +41,11 @@ public:
     	delete factory;
     }
 
-    void createFighter()
+    void createFleet()
     {
-    	MapElement::MapElement* ship = factory->createFighter(10);
-
-    	CPPUNIT_ASSERT(dynamic_cast<Ship*>(ship) != NULL);
-    	Fighter* fighter = dynamic_cast<Fighter*>(ship);
-    	CPPUNIT_ASSERT(fighter != NULL);
-    	CPPUNIT_ASSERT_EQUAL(5, fighter->getBaseSpeed());
-    	CPPUNIT_ASSERT_EQUAL(5, fighter->getSpeed());
-    	CPPUNIT_ASSERT_EQUAL(5, fighter->getMovePoints());
-    	CPPUNIT_ASSERT_EQUAL(10, fighter->getCount());
-    	CPPUNIT_ASSERT_EQUAL(string("tobal"), fighter->getPlayerName());
-
-    	delete fighter;
-    }
-
-    void createBomber()
-    {
-    	MapElement::MapElement* ship = factory->createBomber(10);
-
-    	CPPUNIT_ASSERT(dynamic_cast<Ship*>(ship) != NULL);
-    	Bomber* bomber = dynamic_cast<Bomber*>(ship);
-    	CPPUNIT_ASSERT(bomber != NULL);
-    	CPPUNIT_ASSERT_EQUAL(4, bomber->getBaseSpeed());
-    	CPPUNIT_ASSERT_EQUAL(4, bomber->getSpeed());
-    	CPPUNIT_ASSERT_EQUAL(4, bomber->getMovePoints());
-    	CPPUNIT_ASSERT_EQUAL(10, bomber->getCount());
-    	CPPUNIT_ASSERT_EQUAL(string("tobal"), bomber->getPlayerName());
-
-    	delete bomber;
-    }
-
-    void createColonizer()
-    {
-    	MapElement::MapElement* ship = factory->createColonizer(10);
-
-    	CPPUNIT_ASSERT(dynamic_cast<Ship*>(ship) != NULL);
-    	Colonizer* colonizer = dynamic_cast<Colonizer*>(ship);
-    	CPPUNIT_ASSERT(colonizer != NULL);
-    	CPPUNIT_ASSERT_EQUAL(3, colonizer->getBaseSpeed());
-    	CPPUNIT_ASSERT_EQUAL(3, colonizer->getSpeed());
-    	CPPUNIT_ASSERT_EQUAL(3, colonizer->getMovePoints());
-    	CPPUNIT_ASSERT_EQUAL(10, colonizer->getCount());
-    	CPPUNIT_ASSERT_EQUAL(string("tobal"), colonizer->getPlayerName());
-
-    	delete colonizer;
+    	MapElement::MapElement* fleet = factory->createFleet(10, 10, 10);
+    	CPPUNIT_ASSERT(dynamic_cast<Fleet*>(fleet) != NULL);
+    	delete fleet;
     }
 
     void createPlanet()

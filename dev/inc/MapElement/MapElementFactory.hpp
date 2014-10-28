@@ -3,9 +3,7 @@
 #define MAPELEMENTFACTORY_HPP_
 
 #include <string>
-#include "MapElement/Fighter.hpp"
-#include "MapElement/Bomber.hpp"
-#include "MapElement/Colonizer.hpp"
+#include "MapElement/Fleet.hpp"
 #include "MapElement/Planet.hpp"
 #include "MapElement/Anomaly.hpp"
 #include "MapElement/SpaceStation.hpp"
@@ -18,6 +16,8 @@
 namespace MapElement
 {
 
+class Fleet;
+
 class MapElementFactory
 {
 private:
@@ -26,9 +26,7 @@ private:
 public:
 	MapElementFactory(std::string playerName);
 	~MapElementFactory();
-	Fighter* createFighter(const int count) const;
-	Bomber* createBomber(const int count) const;
-	Colonizer* createColonizer(const int count) const;
+	Fleet* createFleet(int fighterCount, int bomberCount, int colonizerCount);
 	Planet* createPlanet(PlanetType type, PlanetSize size, Empire::Effect::Effect* trait) const;
 	Anomaly* createAnomaly(AnomalyType type, AnomalySize size) const;
 	SpaceStation* createStation() const;

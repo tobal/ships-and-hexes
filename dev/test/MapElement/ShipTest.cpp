@@ -27,19 +27,15 @@ class ShipTest : public TestFixture
     CPPUNIT_TEST_SUITE_END();
 
 private:
-    MapElementFactory* factory;
     Ship* ship;
 
 public:
     void setUp()
     {
-    	Player* player = new Player(string("tobal"), WHITE, true);
-    	factory = new MapElementFactory(player->getName());
-    	ship = factory->createFighter(10);
+    	ship = new Fighter(10);
     }
     void tearDown()
     {
-    	delete factory;
     	delete ship;
     }
 
@@ -85,7 +81,7 @@ public:
     void shipMergeChangesMovePointsToMin()
     {
     	int initialPoints = ship->getMovePoints();
-    	Fighter* fighterToMerge = factory->createFighter(20);
+    	Fighter* fighterToMerge = new Fighter(20);
     	Fighter* fighter = dynamic_cast<Fighter*>(ship);
     	fighter->move(2);
     	fighter->merge(fighterToMerge);
@@ -98,7 +94,7 @@ public:
     void tooLargeFleetsCannotMerge()
     {
     	Fighter* fighter = dynamic_cast<Fighter*>(ship);
-    	Fighter* largeFleet = factory->createFighter(95);
+    	Fighter* largeFleet = new Fighter(95);
     	CPPUNIT_ASSERT_THROW(fighter->merge(largeFleet), CannotMergeShipsException);
     }
 

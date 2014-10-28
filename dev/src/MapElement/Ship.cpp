@@ -4,8 +4,8 @@
 using namespace MapElement;
 using namespace std;
 
-Ship::Ship(string playerName, const int count)
-	: MapElement(playerName), bonusSpeed(0), movePoints(-1), count(count)
+Ship::Ship(const int count)
+	: bonusSpeed(0), movePoints(-1), count(count)
 {
 
 }
