@@ -79,3 +79,8 @@ void Hex::destroyFleet()
 	delete fleet;
 	fleet = NULL;
 }
+
+void Hex::removeFleet()
+{
+	fleet = NULL;
+}

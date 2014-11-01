@@ -2,6 +2,9 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "Gameplay/GameplayImpl.hpp"
+#include "Gameplay/Command.hpp"
+#include "Gameplay/MoveCommand.hpp"
+#include "Gameplay/Turn.hpp"
 #include "GameMap/GameMap.hpp"
 #include "GameMap/GameMapGenerator.hpp"
 #include "MapElement/MapElementFactory.hpp"
@@ -37,10 +40,36 @@ public:
     	delete factory1;
     }
 
+    void assertFleetMoved(Command* moveFleet, Fleet* fleet,
+    					  Coord from, Coord to,
+    					  CommandResult expectedResult, int expectedMovePoints)
+    {
+    	CommandResult result = moveFleet->executeCommand(map);
+    	CPPUNIT_ASSERT_EQUAL_MESSAGE("Result assert failed", expectedResult, result);
+    	CPPUNIT_ASSERT_MESSAGE("From hex assert failed", !map->getHexOnCoord(from)->hasFleet());
+    	CPPUNIT_ASSERT_MESSAGE("To hex assert failed", map->getHexOnCoord(to)->hasFleet());
+    	CPPUNIT_ASSERT_EQUAL_MESSAGE("MovePoints assert failed", expectedMovePoints, fleet->getMovePoints());
+    }
+
     void canMoveFleetAcrossTrail()
     {
-//    	Fleet* fleet = factory1->createFleet(10, 5, 1);
-//    	map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
+    	Fleet* fleet = factory1->createFleet(10, 5, 1);
+    	map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
+    	CPPUNIT_ASSERT_EQUAL(3, fleet->getMovePoints());
+
+    	Command* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(4, 6));
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(0, 1), MOVEINPROGRESS, 2);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 1), Coord(1, 2), MOVEINPROGRESS, 1);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(1, 2), Coord(1, 3), OUTOFMOVEPOINTS, 0);
+    	fleet->removeFleet(FleetCount(0, 0, 1));
+    	Turn turn = Turn();
+    	turn.nextTurn(map);
+    	CPPUNIT_ASSERT_EQUAL(4, fleet->getMovePoints());
+    	this->assertFleetMoved(moveFleet, fleet, Coord(1, 3), Coord(2, 4), MOVEINPROGRESS, 3);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(2, 4), Coord(2, 5), MOVEINPROGRESS, 2);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(2, 5), Coord(3, 6), MOVEINPROGRESS, 1);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(3, 6), Coord(4, 6), DESTINATIONREACHED, 0);
+
     }
 
     void canDetectCollisionWhileMoving()

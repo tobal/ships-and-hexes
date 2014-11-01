@@ -53,7 +53,7 @@ enum AnomalySize
 
 enum MapElementType
 {
-	SHIP,
+	FLEET,
 	PLANET,
 	ANOMALY,
 	SPACESTATION,

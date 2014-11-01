@@ -34,6 +34,7 @@ public:
 	MapElement::Fleet* getFleet() const;
 	MapElement::Fleet* moveOutFleet();
 	void destroyFleet();
+	void removeFleet();
 };
 
 typedef std::vector<Hex*> HexVector;

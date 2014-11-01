@@ -56,8 +56,9 @@ public:
 	int countPlanetsOfPlayer(std::string playerName);
 	Coords getPlanetsOfPlayer(std::string playerName);
 	Coords getObjects(MapElementType type);
+	Coords getFleets();
 	Coords getTrail(Coord source, Coord destination);
-
+	Coord getNextOnTrail(Coord source, Coord destination);
 };
 
 }

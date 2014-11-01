@@ -19,6 +19,9 @@ public:
 	virtual Coords getPlanets() {}
 	virtual int countPlanetsOfPlayer(std::string playerName) {}
 	virtual Coords getPlanetsOfPlayer(std::string playerName) {}
+	virtual Coord getNextOnTrail(Coord source, Coord destination) {}
+	virtual Coords getObjects(MapElementType type) {}
+	virtual Coords getFleets() {}
 };
 
 }

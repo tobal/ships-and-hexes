@@ -192,6 +192,23 @@ Coords GameMapImpl::getObjects(MapElementType type)
 	return objects;
 }
 
+Coords GameMapImpl::getFleets()
+{
+	Coords fleets = Coords();
+	for (int i = 0; i < dimensions.x; ++i)
+	{
+		for (int j = 0; j < dimensions.y; ++j)
+		{
+			Hex* hex = this->getHexOnCoord(Coord(i, j));
+			if(hex->hasFleet())
+			{
+				fleets.push_back(Coord(i, j));
+			}
+		}
+	}
+	return fleets;
+}
+
 Coords GameMapImpl::getTrail(Coord source, Coord destination)
 {
 	Coords trail = Coords();
@@ -199,39 +216,48 @@ Coords GameMapImpl::getTrail(Coord source, Coord destination)
 	int currentY = source.y;
 	while(true)
 	{
-		if(currentX != destination.x)
-		{
-			if(currentX > destination.x)
-			{
-				if(currentY % 2 == 0 || currentY == destination.y)
-				{
-					currentX--;
-				}
-			}
-			else
-			{
-				if(currentY % 2 > 0 || currentY == destination.y)
-				{
-					currentX++;
-				}
-			}
-		}
-		if(currentY != destination.y)
-		{
-			if(currentY > destination.y)
-			{
-				currentY--;
-			}
-			else
-			{
-				currentY++;
-			}
-		}
-		trail.push_back(Coord(currentX, currentY));
+		Coord next = this->getNextOnTrail(Coord(currentX, currentY), destination);
+		trail.push_back(next);
+		currentX = next.x;
+		currentY = next.y;
 		if(currentX == destination.x && currentY == destination.y)
 		{
 			break;
 		}
 	}
 	return trail;
+}
+
+Coord GameMapImpl::getNextOnTrail(Coord source, Coord destination)
+{
+	Coord next = Coord(source.x, source.y);
+	if(source.x != destination.x)
+	{
+		if(source.x > destination.x)
+		{
+			if(source.y % 2 == 0 || source.y == destination.y)
+			{
+				next.x--;
+			}
+		}
+		else
+		{
+			if(source.y % 2 > 0 || source.y == destination.y)
+			{
+				next.x++;
+			}
+		}
+	}
+	if(source.y != destination.y)
+	{
+		if(source.y > destination.y)
+		{
+			next.y--;
+		}
+		else
+		{
+			next.y++;
+		}
+	}
+	return next;
 }
