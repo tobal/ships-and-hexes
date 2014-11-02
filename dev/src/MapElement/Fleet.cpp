@@ -49,7 +49,7 @@ FleetCount Fleet::getFleetCount() const
 	return ret;
 }
 
-void Fleet::addFleet(Fleet* fleet)
+void Fleet::mergeFleet(Fleet* fleet)
 {
 	fighter->merge(fleet->getFighter());
 	bomber->merge(fleet->getBomber());

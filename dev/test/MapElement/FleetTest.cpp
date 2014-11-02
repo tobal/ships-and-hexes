@@ -49,7 +49,7 @@ public:
     void canAddFleet()
     {
     	Fleet* secondFleet = factory->createFleet(10, 10, 5);
-    	fleet->addFleet(secondFleet);
+    	fleet->mergeFleet(secondFleet);
     	FleetCount flc = fleet->getFleetCount();
     	CPPUNIT_ASSERT_EQUAL(40, flc.fighters);
     	CPPUNIT_ASSERT_EQUAL(30, flc.bombers);
@@ -85,7 +85,7 @@ public:
     void addTooManyThrowsException()
     {
     	Fleet* secondFleet = factory->createFleet(100, 100, 50);
-    	CPPUNIT_ASSERT_THROW(fleet->addFleet(secondFleet), CannotMergeShipsException);
+    	CPPUNIT_ASSERT_THROW(fleet->mergeFleet(secondFleet), CannotMergeShipsException);
     	delete secondFleet;
     }
 

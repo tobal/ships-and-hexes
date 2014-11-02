@@ -39,7 +39,7 @@ public:
 	Bomber* getBomber() const;
 	Colonizer* getColonizer() const;
 	FleetCount getFleetCount() const;
-	void addFleet(Fleet* fleet);
+	void mergeFleet(Fleet* fleet);
 	void removeFleet(FleetCount flc);
 	Fleet* splitFleet(FleetCount flc);
 	int getMovePoints() const;

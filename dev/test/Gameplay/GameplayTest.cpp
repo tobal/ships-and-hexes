@@ -18,6 +18,8 @@ class GameplayTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( GameplayTest );
     CPPUNIT_TEST(canMoveFleetAcrossTrail);
+    CPPUNIT_TEST(mergesWithFleetIfMovedToIt);
+//    CPPUNIT_TEST(canJumpOverFriendlyFleet);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -72,7 +74,52 @@ public:
 
     }
 
-    void canDetectCollisionWhileMoving()
+    void mergesWithFleetIfMovedToIt()
+    {
+    	Fleet* fleet = factory1->createFleet(10, 5, 0);
+    	map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
+    	Fleet* fleet2 = factory1->createFleet(10, 5, 0);
+    	map->getHexOnCoord(Coord(1, 2))->addFleet(fleet2);
+
+    	Command* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(1, 2));
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(0, 1), MOVEINPROGRESS, 3);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 1), Coord(1, 2), DESTINATIONREACHED, 2);
+    	CPPUNIT_ASSERT_EQUAL(20, fleet->getFleetCount().fighters);
+    	CPPUNIT_ASSERT_EQUAL(10, fleet->getFleetCount().bombers);
+    	CPPUNIT_ASSERT_EQUAL(0, fleet->getFleetCount().colonizers);
+    }
+
+    void canJumpOverFriendlyFleet()
+    {
+    	Fleet* fleet = factory1->createFleet(10, 5, 0);
+    	map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
+    	Fleet* fleet2 = factory1->createFleet(40, 15, 5);
+    	map->getHexOnCoord(Coord(1, 2))->addFleet(fleet2);
+
+    	Command* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(1, 3));
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(0, 1), MOVEINPROGRESS, 3);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 1), Coord(1, 3), DESTINATIONREACHED, 1);
+    }
+
+    void jumpsOverSeveralFriendlyFleets()
+    {
+
+    }
+
+    void stopsIfCannotMove()
+    {
+    	Fleet* fleet = factory1->createFleet(10, 5, 1);
+    	map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
+    	Fleet* fleet2 = factory1->createFleet(100, 5, 0);
+    	map->getHexOnCoord(Coord(1, 2))->addFleet(fleet2);
+
+    	Command* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(4, 6));
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(0, 1), MOVEINPROGRESS, 2);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 1), Coord(1, 2), MOVEINPROGRESS, 1);
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 1), Coord(1, 2), CANNOTMOVEFURTHER, 1);
+    }
+
+    void battleInitiatedIfCollidedWithEnemyFleet()
     {
 
     }

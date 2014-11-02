@@ -23,7 +23,24 @@ CommandResult MoveCommand::executeCommand(GameMap::GameMap* map)
 		Hex* originHex = map->getHexOnCoord(origin);
 		if(originHex->hasFleet())
 		{
+			Coord next = map->getNextOnTrail(origin, destination);
+			Hex* nextHex = map->getHexOnCoord(next);
 			Fleet* fleet = originHex->getFleet();
+
+			bool willMerge = false;
+			Fleet* otherFleet = NULL;
+			if(nextHex->hasFleet())
+			{
+				otherFleet = nextHex->getFleet();
+				if(otherFleet->getPlayerName() == fleet->getPlayerName())
+				{
+					if(next == destination)
+					{
+						willMerge = true;
+					}
+				}
+			}
+
 			try
 			{
 				fleet->move(1);
@@ -33,9 +50,14 @@ CommandResult MoveCommand::executeCommand(GameMap::GameMap* map)
 				return FAILURE;
 			}
 			originHex->removeFleet();
-			Coord next = map->getNextOnTrail(origin, destination);
-			Hex* nextHex = map->getHexOnCoord(next);
+			if(willMerge)
+			{
+				fleet->mergeFleet(otherFleet);
+				delete otherFleet;
+			}
 			nextHex->addFleet(fleet);
+
+
 			origin = next;
 			if(next == destination)
 			{
