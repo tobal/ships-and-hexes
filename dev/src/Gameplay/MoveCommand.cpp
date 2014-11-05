@@ -1,6 +1,9 @@
 
 #include "Gameplay/MoveCommand.hpp"
 
+#include <stdexcept>
+#include <iostream>
+
 using namespace Gameplay;
 using namespace GameMap;
 using namespace MapElement;
@@ -26,6 +29,7 @@ CommandResult MoveCommand::executeCommand(GameMap::GameMap* map)
 			Coord next = map->getNextOnTrail(origin, destination);
 			Hex* nextHex = map->getHexOnCoord(next);
 			Fleet* fleet = originHex->getFleet();
+			int moves = 1;
 
 			bool willMerge = false;
 			Fleet* otherFleet = NULL;
@@ -38,16 +42,36 @@ CommandResult MoveCommand::executeCommand(GameMap::GameMap* map)
 					{
 						willMerge = true;
 					}
+					else
+					{
+						moves++;
+						bool foundDestination = false;
+						Coord iter = Coord(next.x, next.y);
+						while(!foundDestination)
+						{
+							iter = map->getNextOnTrail(iter, destination);
+							if(map->getHexOnCoord(iter)->hasFleet())
+							{
+								moves++;
+							}
+							else
+							{
+								foundDestination = true;
+							}
+						}
+						next = iter;
+						nextHex = map->getHexOnCoord(next);
+					}
 				}
 			}
 
 			try
 			{
-				fleet->move(1);
+				fleet->move(moves);
 			}
 			catch(OutOfMovePointsException e)
 			{
-				return FAILURE;
+				return CANNOTMOVEFURTHER;
 			}
 			originHex->removeFleet();
 			if(willMerge)

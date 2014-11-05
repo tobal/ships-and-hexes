@@ -19,7 +19,7 @@ class GameplayTest : public TestFixture
     CPPUNIT_TEST_SUITE( GameplayTest );
     CPPUNIT_TEST(canMoveFleetAcrossTrail);
     CPPUNIT_TEST(mergesWithFleetIfMovedToIt);
-//    CPPUNIT_TEST(canJumpOverFriendlyFleet);
+    CPPUNIT_TEST(canJumpOverFriendlyFleet);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -91,17 +91,22 @@ public:
 
     void canJumpOverFriendlyFleet()
     {
-    	Fleet* fleet = factory1->createFleet(10, 5, 0);
-    	map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
-    	Fleet* fleet2 = factory1->createFleet(40, 15, 5);
-    	map->getHexOnCoord(Coord(1, 2))->addFleet(fleet2);
+		Fleet* fleet = factory1->createFleet(10, 5, 0);
+		map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
+		Fleet* fleet2 = factory1->createFleet(40, 15, 5);
+		map->getHexOnCoord(Coord(1, 2))->addFleet(fleet2);
 
-    	Command* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(1, 3));
-    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(0, 1), MOVEINPROGRESS, 3);
-    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 1), Coord(1, 3), DESTINATIONREACHED, 1);
+		MoveCommand* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(1, 3));
+		this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(0, 1), MOVEINPROGRESS, 3);
+		this->assertFleetMoved(moveFleet, fleet, Coord(0, 1), Coord(1, 3), DESTINATIONREACHED, 1);
     }
 
     void jumpsOverSeveralFriendlyFleets()
+    {
+
+    }
+
+    void mergesIntoFriendlyFleetDuringJump()
     {
 
     }

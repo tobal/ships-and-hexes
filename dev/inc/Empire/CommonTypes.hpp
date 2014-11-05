@@ -66,6 +66,11 @@ struct Coord
 	int x;
 	int y;
 
+//	inline bool operator=(const Coord& rhs) const
+//	{
+//		return this->x = rhs.x && this->y = rhs.y;
+//	}
+
 	inline bool operator==(const Coord& rhs) const
 	{
 		return this->x == rhs.x && this->y == rhs.y;
