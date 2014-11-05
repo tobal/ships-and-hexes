@@ -77,12 +77,20 @@ int Fleet::getMovePoints() const
 
 void Fleet::move(const int toMove) throw(OutOfMovePointsException)
 {
-	if(fighter->getCount() > 0)
-		fighter->move(toMove);
-	if(bomber->getCount() > 0)
-		bomber->move(toMove);
-	if(colonizer->getCount() > 0)
-		colonizer->move(toMove);
+	int movePoints = this->getMovePoints();
+	if( movePoints >= toMove)
+	{
+		if(fighter->getCount() > 0)
+			fighter->move(toMove);
+		if(bomber->getCount() > 0)
+			bomber->move(toMove);
+		if(colonizer->getCount() > 0)
+			colonizer->move(toMove);
+	}
+	else
+	{
+		throw OutOfMovePointsException("Fleet has not enough move points", movePoints, toMove - movePoints);
+	}
 }
 
 Fleet* Fleet::splitFleet(FleetCount flc)
