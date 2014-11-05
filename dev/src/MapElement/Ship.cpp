@@ -44,7 +44,6 @@ void Ship::move(const int toMove) throw(OutOfMovePointsException)
 	if( getMovePoints() < toMove)
 	{
 		int moved = movePoints;
-		movePoints = 0;
 		throw OutOfMovePointsException("Out of move points", moved, toMove - moved);
 	}
 	else

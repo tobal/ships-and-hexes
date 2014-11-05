@@ -119,7 +119,7 @@ public:
     	{
         	CPPUNIT_ASSERT_EQUAL(2, e.getMoved());
     	}
-    	CPPUNIT_ASSERT_EQUAL(0, fleet->getMovePoints());
+    	CPPUNIT_ASSERT_EQUAL(2, fleet->getMovePoints());
     }
 
     void resetMovesResetsToSpeed()

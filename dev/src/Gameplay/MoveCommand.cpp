@@ -35,34 +35,36 @@ CommandResult MoveCommand::executeCommand(GameMap::GameMap* map)
 			Fleet* otherFleet = NULL;
 			if(nextHex->hasFleet())
 			{
+				bool foundDestination = false;
+				Coord iter = Coord(next.x, next.y);
 				otherFleet = nextHex->getFleet();
-				if(otherFleet->getPlayerName() == fleet->getPlayerName())
+				while (!foundDestination)
 				{
-					if(next == destination)
+					// TODO friendly fleet
+					if(otherFleet->getPlayerName() == fleet->getPlayerName())
 					{
-						willMerge = true;
-					}
-					else
-					{
-						moves++;
-						bool foundDestination = false;
-						Coord iter = Coord(next.x, next.y);
-						while(!foundDestination)
+						if(iter == destination)
+						{
+							willMerge = true;
+							foundDestination = true;
+						}
+						else
 						{
 							iter = map->getNextOnTrail(iter, destination);
+							moves++;
 							if(map->getHexOnCoord(iter)->hasFleet())
 							{
-								moves++;
+								otherFleet = map->getHexOnCoord(iter)->getFleet();
 							}
 							else
 							{
 								foundDestination = true;
 							}
 						}
-						next = iter;
-						nextHex = map->getHexOnCoord(next);
 					}
 				}
+				next = Coord(iter.x, iter.y);
+				nextHex = map->getHexOnCoord(next);
 			}
 
 			try

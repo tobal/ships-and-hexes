@@ -20,6 +20,8 @@ class GameplayTest : public TestFixture
     CPPUNIT_TEST(canMoveFleetAcrossTrail);
     CPPUNIT_TEST(mergesWithFleetIfMovedToIt);
     CPPUNIT_TEST(canJumpOverFriendlyFleet);
+    CPPUNIT_TEST(jumpsOverSeveralFriendlyFleets);
+    CPPUNIT_TEST(mergesIntoFriendlyFleetDuringJump);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -103,11 +105,37 @@ public:
 
     void jumpsOverSeveralFriendlyFleets()
     {
+		Fleet* fleet = factory1->createFleet(10, 0, 0);
+		map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
+		Fleet* fleet2 = factory1->createFleet(40, 15, 5);
+		map->getHexOnCoord(Coord(0, 1))->addFleet(fleet2);
+		Fleet* fleet3 = factory1->createFleet(40, 15, 5);
+		map->getHexOnCoord(Coord(1, 2))->addFleet(fleet3);
+		Fleet* fleet4 = factory1->createFleet(40, 15, 5);
+		map->getHexOnCoord(Coord(1, 3))->addFleet(fleet4);
+		Fleet* fleet5 = factory1->createFleet(40, 15, 5);
+		map->getHexOnCoord(Coord(2, 4))->addFleet(fleet5);
 
+		MoveCommand* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(2, 5));
+		this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(2, 5), DESTINATIONREACHED, 0);
     }
 
     void mergesIntoFriendlyFleetDuringJump()
     {
+		Fleet* fleet = factory1->createFleet(10, 0, 0);
+		map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
+		Fleet* fleet2 = factory1->createFleet(40, 15, 5);
+		map->getHexOnCoord(Coord(0, 1))->addFleet(fleet2);
+		Fleet* fleet3 = factory1->createFleet(40, 15, 5);
+		map->getHexOnCoord(Coord(1, 2))->addFleet(fleet3);
+		Fleet* fleet4 = factory1->createFleet(40, 15, 5);
+		map->getHexOnCoord(Coord(1, 3))->addFleet(fleet4);
+
+		MoveCommand* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(1, 3));
+		this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(1, 3), DESTINATIONREACHED, 2);
+    	CPPUNIT_ASSERT_EQUAL(50, fleet->getFleetCount().fighters);
+    	CPPUNIT_ASSERT_EQUAL(15, fleet->getFleetCount().bombers);
+    	CPPUNIT_ASSERT_EQUAL(5, fleet->getFleetCount().colonizers);
 
     }
 
