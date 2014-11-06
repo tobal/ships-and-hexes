@@ -62,6 +62,22 @@ CommandResult MoveCommand::executeCommand(GameMap::GameMap* map)
 							}
 						}
 					}
+					else
+					{
+						if(fleet->getFleetCount().fighters >= otherFleet->getFleetCount().fighters)
+						{
+							// TODO make real battle
+							fleet->getFighter()->destroy(otherFleet->getFleetCount().fighters);
+							nextHex->destroyFleet();
+						}
+						else
+						{
+							otherFleet->getFighter()->destroy(fleet->getFleetCount().fighters);
+							originHex->destroyFleet();
+							return FLEETDESTROYED;
+						}
+						foundDestination = true;
+					}
 				}
 				next = Coord(iter.x, iter.y);
 				nextHex = map->getHexOnCoord(next);

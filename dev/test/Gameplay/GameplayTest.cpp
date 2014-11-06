@@ -23,6 +23,7 @@ class GameplayTest : public TestFixture
     CPPUNIT_TEST(jumpsOverSeveralFriendlyFleets);
     CPPUNIT_TEST(mergesIntoFriendlyFleetDuringJump);
     CPPUNIT_TEST(stopsIfCannotMove);
+    CPPUNIT_TEST(battleInitiatedIfCollidedWithEnemyFleet);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -153,8 +154,19 @@ public:
     	this->assertFleetMoved(moveFleet, fleet, Coord(0, 1), Coord(1, 2), CANNOTMOVEFURTHER, 1);
     }
 
+    // TODO: change this when battle module is complete
     void battleInitiatedIfCollidedWithEnemyFleet()
     {
+    	Fleet* fleet = factory1->createFleet(10, 5, 0);
+    	map->getHexOnCoord(Coord(0, 0))->addFleet(fleet);
 
+    	MapElementFactory* factory2 = new MapElementFactory("player2");
+    	Fleet* enemy = factory2->createFleet(5, 0, 0);
+    	map->getHexOnCoord(Coord(0, 1))->addFleet(enemy);
+
+    	Command* moveFleet = new MoveCommand(Coord(0, 0), FLEET, Coord(0, 1));
+    	this->assertFleetMoved(moveFleet, fleet, Coord(0, 0), Coord(0, 1), DESTINATIONREACHED, 3);
+    	CPPUNIT_ASSERT_EQUAL(5, fleet->getFleetCount().fighters);
+    	CPPUNIT_ASSERT_EQUAL(5, fleet->getFleetCount().bombers);
     }
 };
