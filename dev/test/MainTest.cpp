@@ -27,6 +27,7 @@
 #include "GameMap/GameMapTest.cpp"
 #include "GameMap/GameMapGeneratorTest.cpp"
 #include "Gameplay/GameplayTest.cpp"
+#include "Gameplay/MoveCommandTest.cpp"
 
 using namespace CppUnit;
 
@@ -58,6 +59,7 @@ int main()
     runner.addTest(GameMapTest::suite());
     runner.addTest(GameMapGeneratorTest::suite());
     runner.addTest(GameplayTest::suite());
+    runner.addTest(MoveCommandTest::suite());
     runner.run();
     return 0;
 }
