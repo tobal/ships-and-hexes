@@ -28,6 +28,7 @@
 #include "GameMap/GameMapGeneratorTest.cpp"
 #include "Gameplay/GameplayTest.cpp"
 #include "Gameplay/MoveCommandTest.cpp"
+#include "Gameplay/BuildCommandTest.cpp"
 
 using namespace CppUnit;
 
@@ -60,6 +61,7 @@ int main()
     runner.addTest(GameMapGeneratorTest::suite());
     runner.addTest(GameplayTest::suite());
     runner.addTest(MoveCommandTest::suite());
+    runner.addTest(BuildCommandTest::suite());
     runner.run();
     return 0;
 }
