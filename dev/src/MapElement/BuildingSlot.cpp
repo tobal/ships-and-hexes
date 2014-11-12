@@ -64,3 +64,25 @@ void BuildingSlot::demolish()
 	delete building;
 	building = new Building(NO_BUILDING);
 }
+
+int BuildingSlot::getComplete() const
+{
+	return building->getCompletePercent();
+}
+
+void BuildingSlot::addToComplete(int toAdd)
+{
+	if(building->getCompletePercent() + toAdd > 100)
+	{
+		building->setCompletePercent(100);
+	}
+	else
+	{
+		building->addToCompletePercent(toAdd);
+	}
+}
+
+bool BuildingSlot::isComplete() const
+{
+	return building->isComplete();
+}

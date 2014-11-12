@@ -26,12 +26,17 @@ class Building
 private:
 	BuildingType type;
 	std::vector<Empire::Effect::BuildingEffect*> effects;
+	int complete;
 
 public:
 	Building(BuildingType buildingType);
 	~Building();
 	BuildingType getType() const;
 	std::vector<Empire::Effect::BuildingEffect*> getEffects() const;
+	int getCompletePercent() const;
+	void setCompletePercent(const int complete);
+	void addToCompletePercent(int toAdd);
+	bool isComplete() const;
 };
 
 typedef std::vector<Building*> Buildings;

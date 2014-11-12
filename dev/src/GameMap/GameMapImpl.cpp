@@ -261,3 +261,8 @@ Coord GameMapImpl::getNextOnTrail(Coord source, Coord destination)
 	}
 	return next;
 }
+
+Coords GameMapImpl::getSpaceStations()
+{
+	return getObjects(SPACESTATION);
+}

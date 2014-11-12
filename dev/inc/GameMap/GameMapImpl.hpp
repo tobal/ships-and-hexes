@@ -59,6 +59,7 @@ public:
 	Coords getFleets();
 	Coords getTrail(Coord source, Coord destination);
 	Coord getNextOnTrail(Coord source, Coord destination);
+	Coords getSpaceStations();
 };
 
 }

@@ -5,7 +5,7 @@ using namespace std;
 using namespace MapElement;
 using namespace Empire::Effect;
 
-Building::Building(BuildingType buildingType) : type(buildingType)
+Building::Building(BuildingType buildingType) : type(buildingType), complete(0)
 {
 	// TODO: make appropriate effects for buildings
 	switch(type)
@@ -32,4 +32,24 @@ BuildingType Building::getType() const
 vector<BuildingEffect*> Building::getEffects() const
 {
 	return effects;
+}
+
+int Building::getCompletePercent() const
+{
+	return complete;
+}
+
+void Building::setCompletePercent(const int complete)
+{
+	this->complete = complete;
+}
+
+void Building::addToCompletePercent(int toAdd)
+{
+	complete += toAdd;
+}
+
+bool Building::isComplete() const
+{
+	return complete == 100;
 }

@@ -37,6 +37,9 @@ public:
 	Building* getBuilding() const;
 	void build(BuildingType buildingType);
 	void demolish();
+	int getComplete() const;
+	void addToComplete(int toAdd);
+	bool isComplete() const;
 };
 
 typedef std::vector<BuildingSlot*> BuildingSlots;

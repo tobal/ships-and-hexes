@@ -22,6 +22,7 @@ public:
 	virtual Coord getNextOnTrail(Coord source, Coord destination) {}
 	virtual Coords getObjects(MapElementType type) {}
 	virtual Coords getFleets() {}
+	virtual Coords getSpaceStations() {}
 };
 
 }
