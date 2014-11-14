@@ -20,6 +20,7 @@ private:
 	PlanetSize size;
 	Empire::Effect::Effect* trait;
 	BuildingSlots* buildingSlots;
+	float population;
 
 public:
 	Planet(std::string playerName, PlanetType type, PlanetSize size, Empire::Effect::Effect* trait);
@@ -28,6 +29,8 @@ public:
 	PlanetSize getPlanetSize() const;
 	Empire::Effect::Effect* getPlanetTrait() const;
 	BuildingSlots* getBuildingSlots() const;
+	float getPopulation() const;
+	void setPopulation(const float population);
 };
 
 }

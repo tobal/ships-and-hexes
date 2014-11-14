@@ -5,8 +5,9 @@ using namespace MapElement;
 using namespace std;
 using namespace Empire::Effect;
 
+// TODO get starting population from config
 Planet::Planet(string playerName, PlanetType type, PlanetSize size, Effect* trait)
-	: SpaceObject(playerName), type(type), size(size), trait(trait)
+	: SpaceObject(playerName), type(type), size(size), trait(trait), population(1.0)
 {
 	buildingSlots = new BuildingSlots();
 	int slots = 0;
@@ -55,4 +56,14 @@ Effect* Planet::getPlanetTrait() const
 BuildingSlots* Planet::getBuildingSlots() const
 {
 	return buildingSlots;
+}
+
+float Planet::getPopulation() const
+{
+	return population;
+}
+
+void Planet::setPopulation(const float population)
+{
+	this->population = population;
 }

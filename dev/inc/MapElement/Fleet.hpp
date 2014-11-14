@@ -45,6 +45,7 @@ public:
 	int getMovePoints() const;
 	void move(const int toMove) throw(OutOfMovePointsException);
 	void resetMoves();
+	bool fleetIsEmpty() const;
 };
 
 }

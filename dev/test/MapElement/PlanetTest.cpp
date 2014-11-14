@@ -20,6 +20,7 @@ class PlanetTest : public TestFixture
     CPPUNIT_TEST(variousSizedPlanetsHaveCorrectBuildingSlots);
     CPPUNIT_TEST(canBuildOnPlanet);
     CPPUNIT_TEST(canDemolishBuilding);
+    CPPUNIT_TEST(canGetAndSetPopulation);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -80,5 +81,12 @@ public:
     		Building* building = (*slot)->getBuilding();
     		CPPUNIT_ASSERT_EQUAL(NO_BUILDING, building->getType() );
     	}
+    }
+
+    void canGetAndSetPopulation()
+    {
+    	CPPUNIT_ASSERT_EQUAL(1.0f, planet->getPopulation());
+    	planet->setPopulation(4.2f);
+    	CPPUNIT_ASSERT_EQUAL(4.2f, planet->getPopulation());
     }
 };

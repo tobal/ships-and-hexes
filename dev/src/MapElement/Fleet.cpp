@@ -110,3 +110,14 @@ void Fleet::resetMoves()
 	bomber->resetMoves();
 	colonizer->resetMoves();
 }
+
+bool Fleet::fleetIsEmpty() const
+{
+	if(fighter->getCount() == 0 &&
+	   bomber->getCount() == 0 &&
+	   colonizer->getCount() == 0)
+	{
+		return true;
+	}
+	return false;
+}
