@@ -38,6 +38,16 @@ void Anomaly::setControl(const int control)
 
 EmpireEffect* Anomaly::getEffect() const
 {
-	effect->setEffectByShipControl(control);
+	int actualControl = 0;
+	switch(size)
+	{
+	case LITTLE:
+		actualControl = control > 25 ? 25 : control;
+		break;
+	case BIG:
+		actualControl = control > 50 ? 50 : control;
+		break;
+	}
+	effect->setEffectByShipControl(actualControl);
 	return effect;
 }

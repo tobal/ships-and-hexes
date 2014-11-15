@@ -3,6 +3,7 @@
 #define EMPIREEFFECT_HPP_
 
 #include "Empire/Effect/Effect.hpp"
+#include <vector>
 
 namespace Empire
 {
@@ -21,6 +22,8 @@ public:
 	double getEffectMultiplier() const { return effectMultiplier; }
 	virtual void setEffectByShipControl(const int control) {}
 };
+
+typedef std::vector<EmpireEffect*> EmpireEffects;
 
 } /* namespace Effect */
 } /* namespace Empire */

@@ -69,9 +69,14 @@ public:
     	CPPUNIT_ASSERT_EQUAL(LITTLE, anomaly->getSize());
     	anomaly->setControl(10);
     	CPPUNIT_ASSERT_EQUAL(10, anomaly->getControl());
-    	EmpireEffect* empireEffect = anomaly->getEffect();
-    	CPPUNIT_ASSERT(dynamic_cast<ResearchBonus*>(empireEffect) != NULL);
-    	CPPUNIT_ASSERT_EQUAL(1.1, empireEffect->getEffectMultiplier());
+    	EmpireEffect* empireEffect1 = anomaly->getEffect();
+    	CPPUNIT_ASSERT(dynamic_cast<ResearchBonus*>(empireEffect1) != NULL);
+    	CPPUNIT_ASSERT_EQUAL(1.1, empireEffect1->getEffectMultiplier());
+    	anomaly->setControl(30);
+    	CPPUNIT_ASSERT_EQUAL(30, anomaly->getControl());
+    	EmpireEffect* empireEffect2 = anomaly->getEffect();
+    	CPPUNIT_ASSERT(dynamic_cast<ResearchBonus*>(empireEffect2) != NULL);
+    	CPPUNIT_ASSERT_EQUAL(1.25, empireEffect2->getEffectMultiplier());
     }
 
     void createStation()
