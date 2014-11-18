@@ -30,6 +30,7 @@
 #include "Gameplay/MoveCommandTest.cpp"
 #include "Gameplay/BuildCommandTest.cpp"
 #include "Gameplay/ProduceCommandTest.cpp"
+#include "Gameplay/TurnTest.cpp"
 
 using namespace CppUnit;
 
@@ -64,6 +65,7 @@ int main()
     runner.addTest(MoveCommandTest::suite());
     runner.addTest(BuildCommandTest::suite());
     runner.addTest(ProduceCommandTest::suite());
+    runner.addTest(TurnTest::suite());
     runner.run();
     return 0;
 }

@@ -60,6 +60,7 @@ public:
 
     	EmpireEffects* effects = new EmpireEffects();
     	empire->aggregateEmpireEffectsForPlayer(map, effects, string("player1"));
+    	CPPUNIT_ASSERT_EQUAL(3, int(effects->size()));
     	for(EmpireEffects::iterator effect = effects->begin(); effect != effects->end(); ++effect)
     	{
     		PopulationBonus* pop = dynamic_cast<PopulationBonus*>(*effect);
