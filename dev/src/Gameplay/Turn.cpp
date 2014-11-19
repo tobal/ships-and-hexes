@@ -22,7 +22,6 @@ void Turn::nextTurn(GameMap::GameMap* map)
 		Fleet* fleet = map->getHexOnCoord(*fleetCoord)->getFleet();
 		fleet->resetMoves();
 	}
-	// TODO: put getBuildingSlots into SpaceObject, to use it polymorphically
 	Coords planetCoords = map->getPlanets();
 	for(Coords::iterator planetCoord = planetCoords.begin(); planetCoord != planetCoords.end(); ++planetCoord)
 	{
@@ -33,6 +32,9 @@ void Turn::nextTurn(GameMap::GameMap* map)
 			// TODO: get value from configuration
 			(*slot)->addToComplete(25);
 		}
+
+		// TODO: get value from configuration
+		planet->setPopulation(planet->getPopulation() + 0.1);
 	}
 	Coords stationCoords = map->getSpaceStations();
 	for(Coords::iterator stationCoord = stationCoords.begin(); stationCoord != stationCoords.end(); ++stationCoord)
