@@ -1,5 +1,6 @@
 
 #include "Gameplay/Turn.hpp"
+#include "Gameplay/GameplayConfig.hpp"
 
 using namespace Gameplay;
 using namespace MapElement;
@@ -29,19 +30,16 @@ void Turn::nextTurn(GameMap::GameMap* map)
 		BuildingSlots* slots = planet->getBuildingSlots();
 		for(BuildingSlots::iterator slot = slots->begin(); slot != slots->end(); ++slot)
 		{
-			// TODO: get value from configuration
-			(*slot)->addToComplete(25);
+			(*slot)->addToComplete(GameplayConfig().turn.planetBuildSpeed);
 		}
 
-		// TODO: get value from configuration
-		planet->setPopulation(planet->getPopulation() + 0.1);
+		planet->setPopulation(planet->getPopulation() + GameplayConfig().turn.basePopIncrese);
 	}
 	Coords stationCoords = map->getSpaceStations();
 	for(Coords::iterator stationCoord = stationCoords.begin(); stationCoord != stationCoords.end(); ++stationCoord)
 	{
 		SpaceStation* station = dynamic_cast<SpaceStation*>(map->getHexOnCoord(*stationCoord)->getSpaceObject());
 		BuildingSlot* slot = station->getBuildingSlot();
-		// TODO: get value from configuration
-		slot->addToComplete(25);
+		slot->addToComplete(GameplayConfig().turn.stationBuildSpeed);
 	}
 }
