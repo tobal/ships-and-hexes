@@ -18,6 +18,7 @@
 #include "PlayerConfig/PlayerConfigTest.cpp"
 #include "Empire/Effect/EffectTest.cpp"
 #include "Empire/EmpireTest.cpp"
+#include "Empire/ResearchTest.cpp"
 #include "MapElement/MapElementTest.cpp"
 #include "MapElement/ShipTest.cpp"
 #include "MapElement/PlanetTest.cpp"
@@ -66,6 +67,7 @@ int main()
     runner.addTest(BuildCommandTest::suite());
     runner.addTest(ProduceCommandTest::suite());
     runner.addTest(TurnTest::suite());
+    runner.addTest(ResearchTest::suite());
     runner.run();
     return 0;
 }
