@@ -10,6 +10,7 @@ class ResearchTest : public TestFixture
 {
     CPPUNIT_TEST_SUITE( ResearchTest );
     CPPUNIT_TEST(canGetResearchFieldLevels);
+    CPPUNIT_TEST(canGetCompletePercentOfField);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -27,10 +28,16 @@ public:
 
     void canGetResearchFieldLevels()
     {
+    	FieldType empireField = EMPIRE;
+    	int empireLevel = research->getFieldLevel(empireField);
+    	CPPUNIT_ASSERT_EQUAL(1, empireLevel);
     }
 
     void canGetCompletePercentOfField()
     {
+    	FieldType empireField = MILITARY;
+    	int empireCompleteness = research->getFieldCompletePercent(empireField);
+    	CPPUNIT_ASSERT_EQUAL(0, empireCompleteness);
     }
 
     void canAdvanceFieldByResearchPoints()
@@ -42,6 +49,18 @@ public:
     }
 
     void canGetEffectAccordingToFieldAndLevel()
+    {
+    }
+
+    void canGetResearchTraits()
+    {
+    }
+
+    void canGetIfResearchTraitIsFulfilled()
+    {
+    }
+
+    void canGetResearchTraitEffect()
     {
     }
 };

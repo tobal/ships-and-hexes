@@ -5,11 +5,31 @@
 namespace Empire
 {
 
+static const int NUM_OF_FIELDS = 2;
+
+enum FieldType
+{
+	// TODO: fill with actual fields
+	EMPIRE,
+	MILITARY
+};
+
+struct Field
+{
+	int level;
+	int completePercent;
+};
+
 class Research
 {
+private:
+	Field* field[NUM_OF_FIELDS];
+
 public:
-	Research() {}
-	virtual ~Research() {}
+	Research();
+	~Research();
+	int getFieldLevel(FieldType type);
+	int getFieldCompletePercent(FieldType type);
 };
 
 }
