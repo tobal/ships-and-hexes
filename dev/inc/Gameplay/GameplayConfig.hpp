@@ -18,14 +18,22 @@ struct TurnConfig
 	float basePopIncrese;
 };
 
+struct ResearchConfig
+{
+	int maxResearchLevel;
+};
+
 struct GameplayConfig
 {
 	TurnConfig turn;
+	ResearchConfig research;
 	GameplayConfig()
 	{
 		turn.basePopIncrese = 0.1f;
 		turn.planetBuildSpeed = 25;
 		turn.stationBuildSpeed = 25;
+
+		research.maxResearchLevel = 10;
 	};
 };
 

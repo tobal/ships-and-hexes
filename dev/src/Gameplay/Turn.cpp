@@ -1,6 +1,5 @@
 
 #include "Gameplay/Turn.hpp"
-#include "Gameplay/GameplayConfig.hpp"
 
 using namespace Gameplay;
 using namespace MapElement;

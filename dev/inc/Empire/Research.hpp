@@ -2,6 +2,8 @@
 #ifndef RESEARCH_HPP_
 #define RESEARCH_HPP_
 
+#include "Gameplay/GameplayConfig.hpp"
+
 namespace Empire
 {
 
@@ -30,6 +32,7 @@ public:
 	~Research();
 	int getFieldLevel(FieldType type);
 	int getFieldCompletePercent(FieldType type);
+	void advanceFieldByResearchPoints(FieldType type, int researchPoints);
 };
 
 }

@@ -11,6 +11,9 @@ class ResearchTest : public TestFixture
     CPPUNIT_TEST_SUITE( ResearchTest );
     CPPUNIT_TEST(canGetResearchFieldLevels);
     CPPUNIT_TEST(canGetCompletePercentOfField);
+    CPPUNIT_TEST(canAdvanceFieldByResearchPoints);
+    CPPUNIT_TEST(fieldsCanLevelUp);
+    CPPUNIT_TEST(fieldsCantGetPastMaxLevel);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -42,10 +45,28 @@ public:
 
     void canAdvanceFieldByResearchPoints()
     {
+    	FieldType empireField = EMPIRE;
+    	research->advanceFieldByResearchPoints(empireField, 10);
+    	CPPUNIT_ASSERT_EQUAL(10, research->getFieldCompletePercent(empireField));
     }
 
     void fieldsCanLevelUp()
     {
+    	FieldType empireField = EMPIRE;
+    	research->advanceFieldByResearchPoints(empireField, 120);
+    	CPPUNIT_ASSERT_EQUAL(2, research->getFieldLevel(empireField));
+    	CPPUNIT_ASSERT_EQUAL(20, research->getFieldCompletePercent(empireField));
+    }
+
+    void fieldsCantGetPastMaxLevel()
+    {
+    	FieldType empireField = EMPIRE;
+    	research->advanceFieldByResearchPoints(empireField, 920);
+    	CPPUNIT_ASSERT_EQUAL(10, research->getFieldLevel(empireField));
+    	CPPUNIT_ASSERT_EQUAL(0, research->getFieldCompletePercent(empireField));
+    	research->advanceFieldByResearchPoints(empireField, 100);
+    	CPPUNIT_ASSERT_EQUAL(10, research->getFieldLevel(empireField));
+    	CPPUNIT_ASSERT_EQUAL(0, research->getFieldCompletePercent(empireField));
     }
 
     void canGetEffectAccordingToFieldAndLevel()

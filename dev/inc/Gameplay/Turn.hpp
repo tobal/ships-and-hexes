@@ -4,6 +4,7 @@
 
 #include "GameMap/GameMap.hpp"
 #include "MapElement/Fleet.hpp"
+#include "Gameplay/GameplayConfig.hpp"
 
 namespace Gameplay
 {
