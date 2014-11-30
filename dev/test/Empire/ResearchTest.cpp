@@ -71,6 +71,14 @@ public:
 
     void canGetEffectAccordingToFieldAndLevel()
     {
+    	FieldType empireField = EMPIRE;
+    	research->advanceFieldByResearchPoints(empireField, 120);
+    	Effect* researchEffect = research->getResearchEffect();
+    	// TODO: refactor Effect inheritence
+    	PlanetControlBonus* planetControl = dynamic_cast<PlanetControlBonus*>(researchEffect);
+    	CPPUNIT_ASSERT(planetControl != NULL);
+    	CPPUNIT_ASSERT_EQUAL(2, planetControl->getControlBonus());
+    	delete researchEffect;
     }
 
     void canGetResearchTraits()
