@@ -5,6 +5,7 @@
 
 using namespace CppUnit;
 using namespace Empire;
+using namespace Empire::Effect;
 
 class ResearchTest : public TestFixture
 {
@@ -14,6 +15,7 @@ class ResearchTest : public TestFixture
     CPPUNIT_TEST(canAdvanceFieldByResearchPoints);
     CPPUNIT_TEST(fieldsCanLevelUp);
     CPPUNIT_TEST(fieldsCantGetPastMaxLevel);
+    CPPUNIT_TEST(canGetEffectAccordingToFieldAndLevel);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -73,15 +75,19 @@ public:
     {
     	FieldType empireField = EMPIRE;
     	research->advanceFieldByResearchPoints(empireField, 120);
-    	Effect* researchEffect = research->getResearchEffect();
+    	Effect::Effect* researchEffect = research->getResearchEffect(empireField);
     	// TODO: refactor Effect inheritence
     	PlanetControlBonus* planetControl = dynamic_cast<PlanetControlBonus*>(researchEffect);
     	CPPUNIT_ASSERT(planetControl != NULL);
-    	CPPUNIT_ASSERT_EQUAL(2, planetControl->getControlBonus());
+    	CPPUNIT_ASSERT_EQUAL(2 * 2, planetControl->getControlBonus());
     	delete researchEffect;
     }
 
     void canGetResearchTraits()
+    {
+    }
+
+    void canGenerateRandomResearchTraits()
     {
     }
 

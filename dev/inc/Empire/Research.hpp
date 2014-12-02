@@ -2,6 +2,8 @@
 #ifndef RESEARCH_HPP_
 #define RESEARCH_HPP_
 
+#include "Empire/Effect/Effect.hpp"
+#include "Empire/Effect/PlanetControlBonus.hpp"
 #include "Gameplay/GameplayConfig.hpp"
 
 namespace Empire
@@ -32,6 +34,7 @@ public:
 	~Research();
 	int getFieldLevel(FieldType type);
 	int getFieldCompletePercent(FieldType type);
+	Effect::Effect* getResearchEffect(FieldType type);
 	void advanceFieldByResearchPoints(FieldType type, int researchPoints);
 };
 

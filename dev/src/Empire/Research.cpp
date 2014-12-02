@@ -2,6 +2,7 @@
 #include "Empire/Research.hpp"
 
 using namespace Empire;
+using namespace Empire::Effect;
 using namespace Gameplay;
 
 Research::Research()
@@ -26,6 +27,17 @@ int Research::getFieldLevel(FieldType type)
 int Research::getFieldCompletePercent(FieldType type)
 {
 	return field[type]->completePercent;
+}
+
+Effect::Effect* Research::getResearchEffect(FieldType type)
+{
+	switch(type)
+	{
+	case(EMPIRE):
+		Effect::PlanetControlBonus* planetControl = new Effect::PlanetControlBonus();
+		planetControl->setEffectByEmpireResearchLevel(field[type]->level);
+		return planetControl;
+	}
 }
 
 void Research::advanceFieldByResearchPoints(FieldType type, int researchPoints)
