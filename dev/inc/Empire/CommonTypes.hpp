@@ -60,6 +60,13 @@ enum MapElementType
 	NOTHING
 };
 
+enum ResearchFieldType
+{
+	// TODO: fill with actual fields
+	EMPIRE,
+	MILITARY
+};
+
 struct Coord
 {
 	Coord(const int x, const int y) : x(x), y(y) {}

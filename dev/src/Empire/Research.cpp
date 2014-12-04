@@ -12,6 +12,11 @@ Research::Research()
 		this->field[field]->level = 1;
 		this->field[field]->completePercent = 0;
 	}
+
+	// TODO: generate
+	traits = new ResearchTraits();
+	traits->push_back(ResearchTrait());
+	traits->push_back(ResearchTrait());
 }
 
 Research::~Research()
@@ -19,17 +24,17 @@ Research::~Research()
 
 }
 
-int Research::getFieldLevel(FieldType type)
+int Research::getFieldLevel(ResearchFieldType type)
 {
 	return field[type]->level;
 }
 
-int Research::getFieldCompletePercent(FieldType type)
+int Research::getFieldCompletePercent(ResearchFieldType type)
 {
 	return field[type]->completePercent;
 }
 
-Effect::Effect* Research::getResearchEffect(FieldType type)
+Effect::Effect* Research::getResearchEffect(ResearchFieldType type)
 {
 	switch(type)
 	{
@@ -40,7 +45,7 @@ Effect::Effect* Research::getResearchEffect(FieldType type)
 	}
 }
 
-void Research::advanceFieldByResearchPoints(FieldType type, int researchPoints)
+void Research::advanceFieldByResearchPoints(ResearchFieldType type, int researchPoints)
 {
 	// TODO: figure out the correct formula
 	field[type]->completePercent += researchPoints;
@@ -54,4 +59,14 @@ void Research::advanceFieldByResearchPoints(FieldType type, int researchPoints)
 			field[type]->completePercent = 0;
 		}
 	}
+}
+
+ResearchTraits* Research::getResearchTraits()
+{
+	return traits;
+}
+
+int Research::getNumOfTraits() const
+{
+	return traits->size();
 }

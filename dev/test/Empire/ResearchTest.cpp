@@ -16,6 +16,7 @@ class ResearchTest : public TestFixture
     CPPUNIT_TEST(fieldsCanLevelUp);
     CPPUNIT_TEST(fieldsCantGetPastMaxLevel);
     CPPUNIT_TEST(canGetEffectAccordingToFieldAndLevel);
+    CPPUNIT_TEST(canGetResearchTraits);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -33,28 +34,28 @@ public:
 
     void canGetResearchFieldLevels()
     {
-    	FieldType empireField = EMPIRE;
+    	ResearchFieldType empireField = EMPIRE;
     	int empireLevel = research->getFieldLevel(empireField);
     	CPPUNIT_ASSERT_EQUAL(1, empireLevel);
     }
 
     void canGetCompletePercentOfField()
     {
-    	FieldType empireField = MILITARY;
+    	ResearchFieldType empireField = MILITARY;
     	int empireCompleteness = research->getFieldCompletePercent(empireField);
     	CPPUNIT_ASSERT_EQUAL(0, empireCompleteness);
     }
 
     void canAdvanceFieldByResearchPoints()
     {
-    	FieldType empireField = EMPIRE;
+    	ResearchFieldType empireField = EMPIRE;
     	research->advanceFieldByResearchPoints(empireField, 10);
     	CPPUNIT_ASSERT_EQUAL(10, research->getFieldCompletePercent(empireField));
     }
 
     void fieldsCanLevelUp()
     {
-    	FieldType empireField = EMPIRE;
+    	ResearchFieldType empireField = EMPIRE;
     	research->advanceFieldByResearchPoints(empireField, 120);
     	CPPUNIT_ASSERT_EQUAL(2, research->getFieldLevel(empireField));
     	CPPUNIT_ASSERT_EQUAL(20, research->getFieldCompletePercent(empireField));
@@ -62,7 +63,7 @@ public:
 
     void fieldsCantGetPastMaxLevel()
     {
-    	FieldType empireField = EMPIRE;
+    	ResearchFieldType empireField = EMPIRE;
     	research->advanceFieldByResearchPoints(empireField, 920);
     	CPPUNIT_ASSERT_EQUAL(10, research->getFieldLevel(empireField));
     	CPPUNIT_ASSERT_EQUAL(0, research->getFieldCompletePercent(empireField));
@@ -73,7 +74,7 @@ public:
 
     void canGetEffectAccordingToFieldAndLevel()
     {
-    	FieldType empireField = EMPIRE;
+    	ResearchFieldType empireField = EMPIRE;
     	research->advanceFieldByResearchPoints(empireField, 120);
     	Effect::Effect* researchEffect = research->getResearchEffect(empireField);
     	// TODO: refactor Effect inheritence
@@ -85,6 +86,18 @@ public:
 
     void canGetResearchTraits()
     {
+    	CPPUNIT_ASSERT_EQUAL(2, research->getNumOfTraits());
+    	ResearchTraits* traits = research->getResearchTraits();
+    	CPPUNIT_ASSERT_EQUAL(2, traits->at(0).getNumOfFields());
+    	CPPUNIT_ASSERT_EQUAL(EMPIRE, traits->at(0).getField(0).field);
+    	CPPUNIT_ASSERT_EQUAL(6, traits->at(0).getField(0).level);
+    	CPPUNIT_ASSERT_EQUAL(MILITARY, traits->at(0).getField(1).field);
+    	CPPUNIT_ASSERT_EQUAL(6, traits->at(0).getField(1).level);
+    	CPPUNIT_ASSERT_EQUAL(2, traits->at(1).getNumOfFields());
+    	CPPUNIT_ASSERT_EQUAL(EMPIRE, traits->at(1).getField(0).field);
+    	CPPUNIT_ASSERT_EQUAL(6, traits->at(1).getField(0).level);
+    	CPPUNIT_ASSERT_EQUAL(MILITARY, traits->at(1).getField(1).field);
+    	CPPUNIT_ASSERT_EQUAL(6, traits->at(1).getField(1).level);
     }
 
     void canGenerateRandomResearchTraits()
