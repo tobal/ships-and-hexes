@@ -24,6 +24,7 @@ class Research
 private:
 	Field* field[NUM_OF_FIELDS];
 	ResearchTraits* traits;
+	bool isLevelRequirementMet(ResearchTrait trait, int fieldIdx);
 
 public:
 	Research();
@@ -34,6 +35,7 @@ public:
 	int getNumOfTraits() const;
 	ResearchTraits* getResearchTraits();
 	void advanceFieldByResearchPoints(ResearchFieldType type, int researchPoints);
+	bool isTraitFulfilled(int index);
 };
 
 }

@@ -70,3 +70,23 @@ int Research::getNumOfTraits() const
 {
 	return traits->size();
 }
+
+bool Research::isLevelRequirementMet(ResearchTrait trait, int fieldIdx)
+{
+	return trait.getField(fieldIdx).level
+			> field[trait.getField(fieldIdx).field]->level;
+}
+
+bool Research::isTraitFulfilled(int index)
+{
+	ResearchTrait trait = traits->at(index);
+	bool fulfilled = true;
+	for (int fieldIdx = 0; fieldIdx < trait.getNumOfFields(); ++fieldIdx)
+	{
+		if (isLevelRequirementMet(trait, fieldIdx))
+		{
+			fulfilled = false;
+		}
+	}
+	return fulfilled;
+}

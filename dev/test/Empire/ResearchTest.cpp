@@ -17,6 +17,7 @@ class ResearchTest : public TestFixture
     CPPUNIT_TEST(fieldsCantGetPastMaxLevel);
     CPPUNIT_TEST(canGetEffectAccordingToFieldAndLevel);
     CPPUNIT_TEST(canGetResearchTraits);
+    CPPUNIT_TEST(canGetIfResearchTraitIsFulfilled);
     CPPUNIT_TEST_SUITE_END();
 
 private:
@@ -100,12 +101,18 @@ public:
     	CPPUNIT_ASSERT_EQUAL(6, traits->at(1).getField(1).level);
     }
 
+    // TODO: implement this feature
     void canGenerateRandomResearchTraits()
     {
     }
 
     void canGetIfResearchTraitIsFulfilled()
     {
+    	ResearchTraits* traits = research->getResearchTraits();
+    	CPPUNIT_ASSERT(! research->isTraitFulfilled(0));
+    	research->advanceFieldByResearchPoints(EMPIRE, 500);
+    	research->advanceFieldByResearchPoints(MILITARY, 500);
+    	CPPUNIT_ASSERT(research->isTraitFulfilled(0));
     }
 
     void canGetResearchTraitEffect()
