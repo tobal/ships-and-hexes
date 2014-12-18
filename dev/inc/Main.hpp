@@ -6,9 +6,10 @@
 #include "GameMap/GameMapGenerator.hpp"
 #include "MapElement/Planet.hpp"
 #include "MapElement/Anomaly.hpp"
-#include "Empire/Effect/MapEffect.hpp"
-#include "Empire/Effect/TwinPlanet.hpp"
-#include "Empire/Effect/ExtraShips.hpp"
+//#include "Empire/Effect/MapEffect.hpp"
+//#include "Empire/Effect/TwinPlanet.hpp"
+//#include "Empire/Effect/ExtraShips.hpp"
+#include "Empire/CommonTypes.hpp"
 #include "GameConfig/Player.hpp"
 #include <sstream>
 #include <vector>
