@@ -16,6 +16,7 @@ struct GraphicObject
 
 enum GraphicObjectType
 {
+	BACKGOBJ,
 	HEXAOBJ,
 	PLANETOBJ,
 	ANOMALYOBJ,
@@ -28,6 +29,7 @@ struct MapObjectRepo
 {
 	MapObjectRepo()
 	{
+		background = new GraphicObjects();
 		hexes = new GraphicObjects();
 		planets = new GraphicObjects();
 		anomalies = new GraphicObjects();
@@ -35,12 +37,13 @@ struct MapObjectRepo
 	}
 	~MapObjectRepo()
 	{
+		delete background;
 		delete hexes;
 		delete planets;
 		delete anomalies;
 		delete texts;
 	}
-	orxOBJECT* background;
+	GraphicObjects* background;
 	GraphicObjects* hexes;
 	GraphicObjects* planets;
 	GraphicObjects* anomalies;
@@ -50,10 +53,12 @@ struct MapObjectRepo
 
 // TODO: put global state somewhere
 
-orxVIEWPORT *viewport;
-orxOBJECT *mouseCursor;
+orxVIEWPORT* viewport;
+orxOBJECT* mouseCursor;
 GameMap::GameMap* gameMap = NULL;
 MapObjectRepo* mapRepo;
+orxVECTOR translation = orxVECTOR_0;
+orxVECTOR delta = orxVECTOR_0;
 
 bool mbleftFlag = false;
 
@@ -77,7 +82,7 @@ GameMapImpl* generateMap()
 	players.push_back(player2);
 
 	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(
-			Coord(15, 12), 40, players));
+			Coord(25, 20), 40, players));
 	return map;
 }
 
@@ -88,6 +93,9 @@ void saveToObjectRepo(orxOBJECT*& hexObj, orxVECTOR& pos, Coord coord, GraphicOb
 	obj.coord = coord;
 	switch(type)
 	{
+	case BACKGOBJ:
+		mapRepo->background->push_back(obj);
+		break;
 	case HEXAOBJ:
 		mapRepo->hexes->push_back(obj);
 		break;
@@ -118,11 +126,6 @@ void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 			pos.fZ = 0.0;
 
 			orxOBJECT *hexObj;
-			hexObj = orxObject_CreateFromConfig("HexaObj");
-			saveToObjectRepo(hexObj, pos, Coord(x, y), HEXAOBJ);
-			orxObject_SetPosition(hexObj, &pos);
-
-			// TODO DELETE
 			hexObj = orxObject_CreateFromConfig("HexaObj");
 			saveToObjectRepo(hexObj, pos, Coord(x, y), HEXAOBJ);
 			orxObject_SetPosition(hexObj, &pos);
@@ -210,7 +213,7 @@ void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 					}
 					anomalyObjName << "Obj";
 
-					orxOBJECT *anomalyObj;
+					orxOBJECT* anomalyObj;
 					anomalyObj = orxObject_CreateFromConfig(
 							anomalyObjName.str().c_str());
 					orxObject_SetPosition(anomalyObj, &pos);
@@ -225,13 +228,24 @@ void drawMapBackground()
 {
 	std::ostringstream bg;
 	bg << "BackgroundObj" << ((rand() % 3) + 1);
-	mapRepo->background = orxObject_CreateFromConfig(bg.str().c_str());
+	for (float i = -2048.0; i < 2048.0; i += 1024.0)
+	{
+		for (float j = -2048.0; j < 2048.0; j += 1024.0)
+		{
+			orxOBJECT* backgObj;
+			backgObj = orxObject_CreateFromConfig(bg.str().c_str());
+			orxVECTOR pos = orxVECTOR_0;
+			orxVector_Set(&pos, orx2F(i), orx2F(j), orx2F(0.0));
+			orxObject_SetPosition(backgObj, &pos);
+			saveToObjectRepo(backgObj, pos, Coord(0, 0), BACKGOBJ);
+		}
+	}
 }
 
 void drawMap()
 {
-	float x0 = -370.0;
-	float y0 = -270.0;
+	float x0 = -600.0;
+	float y0 = -320.0;
 	if(gameMap == NULL)
 	{
 		gameMap = generateMap();
@@ -240,8 +254,21 @@ void drawMap()
 	drawMapBackground();
 }
 
+void translateObjectWithDelta(orxOBJECT* obj, float factor)
+{
+	orxVECTOR pos;
+	orxObject_GetPosition(obj, &pos);
+	orxVECTOR normalDelta = orxVECTOR_0;
+	orxVector_Mulf(&normalDelta, &delta, orx2F(factor));
+	orxVector_Add(&pos, &pos, &normalDelta);
+//	orxLOG("delta: %f, %f; normalDelta: %f, %f; pos: %f, %f",
+//			delta.fX, delta.fY, normalDelta.fX, normalDelta.fY, pos.fX, pos.fY);
+	orxObject_SetPosition(obj, &pos);
+}
+
 void updateMap()
 {
+	float translateFactor = 0.65f;
 	for (GraphicObjects::iterator gObj = mapRepo->hexes->begin(); gObj != mapRepo->hexes->end(); ++gObj)
 	{
 		orxOBJECT* obj = (*gObj).obj;
@@ -269,6 +296,28 @@ void updateMap()
 		}
 
 		orxObject_SetColor(obj, &color);
+
+		translateObjectWithDelta(obj, translateFactor);
+	}
+	for (GraphicObjects::iterator gObj = mapRepo->planets->begin(); gObj != mapRepo->planets->end(); ++gObj)
+	{
+		orxOBJECT* obj = (*gObj).obj;
+		translateObjectWithDelta(obj, translateFactor);
+	}
+	for (GraphicObjects::iterator gObj = mapRepo->anomalies->begin(); gObj != mapRepo->anomalies->end(); ++gObj)
+	{
+		orxOBJECT* obj = (*gObj).obj;
+		translateObjectWithDelta(obj, translateFactor);
+	}
+	for (GraphicObjects::iterator gObj = mapRepo->texts->begin(); gObj != mapRepo->texts->end(); ++gObj)
+	{
+		orxOBJECT* obj = (*gObj).obj;
+		translateObjectWithDelta(obj, translateFactor);
+	}
+	for (GraphicObjects::iterator gObj = mapRepo->background->begin(); gObj != mapRepo->background->end(); ++gObj)
+	{
+		orxOBJECT* obj = (*gObj).obj;
+		translateObjectWithDelta(obj, 1.0f);
 	}
 }
 
@@ -313,6 +362,10 @@ void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 		if(orxMouse_IsButtonPressed(orxMOUSE_BUTTON_LEFT))
 		{
 			// dragging
+			orxMouse_GetMoveDelta(&delta);
+//			orxLOG("delta: %f, %f; trans: %f, %f", delta.fX, delta.fY, translation.fX, translation.fY);
+			orxVector_Add(&translation, &translation, &delta);
+//			orxLOG("delta: %f, %f; trans: %f, %f", delta.fX, delta.fY, translation.fX, translation.fY);
 
 			// clicking
 			if(!mbleftFlag)
@@ -324,6 +377,7 @@ void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 		else
 		{
 			mbleftFlag = false;
+			delta = orxVECTOR_0;
 		}
 	}
 
@@ -340,24 +394,24 @@ orxSTATUS orxFASTCALL Init()
 	mapRepo = new MapObjectRepo();
 	drawMap();
 
-	orxINPUT_TYPE   eType;
-	orxENUM         eID;
-	const orxSTRING zInputUp;
-	const orxSTRING zInputDown;
-	const orxSTRING zInputLeft;
-	const orxSTRING zInputRight;
-
-	orxInput_GetBinding("Up", 0, &eType, &eID);
-	zInputUp = orxInput_GetBindingName(eType, eID);
-
-	orxInput_GetBinding("Down", 0, &eType, &eID);
-	zInputDown = orxInput_GetBindingName(eType, eID);
-
-	orxInput_GetBinding("Left", 0, &eType, &eID);
-	zInputLeft = orxInput_GetBindingName(eType, eID);
-
-	orxInput_GetBinding("Right", 0, &eType, &eID);
-	zInputRight = orxInput_GetBindingName(eType, eID);
+//	orxINPUT_TYPE   eType;
+//	orxENUM         eID;
+//	const orxSTRING zInputUp;
+//	const orxSTRING zInputDown;
+//	const orxSTRING zInputLeft;
+//	const orxSTRING zInputRight;
+//
+//	orxInput_GetBinding("Up", 0, &eType, &eID);
+//	zInputUp = orxInput_GetBindingName(eType, eID);
+//
+//	orxInput_GetBinding("Down", 0, &eType, &eID);
+//	zInputDown = orxInput_GetBindingName(eType, eID);
+//
+//	orxInput_GetBinding("Left", 0, &eType, &eID);
+//	zInputLeft = orxInput_GetBindingName(eType, eID);
+//
+//	orxInput_GetBinding("Right", 0, &eType, &eID);
+//	zInputRight = orxInput_GetBindingName(eType, eID);
 
 
 	orxCLOCK *pstMainClock;
