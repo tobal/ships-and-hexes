@@ -18,6 +18,7 @@ enum GraphicObjectType
 {
 	BACKGOBJ,
 	HEXAOBJ,
+	BORDEROBJ,
 	PLANETOBJ,
 	ANOMALYOBJ,
 	TEXTOBJ
@@ -31,6 +32,7 @@ struct MapObjectRepo
 	{
 		background = new GraphicObjects();
 		hexes = new GraphicObjects();
+		borders = new GraphicObjects();
 		planets = new GraphicObjects();
 		anomalies = new GraphicObjects();
 		texts = new GraphicObjects();
@@ -39,12 +41,14 @@ struct MapObjectRepo
 	{
 		delete background;
 		delete hexes;
+		delete borders;
 		delete planets;
 		delete anomalies;
 		delete texts;
 	}
 	GraphicObjects* background;
 	GraphicObjects* hexes;
+	GraphicObjects* borders;
 	GraphicObjects* planets;
 	GraphicObjects* anomalies;
 	GraphicObjects* texts;
@@ -99,6 +103,9 @@ void saveToObjectRepo(orxOBJECT*& hexObj, orxVECTOR& pos, Coord coord, GraphicOb
 	case HEXAOBJ:
 		mapRepo->hexes->push_back(obj);
 		break;
+	case BORDEROBJ:
+		mapRepo->borders->push_back(obj);
+		break;
 	case PLANETOBJ:
 		mapRepo->planets->push_back(obj);
 		break;
@@ -111,19 +118,56 @@ void saveToObjectRepo(orxOBJECT*& hexObj, orxVECTOR& pos, Coord coord, GraphicOb
 	}
 }
 
+orxVECTOR getPositionOfCoords(float x0, int& x, int& y, float y0)
+{
+	orxVECTOR pos;
+	pos.fX = x0 + x * 50;
+	if (y % 2 > 0)
+	{
+		pos.fX += 25.0;
+	}
+	pos.fY = y0 + y * 43;
+	pos.fZ = 0.0;
+	return pos;
+}
+
+void drawBorders(GameMap::GameMap* map, float x0, float y0, int borderThickness)
+{
+	Coord dimensions = map->getDimensions();
+
+	for (int x = 0; x < dimensions.x + borderThickness * 2; ++x)
+	{
+		for (int y = 0; y < dimensions.y + borderThickness * 2; ++y)
+		{
+			if((x < borderThickness || x >= dimensions.x + borderThickness) ||
+			   (y < borderThickness || y >= dimensions.y + borderThickness))
+			{
+				orxVECTOR pos = getPositionOfCoords(x0, x, y, y0);
+
+				orxOBJECT* fowObj;
+				fowObj = orxObject_CreateFromConfig("FogOfWarObj");
+				saveToObjectRepo(fowObj, pos, Coord(x, y), BORDEROBJ);
+				orxObject_SetPosition(fowObj, &pos);
+
+				orxCOLOR color;
+				orxVECTOR colorVec = orxVECTOR_BLACK;
+				orxColor_Set(&color, &colorVec, orxFLOAT_1);
+				orxColor_SetAlpha(&color, orx2F(0.5));
+				orxObject_SetColor(fowObj, &color);
+			}
+		}
+	}
+}
+
 void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 {
 	Coord dimensions = map->getDimensions();
+
 	for (int x = 0; x < dimensions.x; ++x)
 	{
 		for (int y = 0; y < dimensions.y; ++y)
 		{
-			orxVECTOR pos;
-			pos.fX = x0 + x * 50;
-			if (y % 2 > 0)
-				pos.fX += 25.0;
-			pos.fY = y0 + y * 43;
-			pos.fZ = 0.0;
+			orxVECTOR pos = getPositionOfCoords(x0, x, y, y0);
 
 			orxOBJECT *hexObj;
 			hexObj = orxObject_CreateFromConfig("HexaObj");
@@ -250,6 +294,9 @@ void drawMap()
 	{
 		gameMap = generateMap();
 	}
+
+	int borderThickness = 10;
+	drawBorders(gameMap, x0 - borderThickness * 50, y0 - borderThickness * 43, borderThickness);
 	drawHexMap(gameMap, x0, y0);
 	drawMapBackground();
 }
@@ -297,6 +344,11 @@ void updateMap()
 
 		orxObject_SetColor(obj, &color);
 
+		translateObjectWithDelta(obj, translateFactor);
+	}
+	for (GraphicObjects::iterator gObj = mapRepo->borders->begin(); gObj != mapRepo->borders->end(); ++gObj)
+	{
+		orxOBJECT* obj = (*gObj).obj;
 		translateObjectWithDelta(obj, translateFactor);
 	}
 	for (GraphicObjects::iterator gObj = mapRepo->planets->begin(); gObj != mapRepo->planets->end(); ++gObj)
