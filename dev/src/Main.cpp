@@ -7,7 +7,7 @@ using namespace Empire::Effect;
 using namespace GameConfig;
 using namespace std;
 
-// TODO put this elsewhere
+// TODO OrxGFX::OrxTypes.hpp
 struct GraphicObject
 {
 	orxOBJECT* obj;
@@ -26,6 +26,9 @@ enum GraphicObjectType
 
 typedef vector<GraphicObject> GraphicObjects;
 
+// OrxTypes.hpp
+
+// TODO OrxGFX::ObjectRepos.hpp
 struct MapObjectRepo
 {
 	MapObjectRepo()
@@ -55,18 +58,25 @@ struct MapObjectRepo
 };
 
 
-// TODO: put global state somewhere
-
 orxVIEWPORT* viewport;
 orxOBJECT* mouseCursor;
-GameMap::GameMap* gameMap = NULL;
-MapObjectRepo* mapRepo;
+
+// TODO GameMapGFX
+// TODO interface to GameplayGFXI
 orxVECTOR translation = orxVECTOR_0;
 orxVECTOR delta = orxVECTOR_0;
 
+// TODO GameState.hpp
+// TODO interface to GameGFXI
+// TODO interface to GameplayGFXI
+// TODO interface to Gameplay
+GameMap::GameMap* gameMap = NULL;
+MapObjectRepo* mapRepo;
+
+// TODO Input.hpp
 bool mbleftFlag = false;
 
-
+// TODO GameState.cpp
 GameMapImpl* generateMap()
 {
 	GameMapGenerator* generator;
@@ -90,6 +100,7 @@ GameMapImpl* generateMap()
 	return map;
 }
 
+// TODO OrxGFX::ObjectRepos
 void saveToObjectRepo(orxOBJECT*& hexObj, orxVECTOR& pos, Coord coord, GraphicObjectType type)
 {
 	GraphicObject obj;
@@ -118,6 +129,7 @@ void saveToObjectRepo(orxOBJECT*& hexObj, orxVECTOR& pos, Coord coord, GraphicOb
 	}
 }
 
+// TODO GameMapGFX
 orxVECTOR getPositionOfCoords(float x0, int& x, int& y, float y0)
 {
 	orxVECTOR pos;
@@ -131,6 +143,7 @@ orxVECTOR getPositionOfCoords(float x0, int& x, int& y, float y0)
 	return pos;
 }
 
+// TODO GameMapGFX
 void drawBorders(GameMap::GameMap* map, float x0, float y0, int borderThickness)
 {
 	Coord dimensions = map->getDimensions();
@@ -159,6 +172,7 @@ void drawBorders(GameMap::GameMap* map, float x0, float y0, int borderThickness)
 	}
 }
 
+// TODO GameMapGFX
 void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 {
 	Coord dimensions = map->getDimensions();
@@ -268,6 +282,7 @@ void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 	}
 }
 
+// TODO GameMapGFX
 void drawMapBackground()
 {
 	std::ostringstream bg;
@@ -286,6 +301,7 @@ void drawMapBackground()
 	}
 }
 
+// TODO GameMapGFX
 void drawMap()
 {
 	float x0 = -600.0;
@@ -301,6 +317,7 @@ void drawMap()
 	drawMapBackground();
 }
 
+// TODO GameMapGFX
 void translateObjectWithDelta(orxOBJECT* obj, float factor)
 {
 	orxVECTOR pos;
@@ -313,6 +330,7 @@ void translateObjectWithDelta(orxOBJECT* obj, float factor)
 	orxObject_SetPosition(obj, &pos);
 }
 
+// TODO GameMapGFX
 void updateMap()
 {
 	float translateFactor = 0.65f;
@@ -329,14 +347,24 @@ void updateMap()
 			orxVECTOR objPos;
 			orxObject_GetPosition(obj, &objPos);
 			orxFLOAT distance = orxVector_GetDistance(&objPos, &mousePos);
-			float fadeFactor = 1.0f;
+//			float fadeFactor = 1.0f;
+//			float fadeRadius = 400.0f;
+//			if(distance < fadeRadius)
+//			{
+//				fadeFactor = 0.0f;
+//				if(distance != 0.0f)
+//				{
+//					fadeFactor = distance / fadeRadius;
+//				}
+//			}
+			float fadeFactor = 0.0f;
 			float fadeRadius = 400.0f;
 			if(distance < fadeRadius)
 			{
-				fadeFactor = 0.0f;
+				fadeFactor = 1.0f;
 				if(distance != 0.0f)
 				{
-					fadeFactor = (1.0f / fadeRadius) * distance;
+					fadeFactor =  1.0f - distance / fadeRadius;
 				}
 			}
 			orxColor_SetAlpha(&color, orx2F(fadeFactor));
@@ -373,6 +401,7 @@ void updateMap()
 	}
 }
 
+// TODO OrxMain.cpp
 void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 {
 //  orxVECTOR vScale, vPosition;
@@ -436,6 +465,7 @@ void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 	updateMap();
 }
 
+// TODO OrxMain.cpp
 orxSTATUS orxFASTCALL Init()
 {
 	orxConfig_Load("cfg/mainConf.ini");
@@ -473,6 +503,7 @@ orxSTATUS orxFASTCALL Init()
 	return orxSTATUS_SUCCESS;
 }
 
+// TODO OrxMain.cpp
 orxSTATUS orxFASTCALL Run()
 {
 	orxSTATUS eResult = orxSTATUS_SUCCESS;
@@ -485,6 +516,7 @@ orxSTATUS orxFASTCALL Run()
 	return eResult;
 }
 
+// TODO OrxMain.cpp
 void orxFASTCALL Exit()
 {
 	delete mapRepo;
@@ -492,6 +524,7 @@ void orxFASTCALL Exit()
 
 int main(int argc, char **argv)
 {
+	// TODO OrxMain.cpp
 	orx_Execute(argc, argv, Init, Run, Exit);
 	return EXIT_SUCCESS;
 }

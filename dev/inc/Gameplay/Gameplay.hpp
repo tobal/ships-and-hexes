@@ -10,6 +10,7 @@ class Gameplay
 public:
 	Gameplay() {}
 	virtual ~Gameplay() {}
+	// TODO interface for gameplay, commands, GameState will use this
 };
 
 }
