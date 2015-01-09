@@ -325,8 +325,6 @@ void translateObjectWithDelta(orxOBJECT* obj, float factor)
 	orxVECTOR normalDelta = orxVECTOR_0;
 	orxVector_Mulf(&normalDelta, &delta, orx2F(factor));
 	orxVector_Add(&pos, &pos, &normalDelta);
-//	orxLOG("delta: %f, %f; normalDelta: %f, %f; pos: %f, %f",
-//			delta.fX, delta.fY, normalDelta.fX, normalDelta.fY, pos.fX, pos.fY);
 	orxObject_SetPosition(obj, &pos);
 }
 
@@ -347,16 +345,6 @@ void updateMap()
 			orxVECTOR objPos;
 			orxObject_GetPosition(obj, &objPos);
 			orxFLOAT distance = orxVector_GetDistance(&objPos, &mousePos);
-//			float fadeFactor = 1.0f;
-//			float fadeRadius = 400.0f;
-//			if(distance < fadeRadius)
-//			{
-//				fadeFactor = 0.0f;
-//				if(distance != 0.0f)
-//				{
-//					fadeFactor = distance / fadeRadius;
-//				}
-//			}
 			float fadeFactor = 0.0f;
 			float fadeRadius = 400.0f;
 			if(distance < fadeRadius)
@@ -404,34 +392,6 @@ void updateMap()
 // TODO OrxMain.cpp
 void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 {
-//  orxVECTOR vScale, vPosition;
-//
-//  /* Is rotate left input active ? */
-//  if(orxInput_IsActive("RotateLeft"))
-//  {
-//    /* Rotates Parent object CCW */
-//    orxObject_SetRotation(pstParentObject, orxObject_GetRotation(pstParentObject) - orxMATH_KF_PI * _pstClockInfo->fDT);
-//  }
-//  /* Is rotate right input active? */
-//  if(orxInput_IsActive("RotateRight"))
-//  {
-//    /* Rotates Parent object CW */
-//    orxObject_SetRotation(pstParentObject, orxObject_GetRotation(pstParentObject) + orxMATH_KF_PI * _pstClockInfo->fDT);
-//  }
-//
-//  /* Is scale up input active? */
-//  if(orxInput_IsActive("ScaleUp"))
-//  {
-//    /* Scales up the Parent object */
-//    orxObject_SetScale(pstParentObject, orxVector_Mulf(&vScale, orxObject_GetScale(pstParentObject, &vScale), orx2F(1.02f)));
-//  }
-//  /* Is scale down input active? */
-//  if(orxInput_IsActive("ScaleDown"))
-//  {
-//    /* Scales down the Parent object */
-//    orxObject_SetScale(pstParentObject, orxVector_Mulf(&vScale, orxObject_GetScale(pstParentObject, &vScale), orx2F(0.98f)));
-//  }
-
 	orxVECTOR mousePos;
 	if(orxRender_GetWorldPosition(orxMouse_GetPosition(&mousePos), viewport, &mousePos))
 	{
@@ -444,9 +404,7 @@ void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 		{
 			// dragging
 			orxMouse_GetMoveDelta(&delta);
-//			orxLOG("delta: %f, %f; trans: %f, %f", delta.fX, delta.fY, translation.fX, translation.fY);
 			orxVector_Add(&translation, &translation, &delta);
-//			orxLOG("delta: %f, %f; trans: %f, %f", delta.fX, delta.fY, translation.fX, translation.fY);
 
 			// clicking
 			if(!mbleftFlag)
@@ -475,26 +433,6 @@ orxSTATUS orxFASTCALL Init()
 
 	mapRepo = new MapObjectRepo();
 	drawMap();
-
-//	orxINPUT_TYPE   eType;
-//	orxENUM         eID;
-//	const orxSTRING zInputUp;
-//	const orxSTRING zInputDown;
-//	const orxSTRING zInputLeft;
-//	const orxSTRING zInputRight;
-//
-//	orxInput_GetBinding("Up", 0, &eType, &eID);
-//	zInputUp = orxInput_GetBindingName(eType, eID);
-//
-//	orxInput_GetBinding("Down", 0, &eType, &eID);
-//	zInputDown = orxInput_GetBindingName(eType, eID);
-//
-//	orxInput_GetBinding("Left", 0, &eType, &eID);
-//	zInputLeft = orxInput_GetBindingName(eType, eID);
-//
-//	orxInput_GetBinding("Right", 0, &eType, &eID);
-//	zInputRight = orxInput_GetBindingName(eType, eID);
-
 
 	orxCLOCK *pstMainClock;
 	pstMainClock = orxClock_FindFirst(orx2F(-1.0f), orxCLOCK_TYPE_CORE);
