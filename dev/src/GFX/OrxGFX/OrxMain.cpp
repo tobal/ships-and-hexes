@@ -4,38 +4,7 @@
 using namespace GameMap;
 using namespace MapElement;
 using namespace Empire::Effect;
-using namespace GameConfig;
 using namespace std;
-
-// TODO OrxGFX::ObjectRepos.hpp
-struct MapObjectRepo
-{
-	MapObjectRepo()
-	{
-		background = new GraphicObjects();
-		hexes = new GraphicObjects();
-		borders = new GraphicObjects();
-		planets = new GraphicObjects();
-		anomalies = new GraphicObjects();
-		texts = new GraphicObjects();
-	}
-	~MapObjectRepo()
-	{
-		delete background;
-		delete hexes;
-		delete borders;
-		delete planets;
-		delete anomalies;
-		delete texts;
-	}
-	GraphicObjects* background;
-	GraphicObjects* hexes;
-	GraphicObjects* borders;
-	GraphicObjects* planets;
-	GraphicObjects* anomalies;
-	GraphicObjects* texts;
-};
-
 
 orxVIEWPORT* viewport;
 orxOBJECT* mouseCursor;
@@ -54,59 +23,6 @@ MapObjectRepo* mapRepo;
 
 // TODO Input.hpp
 bool mbleftFlag = false;
-
-// TODO GameState.cpp
-GameMapImpl* generateMap()
-{
-	GameMapGenerator* generator;
-	generator = new GameMapGenerator();
-	Player player1 = Player("player1", RED, false);
-	Player player2 = Player("player2", YELLOW, true);
-
-	vector<int> picked = vector<int>();
-	picked.push_back(0);
-	picked.push_back(2);
-	picked.push_back(3);
-	picked.push_back(17);
-	player1.getPlayerConfig()->pickTraits(picked);
-
-	Players players = Players();
-	players.push_back(player1);
-	players.push_back(player2);
-
-	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(
-			Coord(25, 20), 40, players));
-	return map;
-}
-
-// TODO OrxGFX::ObjectRepos
-void saveToObjectRepo(orxOBJECT*& hexObj, orxVECTOR& pos, Coord coord, GraphicObjectType type)
-{
-	GraphicObject obj;
-	obj.obj = hexObj;
-	obj.coord = coord;
-	switch(type)
-	{
-	case BACKGOBJ:
-		mapRepo->background->push_back(obj);
-		break;
-	case HEXAOBJ:
-		mapRepo->hexes->push_back(obj);
-		break;
-	case BORDEROBJ:
-		mapRepo->borders->push_back(obj);
-		break;
-	case PLANETOBJ:
-		mapRepo->planets->push_back(obj);
-		break;
-	case ANOMALYOBJ:
-		mapRepo->anomalies->push_back(obj);
-		break;
-	case TEXTOBJ:
-		mapRepo->texts->push_back(obj);
-		break;
-	}
-}
 
 // TODO GameMapGFX
 orxVECTOR getPositionOfCoords(float x0, int& x, int& y, float y0)
@@ -138,7 +54,7 @@ void drawBorders(GameMap::GameMap* map, float x0, float y0, int borderThickness)
 
 				orxOBJECT* fowObj;
 				fowObj = orxObject_CreateFromConfig("FogOfWarObj");
-				saveToObjectRepo(fowObj, pos, Coord(x, y), BORDEROBJ);
+				saveToMapObjectRepo(mapRepo, fowObj, pos, Coord(x, y), BORDEROBJ);
 				orxObject_SetPosition(fowObj, &pos);
 
 				orxCOLOR color;
@@ -164,7 +80,7 @@ void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 
 			orxOBJECT *hexObj;
 			hexObj = orxObject_CreateFromConfig("HexaObj");
-			saveToObjectRepo(hexObj, pos, Coord(x, y), HEXAOBJ);
+			saveToMapObjectRepo(mapRepo, hexObj, pos, Coord(x, y), HEXAOBJ);
 			orxObject_SetPosition(hexObj, &pos);
 
 			Hex* hex = map->getHexOnCoord(Coord(x, y));
@@ -186,7 +102,7 @@ void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 						planetObj = orxObject_CreateFromConfig("PlanetLavaObj");
 						break;
 					}
-					saveToObjectRepo(planetObj, pos, Coord(x, y), PLANETOBJ);
+					saveToMapObjectRepo(mapRepo, planetObj, pos, Coord(x, y), PLANETOBJ);
 					orxObject_SetPosition(planetObj, &pos);
 
 					float scaleValue = 0.9;
@@ -212,7 +128,7 @@ void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 						textObj = orxObject_CreateFromConfig("TextObj");
 						orxObject_SetTextString(textObj, "player1");
 						orxObject_SetPosition(textObj, &pos);
-						saveToObjectRepo(textObj, pos, Coord(x, y), TEXTOBJ);
+						saveToMapObjectRepo(mapRepo, textObj, pos, Coord(x, y), TEXTOBJ);
 					}
 					if (hex->getSpaceObject()->getPlayerName() == "player2")
 					{
@@ -220,7 +136,7 @@ void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 						textObj = orxObject_CreateFromConfig("TextObj");
 						orxObject_SetTextString(textObj, "player2");
 						orxObject_SetPosition(textObj, &pos);
-						saveToObjectRepo(textObj, pos, Coord(x, y), TEXTOBJ);
+						saveToMapObjectRepo(mapRepo, textObj, pos, Coord(x, y), TEXTOBJ);
 					}
 				}
 				if (hex->getSpaceObjectType() == ANOMALY) {
@@ -254,7 +170,7 @@ void drawHexMap(GameMap::GameMap* map, float x0, float y0)
 					anomalyObj = orxObject_CreateFromConfig(
 							anomalyObjName.str().c_str());
 					orxObject_SetPosition(anomalyObj, &pos);
-					saveToObjectRepo(anomalyObj, pos, Coord(x, y), ANOMALYOBJ);
+					saveToMapObjectRepo(mapRepo, anomalyObj, pos, Coord(x, y), ANOMALYOBJ);
 				}
 			}
 		}
@@ -275,7 +191,7 @@ void drawMapBackground()
 			orxVECTOR pos = orxVECTOR_0;
 			orxVector_Set(&pos, orx2F(i), orx2F(j), orx2F(0.0));
 			orxObject_SetPosition(backgObj, &pos);
-			saveToObjectRepo(backgObj, pos, Coord(0, 0), BACKGOBJ);
+			saveToMapObjectRepo(mapRepo, backgObj, pos, Coord(0, 0), BACKGOBJ);
 		}
 	}
 }
@@ -287,6 +203,7 @@ void drawMap()
 	float y0 = -320.0;
 	if(gameMap == NULL)
 	{
+		// TODO call from GameStateGFXI interface
 		gameMap = generateMap();
 	}
 
@@ -368,7 +285,6 @@ void updateMap()
 	}
 }
 
-// TODO OrxMain.cpp
 void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 {
 	orxVECTOR mousePos;
@@ -402,7 +318,6 @@ void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 	updateMap();
 }
 
-// TODO OrxMain.cpp
 orxSTATUS orxFASTCALL Init()
 {
 	orxConfig_Load("cfg/mainConf.ini");
@@ -420,7 +335,6 @@ orxSTATUS orxFASTCALL Init()
 	return orxSTATUS_SUCCESS;
 }
 
-// TODO OrxMain.cpp
 orxSTATUS orxFASTCALL Run()
 {
 	orxSTATUS eResult = orxSTATUS_SUCCESS;
@@ -433,7 +347,6 @@ orxSTATUS orxFASTCALL Run()
 	return eResult;
 }
 
-// TODO OrxMain.cpp
 void orxFASTCALL Exit()
 {
 	delete mapRepo;

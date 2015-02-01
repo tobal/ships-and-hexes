@@ -3,6 +3,10 @@
 #define GAMESTATE_HPP_
 
 #include "GameState/EmpireDetails.hpp"
+#include "GameMap/GameMapImpl.hpp"
+#include "GameMap/GameMapGenerator.hpp"
+#include "GameConfig/Player.hpp"
+#include <vector>
 
 namespace GameState
 {
@@ -13,6 +17,7 @@ public:
 	GameState() {}
 	virtual ~GameState() {}
 	virtual EmpireDetails getEmpireDetails() {}
+	virtual GameMap::GameMapImpl* generateMap() {}
 };
 
 }

@@ -2,6 +2,7 @@
 #ifndef ORXTYPES_HPP_
 #define ORXTYPES_HPP_
 
+#include "orx.h"
 #include <vector>
 #include "Empire/CommonTypes.hpp"
 

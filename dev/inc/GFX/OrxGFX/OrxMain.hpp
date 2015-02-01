@@ -4,11 +4,10 @@
 
 #include "orx.h"
 #include "GFX/OrxGFX/OrxTypes.hpp"
+#include "GFX/OrxGFX/ObjectRepos.hpp"
 
-#include "GameMap/GameMapGenerator.hpp"
 #include "MapElement/Planet.hpp"
 #include "MapElement/Anomaly.hpp"
-#include "GameConfig/Player.hpp"
 #include <sstream>
 #include <vector>
 
