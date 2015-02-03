@@ -11,10 +11,10 @@ namespace GameState
 
 struct Planet
 {
-	Effects buildingEffects;
-	Effect planetTrait;
+	Empire::Effect::Effects buildingEffects;
+	Empire::Effect::Effect planetTrait;
 	int population;
-	Effects miscellious;
+	Empire::Effect::Effects miscellious;
 };
 
 typedef std::vector<Planet> Planets;

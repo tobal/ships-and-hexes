@@ -1,27 +1,27 @@
 
-#include "GameState/GameState.hpp"
+#include "GameState/GameStateImpl.hpp"
 
 using namespace GameState;
 using namespace GameMap;
 using namespace GameConfig;
 using namespace std;
 
-GameState::GameState()
+GameStateImpl::GameStateImpl()
 {
 
 }
 
-GameState::~GameState()
+GameStateImpl::~GameStateImpl()
 {
 
 }
 
-EmpireDetails GameState::getEmpireDetails()
+EmpireDetails GameStateImpl::getEmpireDetails()
 {
 
 }
 
-GameMapImpl* GameState::generateMap()
+GameMap::GameMap* GameStateImpl::generateMap()
 {
 	GameMapGenerator* generator;
 	generator = new GameMapGenerator();
@@ -39,7 +39,6 @@ GameMapImpl* GameState::generateMap()
 	players.push_back(player1);
 	players.push_back(player2);
 
-	GameMapImpl* map = dynamic_cast<GameMapImpl*>(generator->generateMap(
-			Coord(25, 20), 40, players));
+	GameMap::GameMap* map = generator->generateMap(Coord(25, 20), 40, players);
 	return map;
 }

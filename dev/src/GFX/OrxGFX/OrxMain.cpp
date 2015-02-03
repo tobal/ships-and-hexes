@@ -4,6 +4,7 @@
 using namespace GameMap;
 using namespace MapElement;
 using namespace Empire::Effect;
+using namespace GameGFXI;
 using namespace std;
 
 orxVIEWPORT* viewport;
@@ -204,7 +205,8 @@ void drawMap()
 	if(gameMap == NULL)
 	{
 		// TODO call from GameStateGFXI interface
-		gameMap = generateMap();
+		GameStateGFXI stateInterface = GameStateGFXI();
+		gameMap = stateInterface.generateMap();
 	}
 
 	int borderThickness = 10;

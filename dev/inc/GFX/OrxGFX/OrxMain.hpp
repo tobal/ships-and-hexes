@@ -6,6 +6,9 @@
 #include "GFX/OrxGFX/OrxTypes.hpp"
 #include "GFX/OrxGFX/ObjectRepos.hpp"
 
+#include "GameMap/GameMap.hpp"
+#include "GFXI/GameGFXI/GameStateGFXI.hpp"
+
 #include "MapElement/Planet.hpp"
 #include "MapElement/Anomaly.hpp"
 #include <sstream>
