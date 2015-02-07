@@ -8,12 +8,12 @@ struct MapObjectRepo
 {
 	MapObjectRepo()
 	{
-		background = new GraphicObjects();
-		hexes = new GraphicObjects();
-		borders = new GraphicObjects();
-		planets = new GraphicObjects();
-		anomalies = new GraphicObjects();
-		texts = new GraphicObjects();
+		background = new MapGraphicObjects();
+		hexes = new MapGraphicObjects();
+		borders = new MapGraphicObjects();
+		planets = new MapGraphicObjects();
+		anomalies = new MapGraphicObjects();
+		texts = new MapGraphicObjects();
 	}
 	~MapObjectRepo()
 	{
@@ -24,15 +24,17 @@ struct MapObjectRepo
 		delete anomalies;
 		delete texts;
 	}
-	GraphicObjects* background;
-	GraphicObjects* hexes;
-	GraphicObjects* borders;
-	GraphicObjects* planets;
-	GraphicObjects* anomalies;
-	GraphicObjects* texts;
+	MapGraphicObjects* background;
+	MapGraphicObjects* hexes;
+	MapGraphicObjects* borders;
+	MapGraphicObjects* planets;
+	MapGraphicObjects* anomalies;
+	MapGraphicObjects* texts;
+
+	void saveToRepo(orxOBJECT*& hexObj, orxVECTOR& pos, Coord coord, MapGraphicObjectType type);
 };
 
 void saveToMapObjectRepo(MapObjectRepo* mapRepo, orxOBJECT*& hexObj,
-						 orxVECTOR& pos, Coord coord, GraphicObjectType type);
+						 orxVECTOR& pos, Coord coord, MapGraphicObjectType type);
 
 #endif /* OBJECTREPOS_HPP_ */

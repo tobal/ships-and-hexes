@@ -8,10 +8,8 @@
 
 #include "GameMap/GameMap.hpp"
 #include "GFXI/GameGFXI/GameStateGFXI.hpp"
+#include "GFX/GameGraphics/GameMapGFX.hpp"
 
-#include "MapElement/Planet.hpp"
-#include "MapElement/Anomaly.hpp"
-#include <sstream>
 #include <vector>
 
 orxSTATUS orxFASTCALL Init();

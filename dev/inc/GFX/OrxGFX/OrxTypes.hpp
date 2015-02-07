@@ -6,13 +6,13 @@
 #include <vector>
 #include "Empire/CommonTypes.hpp"
 
-struct GraphicObject
+struct MapGraphicObject
 {
 	orxOBJECT* obj;
 	Coord coord;
 };
 
-enum GraphicObjectType
+enum MapGraphicObjectType
 {
 	BACKGOBJ,
 	HEXAOBJ,
@@ -22,6 +22,6 @@ enum GraphicObjectType
 	TEXTOBJ
 };
 
-typedef std::vector<GraphicObject> GraphicObjects;
+typedef std::vector<MapGraphicObject> MapGraphicObjects;
 
 #endif /* ORXTYPES_HPP_ */
