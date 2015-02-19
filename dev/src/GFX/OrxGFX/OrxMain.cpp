@@ -22,6 +22,7 @@ orxVECTOR delta = orxVECTOR_0;
 // TODO interface to Gameplay
 GameMap::GameMap* gameMap = NULL;
 GameMapGFX* mapGfx;
+HudGFX* hudGfx;
 
 // TODO Input.hpp
 bool mbleftFlag = false;
@@ -65,6 +66,10 @@ orxSTATUS orxFASTCALL Init()
 	viewport = orxViewport_CreateFromConfig("Viewport");
 
 	mouseCursor = orxObject_CreateFromConfig("CursorObj");
+
+	// draw hud
+	hudGfx = new HudGFX();
+	hudGfx->drawHUD();
 
 	mapGfx = new GameMapGFX();
 	if(gameMap == NULL)

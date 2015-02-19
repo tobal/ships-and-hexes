@@ -24,4 +24,12 @@ enum MapGraphicObjectType
 
 typedef std::vector<MapGraphicObject> MapGraphicObjects;
 
+struct GraphicObject
+{
+	orxOBJECT* obj;
+	orxVECTOR pos;
+};
+
+typedef std::vector<GraphicObject> GraphicObjects;
+
 #endif /* ORXTYPES_HPP_ */

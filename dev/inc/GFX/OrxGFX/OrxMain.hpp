@@ -9,6 +9,7 @@
 #include "GameMap/GameMap.hpp"
 #include "GFXI/GameGFXI/GameStateGFXI.hpp"
 #include "GFX/GameGraphics/GameMapGFX.hpp"
+#include "GFX/GameGraphics/HUD.hpp"
 
 #include <vector>
 

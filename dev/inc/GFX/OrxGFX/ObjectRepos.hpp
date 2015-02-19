@@ -37,4 +37,19 @@ struct MapObjectRepo
 void saveToMapObjectRepo(MapObjectRepo* mapRepo, orxOBJECT*& hexObj,
 						 orxVECTOR& pos, Coord coord, MapGraphicObjectType type);
 
+struct HUDObjectRepo
+{
+	HUDObjectRepo()
+	{
+		background = new GraphicObjects();
+	}
+	~HUDObjectRepo()
+	{
+		delete background;
+	}
+	GraphicObjects* background;
+
+	void saveToRepo(orxOBJECT*& obj, orxVECTOR& pos);
+};
+
 #endif /* OBJECTREPOS_HPP_ */

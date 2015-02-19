@@ -29,3 +29,11 @@ void MapObjectRepo::saveToRepo(orxOBJECT*& hexObj, orxVECTOR& pos,
 		break;
 	}
 }
+
+void HUDObjectRepo::saveToRepo(orxOBJECT*& object, orxVECTOR& pos)
+{
+	GraphicObject gr_obj;
+	gr_obj.obj = object;
+	gr_obj.pos = pos;
+	this->background->push_back(gr_obj);
+}
