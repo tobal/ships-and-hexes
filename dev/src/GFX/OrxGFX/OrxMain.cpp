@@ -71,6 +71,7 @@ orxSTATUS orxFASTCALL Init()
 	hudGfx = new HudGFX();
 	hudGfx->drawHUD();
 
+	// TODO make separate viewport for the map
 	mapGfx = new GameMapGFX();
 	if(gameMap == NULL)
 	{
