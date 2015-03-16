@@ -71,12 +71,13 @@ orxSTATUS orxFASTCALL Init()
 	hudGfx = new HudGFX();
 	hudGfx->drawHUD();
 
+	GameStateGFXI stateInterface = GameStateGFXI();
+
 	// TODO make separate viewport for the map
 	mapGfx = new GameMapGFX();
 	if(gameMap == NULL)
 	{
 		// TODO call this from menu
-		GameStateGFXI stateInterface = GameStateGFXI();
 		gameMap = stateInterface.generateMap();
 	}
 	mapGfx->drawMap(gameMap);
