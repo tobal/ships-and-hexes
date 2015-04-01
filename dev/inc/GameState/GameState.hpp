@@ -15,6 +15,8 @@ public:
 	virtual ~GameState() {}
 	virtual EmpireDetails getEmpireDetails() {}
 	virtual GameMap::GameMap* generateMap() {}
+	virtual GameMap::GameMap* getGameMap() {}
+	virtual void setGameMap(GameMap::GameMap* gameMap) {}
 };
 
 }

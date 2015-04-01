@@ -14,11 +14,16 @@ namespace GameState
 
 class GameStateImpl : public GameState
 {
+private:
+	GameMap::GameMap* gameMap;
+
 public:
 	GameStateImpl();
 	~GameStateImpl();
 	EmpireDetails getEmpireDetails();
 	GameMap::GameMap* generateMap();
+	GameMap::GameMap* getGameMap();
+	void setGameMap(GameMap::GameMap* gameMap);
 };
 
 }

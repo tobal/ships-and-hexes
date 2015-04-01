@@ -19,3 +19,13 @@ GameMap::GameMap* GameStateGFXI::generateMap()
 {
 	return gameState->generateMap();
 }
+
+GameMap::GameMap* GameStateGFXI::getGameMap()
+{
+	return gameState->getGameMap();
+}
+
+void GameStateGFXI::setGameMap(GameMap::GameMap* gameMap)
+{
+	gameState->setGameMap(gameMap);
+}

@@ -8,12 +8,16 @@ using namespace std;
 
 GameStateImpl::GameStateImpl()
 {
-
+	// TODO get game map in parameter
+	gameMap = NULL;
 }
 
 GameStateImpl::~GameStateImpl()
 {
-
+	if(gameMap != NULL)
+	{
+		delete gameMap;
+	}
 }
 
 EmpireDetails GameStateImpl::getEmpireDetails()
@@ -21,6 +25,7 @@ EmpireDetails GameStateImpl::getEmpireDetails()
 
 }
 
+// TODO put map generation elsewhere
 GameMap::GameMap* GameStateImpl::generateMap()
 {
 	GameMapGenerator* generator;
@@ -41,4 +46,14 @@ GameMap::GameMap* GameStateImpl::generateMap()
 
 	GameMap::GameMap* map = generator->generateMap(Coord(25, 20), 40, players);
 	return map;
+}
+
+GameMap::GameMap* GameStateImpl::getGameMap()
+{
+	return gameMap;
+}
+
+void GameStateImpl::setGameMap(GameMap::GameMap* gameMap)
+{
+	this->gameMap = gameMap;
 }

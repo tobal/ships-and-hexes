@@ -18,6 +18,8 @@ public:
 	GameStateGFXI();
 	~GameStateGFXI();
 	GameMap::GameMap* generateMap();
+	GameMap::GameMap* getGameMap();
+	void setGameMap(GameMap::GameMap* gameMap);
 };
 
 }

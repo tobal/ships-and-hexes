@@ -20,7 +20,6 @@ orxVECTOR delta = orxVECTOR_0;
 // TODO interface to GameGFXI
 // TODO interface to GameplayGFXI
 // TODO interface to Gameplay
-GameMap::GameMap* gameMap = NULL;
 GameMapGFX* mapGfx;
 HudGFX* hudGfx;
 
@@ -30,7 +29,8 @@ bool mbleftFlag = false;
 void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 {
 	orxVECTOR mousePos;
-	if(orxRender_GetWorldPosition(orxMouse_GetPosition(&mousePos), viewport, &mousePos))
+	orxMouse_GetPosition(&mousePos);
+	if(orxRender_GetWorldPosition(&mousePos, viewport, &mousePos))
 	{
 		orxVECTOR vParentPosition;
 		orxObject_GetWorldPosition(mouseCursor, &vParentPosition);
@@ -72,15 +72,17 @@ orxSTATUS orxFASTCALL Init()
 	hudGfx->drawHUD();
 
 	GameStateGFXI stateInterface = GameStateGFXI();
+	stateInterface.setGameMap(stateInterface.generateMap());
 
 	// TODO make separate viewport for the map
 	mapGfx = new GameMapGFX();
-	if(gameMap == NULL)
-	{
-		// TODO call this from menu
-		gameMap = stateInterface.generateMap();
-	}
-	mapGfx->drawMap(gameMap);
+//	if(gameMap == NULL)
+//	{
+//		// TODO call this from menu
+//		gameMap = stateInterface.generateMap();
+//	}
+//	mapGfx->drawMap(gameMap);
+	mapGfx->drawMap(stateInterface.getGameMap());
 
 	orxCLOCK *pstMainClock;
 	pstMainClock = orxClock_FindFirst(orx2F(-1.0f), orxCLOCK_TYPE_CORE);
