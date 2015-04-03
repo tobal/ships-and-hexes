@@ -15,5 +15,15 @@ GameHUDGFXI::~GameHUDGFXI()
 
 void GameHUDGFXI::clickButton(ButtonId id)
 {
+	switch(id)
+	{
+	case END_TURN:
+		endTurn();
+		break;
+	}
+}
+
+void GameHUDGFXI::endTurn()
+{
 
 }

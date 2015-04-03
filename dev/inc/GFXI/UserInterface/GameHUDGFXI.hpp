@@ -2,16 +2,21 @@
 #ifndef GAMEHUDGFXI_HPP_
 #define GAMEHUDGFXI_HPP_
 
-#include "GFXI/UserInterface/Button.hpp"
 #include "GFXI/GameGFXI/GameStateGFXI.hpp"
 
 namespace UserInterface
 {
 
+enum ButtonId
+{
+	END_TURN
+};
+
 class GameHUDGFXI
 {
 private:
 	GameGFXI::GameStateGFXI* gameState;
+	void endTurn();
 
 public:
 	GameHUDGFXI(GameGFXI::GameStateGFXI* gameState);
