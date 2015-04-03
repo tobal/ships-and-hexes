@@ -7,6 +7,8 @@
 #include "GameMap/GameMap.hpp"
 #include "GameMap/GameMapGenerator.hpp"
 #include "GameConfig/Player.hpp"
+#include "Gameplay/Gameplay.hpp"
+#include "Gameplay/GameplayImpl.hpp"
 #include <vector>
 
 namespace GameState
@@ -16,6 +18,7 @@ class GameStateImpl : public GameState
 {
 private:
 	GameMap::GameMap* gameMap;
+	Gameplay::Gameplay* gamePlay;
 
 public:
 	GameStateImpl();
@@ -24,6 +27,7 @@ public:
 	GameMap::GameMap* generateMap();
 	GameMap::GameMap* getGameMap();
 	void setGameMap(GameMap::GameMap* gameMap);
+	void nextTurn();
 };
 
 }

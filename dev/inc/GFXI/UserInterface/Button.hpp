@@ -14,10 +14,9 @@ class Button
 {
 private:
 	ButtonId id;
-	void (*action);
 
 public:
-	Button(ButtonId id, void (*action));
+	Button(ButtonId id);
 	~Button();
 	void doAction();
 };

@@ -10,6 +10,7 @@ GameStateImpl::GameStateImpl()
 {
 	// TODO get game map in parameter
 	gameMap = NULL;
+	gamePlay = dynamic_cast<Gameplay::Gameplay*>(new Gameplay::GameplayImpl);
 }
 
 GameStateImpl::~GameStateImpl()
@@ -18,6 +19,7 @@ GameStateImpl::~GameStateImpl()
 	{
 		delete gameMap;
 	}
+	delete gamePlay;
 }
 
 EmpireDetails GameStateImpl::getEmpireDetails()
@@ -56,4 +58,9 @@ GameMap::GameMap* GameStateImpl::getGameMap()
 void GameStateImpl::setGameMap(GameMap::GameMap* gameMap)
 {
 	this->gameMap = gameMap;
+}
+
+void GameStateImpl::nextTurn()
+{
+	gamePlay->nextTurn(gameMap);
 }

@@ -17,6 +17,7 @@ public:
 	virtual GameMap::GameMap* generateMap() {}
 	virtual GameMap::GameMap* getGameMap() {}
 	virtual void setGameMap(GameMap::GameMap* gameMap) {}
+	virtual void nextTurn() {}
 };
 
 }

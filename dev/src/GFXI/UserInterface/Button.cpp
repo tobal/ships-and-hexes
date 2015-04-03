@@ -3,7 +3,7 @@
 
 using namespace UserInterface;
 
-Button::Button(ButtonId id, void (*action)) : id(id), action(action)
+Button::Button(ButtonId id) : id(id)
 {
 
 }
