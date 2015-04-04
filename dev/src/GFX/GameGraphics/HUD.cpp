@@ -1,11 +1,16 @@
 
 #include "GFX/GameGraphics/HUD.hpp"
 
+using namespace std;
 using namespace GameGraphics;
+using namespace UserInterface;
+using namespace GameGFXI;
+using namespace UIGFX;
 
-HudGFX::HudGFX()
+HudGFX::HudGFX(GameStateGFXI* stateInterface)
 {
 	hudRepo = new HUDObjectRepo();
+	hudGFXI = new GameHUDGFXI(stateInterface);
 }
 
 HudGFX::~HudGFX()
@@ -20,8 +25,6 @@ void HudGFX::drawHUD()
 	float bottomPos = screenWidth - 167.0 - screenWidth/2;
 	float edgePos = screenHeight - 86.0 - 47.0 - screenHeight/2;
 	orxVECTOR pos;
-//	pos.fX = 0.0 - screenWidth/2;
-//	pos.fY = 0.0;
 	pos.fX = bottomPos;
 	pos.fY = edgePos;
 	pos.fZ = 0.0;
@@ -186,4 +189,17 @@ void HudGFX::drawHUD()
 	rightBottomEdgeObj = orxObject_CreateFromConfig("HUDRightBottomEdgeObj");
 	hudRepo->saveToRepo(rightBottomEdgeObj, pos);
 	orxObject_SetPosition(rightBottomEdgeObj, &pos);
+
+	//// BUTTONS ////
+
+	orxVECTOR endTurnButtonPos;
+	endTurnButtonPos.fX = bottomPos + 10;
+	endTurnButtonPos.fY = edgePos + 10;
+	endTurnButtonPos.fZ = 0.1;
+	Button endTurnButton = Button(endTurnButtonPos,
+								  string("HUDButtonEndTurnObj"),
+								  string("HUDButtonEndTurnHlightObj"),
+								  END_TURN);
+	// TODO: if
+	hudGFXI->clickButton(endTurnButton.getButtonId());
 }

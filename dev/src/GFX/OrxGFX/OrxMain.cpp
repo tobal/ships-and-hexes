@@ -22,6 +22,7 @@ orxVECTOR delta = orxVECTOR_0;
 // TODO interface to Gameplay
 GameMapGFX* mapGfx;
 HudGFX* hudGfx;
+GameStateGFXI* stateInterface;
 
 // TODO Input.hpp
 bool mbleftFlag = false;
@@ -67,12 +68,12 @@ orxSTATUS orxFASTCALL Init()
 
 	mouseCursor = orxObject_CreateFromConfig("CursorObj");
 
-	// draw hud
-	hudGfx = new HudGFX();
-	hudGfx->drawHUD();
+	stateInterface = new GameStateGFXI();
+	stateInterface->setGameMap(stateInterface->generateMap());
 
-	GameStateGFXI stateInterface = GameStateGFXI();
-	stateInterface.setGameMap(stateInterface.generateMap());
+	// draw hud
+	hudGfx = new HudGFX(stateInterface);
+	hudGfx->drawHUD();
 
 	// TODO make separate viewport for the map
 	mapGfx = new GameMapGFX();
@@ -82,7 +83,7 @@ orxSTATUS orxFASTCALL Init()
 //		gameMap = stateInterface.generateMap();
 //	}
 //	mapGfx->drawMap(gameMap);
-	mapGfx->drawMap(stateInterface.getGameMap());
+	mapGfx->drawMap(stateInterface->getGameMap());
 
 	orxCLOCK *pstMainClock;
 	pstMainClock = orxClock_FindFirst(orx2F(-1.0f), orxCLOCK_TYPE_CORE);
@@ -106,6 +107,8 @@ orxSTATUS orxFASTCALL Run()
 void orxFASTCALL Exit()
 {
 	delete mapGfx;
+	delete stateInterface;
+	delete hudGfx;
 }
 
 int orxMain(int argc, char **argv)

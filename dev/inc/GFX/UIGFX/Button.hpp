@@ -2,15 +2,28 @@
 #ifndef BUTTON_HPP_
 #define BUTTON_HPP_
 
+#include <string>
+#include <orx.h>
+#include "GFXI/UserInterface/GameHUDGFXI.hpp"
+
 namespace UIGFX
 {
 
 class Button
 {
+private:
+	orxVECTOR buttonPos;
+	std::string buttonPic;
+	std::string buttonHighlightPic;
+	UserInterface::ButtonId id;
+
 public:
-	Button();
+	Button(orxVECTOR buttonPos,
+		   std::string buttonPic,
+		   std::string buttonHighlightPic,
+		   UserInterface::ButtonId id);
 	~Button();
-	void doAction();
+	UserInterface::ButtonId getButtonId();
 };
 
 }
