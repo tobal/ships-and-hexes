@@ -16,6 +16,7 @@ HudGFX::HudGFX(GameStateGFXI* stateInterface)
 HudGFX::~HudGFX()
 {
 	delete hudRepo;
+	delete hudGFXI;
 }
 
 void HudGFX::drawHUD()
@@ -193,13 +194,46 @@ void HudGFX::drawHUD()
 	//// BUTTONS ////
 
 	orxVECTOR endTurnButtonPos;
-	endTurnButtonPos.fX = bottomPos + 10;
-	endTurnButtonPos.fY = edgePos + 10;
+	endTurnButtonPos.fX = bottomPos;
+	endTurnButtonPos.fY = edgePos;
 	endTurnButtonPos.fZ = 0.1;
+
 	Button endTurnButton = Button(endTurnButtonPos,
 								  string("HUDButtonEndTurnObj"),
 								  string("HUDButtonEndTurnHlightObj"),
 								  END_TURN);
-	// TODO: if
-	hudGFXI->clickButton(endTurnButton.getButtonId());
+	// TODO: store buttons in repo
+}
+
+void HudGFX::updateHud(orxVECTOR* mousePos)
+{
+	// TODO duplication!
+	int screenWidth = 1280;
+	int screenHeight = 720;
+	float bottomPos = screenWidth - 167.0 - screenWidth/2;
+	float edgePos = screenHeight - 86.0 - 47.0 - screenHeight/2;
+
+	orxVECTOR endTurnButtonPos;
+	endTurnButtonPos.fX = bottomPos;
+	endTurnButtonPos.fY = edgePos;
+	endTurnButtonPos.fZ = 0.1;
+
+	orxAABOX buttonBox;
+	orxVECTOR buttonBottomRight;
+	buttonBottomRight.fX = endTurnButtonPos.fX + 167.0;
+	buttonBottomRight.fY = endTurnButtonPos.fY + 86.0;
+	buttonBottomRight.fZ = 0.0;
+	orxAABox_Set(&buttonBox, &endTurnButtonPos, &buttonBottomRight);
+	if(orxMouse_IsButtonPressed(orxMOUSE_BUTTON_LEFT))
+	{
+		orxLOG("buttonBox: %f, %f", buttonBox.vBR.fX, buttonBox.vTL.fX);
+		orxLOG("mouse: %f, %f", mousePos->fX, mousePos->fY);
+	}
+
+	// TODO: iterate over buttons in repo, highlight them, and handle click
+
+	if(orxAABox_IsInside(&buttonBox, mousePos))
+	{
+//		hudGFXI->clickButton(endTurnButton.getButtonId());
+	}
 }

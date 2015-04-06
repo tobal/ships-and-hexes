@@ -31,8 +31,13 @@ void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 {
 	orxVECTOR mousePos;
 	orxMouse_GetPosition(&mousePos);
+
+	mapGfx->updateMap(viewport, &delta);
+	hudGfx->updateHud(&mousePos);
+
 	if(orxRender_GetWorldPosition(&mousePos, viewport, &mousePos))
 	{
+		orxMouse_ShowCursor(false);
 		orxVECTOR vParentPosition;
 		orxObject_GetWorldPosition(mouseCursor, &vParentPosition);
 		mousePos.fZ = vParentPosition.fZ;
@@ -57,8 +62,6 @@ void orxFASTCALL Update(const orxCLOCK_INFO *_pstClockInfo, void *_pstContext)
 			delta = orxVECTOR_0;
 		}
 	}
-
-	mapGfx->updateMap(viewport, &delta);
 }
 
 orxSTATUS orxFASTCALL Init()
@@ -77,12 +80,6 @@ orxSTATUS orxFASTCALL Init()
 
 	// TODO make separate viewport for the map
 	mapGfx = new GameMapGFX();
-//	if(gameMap == NULL)
-//	{
-//		// TODO call this from menu
-//		gameMap = stateInterface.generateMap();
-//	}
-//	mapGfx->drawMap(gameMap);
 	mapGfx->drawMap(stateInterface->getGameMap());
 
 	orxCLOCK *pstMainClock;

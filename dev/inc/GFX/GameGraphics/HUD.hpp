@@ -21,6 +21,7 @@ public:
 	HudGFX(GameGFXI::GameStateGFXI* stateInterface);
 	~HudGFX();
 	void drawHUD();
+	void updateHud(orxVECTOR* mousePos);
 };
 
 }
