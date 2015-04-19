@@ -21,6 +21,21 @@ Button::~Button()
 
 }
 
+orxVECTOR Button::getButtonPos()
+{
+	return this->buttonPos;
+}
+
+string Button::getButtonPic()
+{
+	return this->buttonPic;
+}
+
+string Button::getButtonHighlightPic()
+{
+	return this->buttonHighlightPic;
+}
+
 ButtonId Button::getButtonId()
 {
 	return id;

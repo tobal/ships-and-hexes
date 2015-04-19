@@ -34,22 +34,22 @@ struct MapObjectRepo
 	void saveToRepo(orxOBJECT*& hexObj, orxVECTOR& pos, Coord coord, MapGraphicObjectType type);
 };
 
-void saveToMapObjectRepo(MapObjectRepo* mapRepo, orxOBJECT*& hexObj,
-						 orxVECTOR& pos, Coord coord, MapGraphicObjectType type);
-
 struct HUDObjectRepo
 {
 	HUDObjectRepo()
 	{
 		background = new GraphicObjects();
+		buttons = new ButtonObjects();
 	}
 	~HUDObjectRepo()
 	{
 		delete background;
 	}
 	GraphicObjects* background;
+	ButtonObjects* buttons;
 
 	void saveToRepo(orxOBJECT*& obj, orxVECTOR& pos);
+	void saveButtonToRepo(UIGFX::Button* button);
 };
 
 #endif /* OBJECTREPOS_HPP_ */

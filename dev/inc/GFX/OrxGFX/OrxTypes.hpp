@@ -5,6 +5,7 @@
 #include "orx.h"
 #include <vector>
 #include "Empire/CommonTypes.hpp"
+#include "GFX/UIGFX/Button.hpp"
 
 struct MapGraphicObject
 {
@@ -32,4 +33,21 @@ struct GraphicObject
 
 typedef std::vector<GraphicObject> GraphicObjects;
 
+
+struct ButtonObject
+{
+	UIGFX::Button* button;
+	GraphicObject gfx;
+	GraphicObject gfxHighl;
+	ButtonObject(UIGFX::Button* button)
+	{
+		this->button = button;
+		this->gfx.pos = this->button->getButtonPos();
+		this->gfx.obj = orxObject_CreateFromConfig(this->button->getButtonPic().c_str());
+		this->gfxHighl.pos = this->button->getButtonPos();
+		this->gfxHighl.obj = orxObject_CreateFromConfig(this->button->getButtonHighlightPic().c_str());
+	}
+};
+
+typedef std::vector<ButtonObject> ButtonObjects;
 #endif /* ORXTYPES_HPP_ */

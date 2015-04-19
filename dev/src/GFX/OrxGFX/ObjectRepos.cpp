@@ -1,6 +1,8 @@
 
 #include "GFX/OrxGFX/ObjectRepos.hpp"
 
+using namespace UIGFX;
+
 void MapObjectRepo::saveToRepo(orxOBJECT*& hexObj, orxVECTOR& pos,
 							   Coord coord, MapGraphicObjectType type)
 {
@@ -36,4 +38,10 @@ void HUDObjectRepo::saveToRepo(orxOBJECT*& object, orxVECTOR& pos)
 	gr_obj.obj = object;
 	gr_obj.pos = pos;
 	this->background->push_back(gr_obj);
+}
+
+void HUDObjectRepo::saveButtonToRepo(Button* button)
+{
+	ButtonObject buttonObj = ButtonObject(button);
+	this->buttons->push_back(buttonObj);
 }

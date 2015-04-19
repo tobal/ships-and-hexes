@@ -23,6 +23,9 @@ public:
 		   std::string buttonHighlightPic,
 		   UserInterface::ButtonId id);
 	~Button();
+	orxVECTOR getButtonPos();
+	std::string getButtonPic();
+	std::string getButtonHighlightPic();
 	UserInterface::ButtonId getButtonId();
 };
 
